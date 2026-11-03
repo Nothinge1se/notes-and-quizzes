@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpentry Master — Complete Tutorial Notes &amp; 84-Question Quiz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        wood: {
+                            50: '#fbf7f4',
+                            100: '#f5ece4',
+                            200: '#ead6c5',
+                            300: '#dcb89d',
+                            400: '#ca936d',
+                            500: '#ba764a',
+                            600: '#9e5c36',
+                            700: '#81482c',
+                            800: '#693b27',
+                            900: '#563122',
+                            950: '#2f1810',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fbf7f4;
+            color: #2f1810;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f5ece4;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #ca936d;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #9e5c36;
+        }
+        .wood-pattern {
+            background-color: #563122;
+            background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .pdf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            letter-spacing: 0.02em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.22s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-wood-300 selection:text-wood-950">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="wood-pattern text-white shadow-xl sticky top-0 z-50 border-b-4 border-amber-600">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-amber-500 text-wood-950 flex items-center justify-center shadow-md font-black text-xl">
+                    <i class="fa-solid fa-hammer"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-amber-50">Carpentry Master</h1>
+                        <span class="text-xs bg-amber-500/20 border border-amber-400/40 text-amber-200 px-2 py-0.5 rounded-full font-semibold">Aug 2026</span>
+                    </div>
+                    <p class="text-xs text-wood-200">Prepared by Dr. Sumanta Banerjee &bull; Complete Tutorial Notes &amp; 84-MCQ Bank</p>
+                </div>
+            </div>
+
+            <!-- Main Mode Switcher Tabs -->
+            <div class="flex items-center bg-wood-950/70 p-1.5 rounded-xl border border-wood-700">
+                <button id="tab-btn-notes" onclick="switchTab('notes')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-wood-950 shadow-md">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Study Notes &amp; Diagrams</span>
+                </button>
+                <button id="tab-btn-quiz" onclick="switchTab('quiz')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-wood-200 hover:text-white hover:bg-wood-800/60">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Interactive Quiz (84 MCQs)</span>
+                    <span id="header-score-pill" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-wood-800 text-amber-300 border border-wood-600">0/84</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: COMPLETE STUDY NOTES (PDF RECREATED + CUSTOM SVG DIAGRAMS)     -->
+    <!-- ===================================================================== -->
+    <main id="view-notes" class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+        
+        <!-- Sticky Quick Section Jumper Bar -->
+        <div class="bg-white/95 backdrop-blur border border-wood-200 rounded-2xl p-3 mb-6 shadow-sm sticky top-[72px] z-30 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+                <span class="text-wood-600 px-2 py-1 uppercase tracking-wider"><i class="fa-solid fa-compass mr-1"></i>Jump to PDF Section:</span>
+                <a href="#sec-1" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">1. Introduction</a>
+                <a href="#sec-2" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">2. Timber Properties</a>
+                <a href="#sec-3" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">3. Market Forms (8)</a>
+                <a href="#sec-4" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">4. Hardwood vs Softwood</a>
+                <a href="#sec-5" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">5. Seasoning of Wood</a>
+                <a href="#sec-6" class="px-3 py-1.5 rounded-lg bg-wood-100 hover:bg-amber-500 hover:text-wood-950 text-wood-800 transition">6. Carpentry Joints (9)</a>
+            </div>
+            <button onclick="switchTab('quiz')" class="text-xs font-bold bg-wood-800 hover:bg-wood-900 text-amber-300 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 ml-auto">
+                <span>Test Yourself on These Notes</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Document Banner -->
+        <div class="bg-gradient-to-r from-wood-900 via-wood-800 to-wood-900 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-lg border border-wood-700 relative overflow-hidden">
+            <div class="relative z-10 max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold mb-3">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>VERBATIM RECREATION WITH TECHNICAL DIAGRAMS &bull; PAGES 1 TO 5</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-extrabold font-serif mb-2">Carpentry Tutorial Notes: Comprehensive Overview</h2>
+                <p class="text-wood-200 text-sm md:text-base leading-relaxed">
+                    Every definition, dimension, botanical classification, seasoning parameter, and joint configuration from Dr. Sumanta Banerjee's official tutorial notes, enriched with custom technical schematics and direct PDF page/line citations.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- SECTION 1: INTRODUCTION TO CARPENTRY              -->
+        <!-- ================================================= -->
+        <section id="sec-1" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">1</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">1. Introduction to Carpentry</h3>
+                        <p class="text-xs text-wood-600">Scope, core responsibilities, and modern material evolution</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 1 &bull; Lines 5–21</span>
+            </div>
+
+            <!-- Verbatim Overview Box -->
+            <div class="bg-wood-50 border-l-4 border-wood-700 p-5 rounded-r-xl mb-6">
+                <p class="text-wood-950 leading-relaxed mb-3">
+                    <strong>Definition &amp; Scope <span class="text-xs font-semibold text-amber-800">(Page 1, Lines 5–9)</span>:</strong>
+                    Carpentry is a skilled trade and art form centered on <strong>cutting, working, and joining timber</strong>. Its scope ranges from large-scale construction, such as buildings, to finer items like <strong>furniture and cabinets</strong>. Carpenters are essential in constructing, erecting, installing, and repairing residential and small commercial structures.
+                </p>
+                <p class="text-wood-900 text-sm leading-relaxed">
+                    <strong>Material Evolution <span class="text-xs font-semibold text-amber-800">(Page 1, Lines 19–21)</span>:</strong>
+                    Over time, the carpenter's role has evolved, incorporating modern materials like <strong>plywood, chipboard, and metal</strong>, while still relying on <strong>timber as the primary material</strong>.
+                </p>
+            </div>
+
+            <!-- 4 Core Tasks of a Carpenter with Custom SVG Visuals -->
+            <h4 class="text-sm font-bold uppercase tracking-wider text-wood-700 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
+                The 4 Core Tasks of a Carpenter (Page 1, Lines 10–18)
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Task 1: Plans -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="h-32 bg-sky-900 rounded-lg mb-3 flex items-center justify-center p-2 border border-sky-700">
+                        <svg viewBox="0 0 200 110" class="w-full h-full">
+                            <rect x="10" y="10" width="180" height="90" rx="4" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 2"/>
+                            <line x1="30" y1="30" x2="170" y2="30" stroke="#7dd3fc" stroke-width="1"/>
+                            <line x1="30" y1="80" x2="170" y2="80" stroke="#7dd3fc" stroke-width="1"/>
+                            <rect x="45" y="35" width="55" height="40" fill="none" stroke="#facc15" stroke-width="2"/>
+                            <polygon points="115,75 140,35 165,75" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="100" y="95" text-anchor="middle" fill="#bae6fd" font-size="9" font-weight="bold">BLUEPRINT &amp; CALCULATIONS</text>
+                        </svg>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-extrabold text-wood-900 text-base">1. Reading &amp; Interpreting Plans</span>
+                    </div>
+                    <span class="text-[11px] font-bold text-amber-800 mb-2">Page 1, Lines 11–12</span>
+                    <p class="text-xs text-wood-800 leading-relaxed">Working from construction drawings and performing necessary dimensional and material calculations.</p>
+                </div>
+
+                <!-- Task 2: Framing -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="h-32 bg-amber-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-wood-700">
+                        <svg viewBox="0 0 200 110" class="w-full h-full">
+                            <!-- Roof trusses -->
+                            <polygon points="30,45 100,12 170,45" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                            <line x1="100" y1="12" x2="100" y2="45" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="65" y1="28" x2="65" y2="45" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="135" y1="28" x2="135" y2="45" stroke="#fbbf24" stroke-width="2"/>
+                            <!-- Wall studs & floor joists -->
+                            <rect x="40" y="45" width="120" height="42" fill="none" stroke="#d97706" stroke-width="3"/>
+                            <line x1="65" y1="45" x2="65" y2="87" stroke="#f59e0b" stroke-width="2"/>
+                            <line x1="90" y1="45" x2="90" y2="87" stroke="#f59e0b" stroke-width="2"/>
+                            <line x1="115" y1="45" x2="115" y2="87" stroke="#f59e0b" stroke-width="2"/>
+                            <line x1="138" y1="45" x2="138" y2="87" stroke="#f59e0b" stroke-width="2"/>
+                            <text x="100" y="102" text-anchor="middle" fill="#fde68a" font-size="9" font-weight="bold">STRUCTURAL SKELETON</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-wood-900 text-base">2. Framing</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-2">Page 1, Lines 13–14</span>
+                    <p class="text-xs text-wood-800 leading-relaxed">Building the <strong>structural skeleton</strong> of a building, including <strong>floors, walls, and roofs</strong>.</p>
+                </div>
+
+                <!-- Task 3: Finishing -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="h-32 bg-wood-900 rounded-lg mb-3 flex items-center justify-center p-2 border border-wood-700">
+                        <svg viewBox="0 0 200 110" class="w-full h-full">
+                            <!-- Door frame -->
+                            <rect x="25" y="18" width="42" height="68" fill="#78350f" stroke="#fbbf24" stroke-width="2"/>
+                            <circle cx="59" cy="52" r="2.5" fill="#fde047"/>
+                            <!-- Window -->
+                            <rect x="80" y="22" width="42" height="40" fill="#1e3a8a" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="101" y1="22" x2="101" y2="62" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="80" y1="42" x2="122" y2="42" stroke="#fbbf24" stroke-width="1.5"/>
+                            <!-- Staircase -->
+                            <polyline points="135,85 135,70 150,70 150,55 165,55 165,40 180,40" fill="none" stroke="#fcd34d" stroke-width="3"/>
+                            <text x="100" y="102" text-anchor="middle" fill="#fde68a" font-size="9" font-weight="bold">DOORS, WINDOWS, STAIRS, TRIM</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-wood-900 text-base">3. Interior &amp; Exterior Finishing</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-2">Page 1, Lines 15–16</span>
+                    <p class="text-xs text-wood-800 leading-relaxed">Installing items such as <strong>door frames, windows, cabinets, staircases, and trim</strong>.</p>
+                </div>
+
+                <!-- Task 4: Formwork -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="h-32 bg-stone-800 rounded-lg mb-3 flex items-center justify-center p-2 border border-stone-600">
+                        <svg viewBox="0 0 200 110" class="w-full h-full">
+                            <!-- Concrete core -->
+                            <rect x="55" y="28" width="90" height="54" fill="#9ca3af" stroke="#e5e7eb" stroke-width="1"/>
+                            <!-- Wooden shuttering boards -->
+                            <rect x="43" y="24" width="12" height="62" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+                            <rect x="145" y="24" width="12" height="62" fill="#d97706" stroke="#fbbf24" stroke-width="1.5"/>
+                            <!-- Braces -->
+                            <line x1="25" y1="86" x2="43" y2="40" stroke="#f59e0b" stroke-width="2.5"/>
+                            <line x1="175" y1="86" x2="157" y2="40" stroke="#f59e0b" stroke-width="2.5"/>
+                            <text x="100" y="58" text-anchor="middle" fill="#1f2937" font-size="9" font-weight="bold">WET CONCRETE</text>
+                            <text x="100" y="102" text-anchor="middle" fill="#fde68a" font-size="9" font-weight="bold">SHUTTERING / MOLD</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-wood-900 text-base">4. Formwork (Shuttering)</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-2">Page 1, Lines 17–18</span>
+                    <p class="text-xs text-wood-800 leading-relaxed">Constructing <strong>temporary molds (shuttering)</strong> into which concrete is poured.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 2: TIMBER & KEY PROPERTIES OF GOOD TIMBER -->
+        <!-- ================================================= -->
+        <section id="sec-2" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">2</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">2. Timber &amp; Key Properties of Good Timber</h3>
+                        <p class="text-xs text-wood-600">Engineering definition and the 5 quality indicators of sound timber</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 1 (Lines 22–25) &amp; Page 2 (Lines 1–13)</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <!-- Left 7 cols: Text & 5 Properties -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                        <div class="text-xs font-bold text-amber-900 uppercase mb-1">Definition of Timber (Page 1, Lines 22–25)</div>
+                        <p class="text-sm text-wood-950 leading-relaxed">
+                            <strong>Timber</strong> refers to wood that has been processed and is suitable for building, carpentry, or other engineering purposes. It is the fundamental material in carpentry, prized for its <strong>strength</strong>, <strong>workability</strong>, and <strong>low heat conductivity</strong>.
+                        </p>
+                    </div>
+
+                    <h4 class="font-bold text-wood-900 text-base pt-1">5 Key Properties of Good Timber (Page 2, Lines 1–11):</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3.5 rounded-xl border border-wood-200 bg-wood-50/60">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-wood-900 text-sm"><i class="fa-solid fa-shield-halved text-amber-600 mr-1.5"></i>1. Strength &amp; Durability</span>
+                                <span class="text-[10px] font-bold text-amber-800">Pg 2, L3–4</span>
+                            </div>
+                            <p class="text-xs text-wood-800">Strong enough for its intended use and resistant to decay.</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl border border-wood-200 bg-wood-50/60">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-wood-900 text-sm"><i class="fa-solid fa-wand-magic-sparkles text-amber-600 mr-1.5"></i>2. Appearance</span>
+                                <span class="text-[10px] font-bold text-amber-800">Pg 2, L5–6</span>
+                            </div>
+                            <p class="text-xs text-wood-800">Should have a <strong>uniform color</strong>, a <strong>shining fresh-cut surface</strong>, and a <strong>sweet smell</strong>.</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl border border-wood-200 bg-wood-50/60">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-wood-900 text-sm"><i class="fa-solid fa-volume-high text-amber-600 mr-1.5"></i>3. Soundness</span>
+                                <span class="text-[10px] font-bold text-amber-800">Pg 2, L7–8</span>
+                            </div>
+                            <p class="text-xs text-wood-800">Produces a <strong>sonorous sound when struck</strong>, indicating it is free from internal defects.</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl border border-wood-200 bg-wood-50/60">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-wood-900 text-sm"><i class="fa-solid fa-weight-hanging text-amber-600 mr-1.5"></i>4. Density</span>
+                                <span class="text-[10px] font-bold text-amber-800">Pg 2, L9</span>
+                            </div>
+                            <p class="text-xs text-wood-800">Generally, <strong>heavier timber is considered stronger</strong>.</p>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl border border-wood-200 bg-wood-50/60 sm:col-span-2">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-wood-900 text-sm"><i class="fa-solid fa-grip-lines text-amber-600 mr-1.5"></i>5. Texture</span>
+                                <span class="text-[10px] font-bold text-amber-800">Pg 2, L10</span>
+                            </div>
+                            <p class="text-xs text-wood-800">Should have a <strong>uniform and close grain</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 5 cols: Custom Labeled SVG Anatomy & Properties Diagram -->
+                <div class="lg:col-span-5 bg-wood-950 text-white rounded-2xl p-5 border border-wood-800 shadow-inner">
+                    <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2 text-center">
+                        Technical Diagram: Anatomy &amp; Inspection of Good Timber
+                    </div>
+                    <svg viewBox="0 0 320 240" class="w-full h-auto">
+                        <!-- Outer Bark -->
+                        <circle cx="130" cy="120" r="85" fill="#451a03" stroke="#78350f" stroke-width="5"/>
+                        <!-- Sapwood -->
+                        <circle cx="130" cy="120" r="72" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+                        <!-- Heartwood -->
+                        <circle cx="130" cy="120" r="48" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+                        <!-- Close Uniform Growth Rings -->
+                        <circle cx="130" cy="120" r="36" fill="none" stroke="#78350f" stroke-width="1.2"/>
+                        <circle cx="130" cy="120" r="24" fill="none" stroke="#78350f" stroke-width="1.2"/>
+                        <circle cx="130" cy="120" r="12" fill="#451a03"/>
+                        <!-- Callout Lines -->
+                        <line x1="130" y1="35" x2="215" y2="30" stroke="#fbbf24" stroke-width="1.5"/>
+                        <text x="220" y="33" fill="#fde68a" font-size="10" font-weight="bold">Outer Bark (Removed)</text>
+
+                        <line x1="180" y1="68" x2="215" y2="65" stroke="#fbbf24" stroke-width="1.5"/>
+                        <text x="220" y="68" fill="#fef08a" font-size="10" font-weight="bold">Sapwood Layer</text>
+
+                        <line x1="155" y1="115" x2="215" y2="105" stroke="#fbbf24" stroke-width="1.5"/>
+                        <text x="220" y="108" fill="#fed7aa" font-size="10" font-weight="bold">Dense Heartwood</text>
+
+                        <line x1="145" y1="145" x2="215" y2="145" stroke="#34d399" stroke-width="1.5"/>
+                        <text x="220" y="148" fill="#6ee7b7" font-size="10" font-weight="bold">Uniform Close Grain</text>
+
+                        <!-- Acoustic Soundness Wave -->
+                        <path d="M 30 195 Q 45 180 60 195 T 90 195" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="30" y="215" fill="#bae6fd" font-size="9.5" font-weight="bold">Sonorous Ringing Sound = No Defects</text>
+                        <text x="30" y="230" fill="#fcd34d" font-size="9.5" font-weight="bold">Low Heat Conductivity &amp; Sweet Smell</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 3: MARKET FORMS OF CONVERTED TIMBER       -->
+        <!-- ================================================= -->
+        <section id="sec-3" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">3</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">3. Market Forms of Converted Timber</h3>
+                        <p class="text-xs text-wood-600">Standard commercial shapes and exact millimeter dimensions after log conversion</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 2 &bull; Lines 14–35</span>
+            </div>
+
+            <p class="text-sm text-wood-900 mb-6 bg-wood-50 p-4 rounded-xl border border-wood-200">
+                <strong>What is Conversion? <span class="text-amber-800">(Page 2, Lines 15–17)</span>:</strong>
+                After a tree is felled, the log is <strong>"converted"</strong> or cut down into various marketable, standard sizes and shapes. This process prepares the raw timber for different uses in construction and carpentry.
+            </p>
+
+            <!-- Visual Cross-Section Cards for all 8 Market Forms -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- 1. Log -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">1. Log</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L19–20</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <ellipse cx="45" cy="40" rx="22" ry="25" fill="#d97706" stroke="#78350f" stroke-width="4"/>
+                            <path d="M45,15 L125,18 A20,22 0 0,1 125,62 L45,65" fill="#92400e" stroke="#78350f" stroke-width="3"/>
+                            <text x="85" y="44" fill="#fef3c7" font-size="9" font-weight="bold">Felled Trunk</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">The trunk of a felled tree with its branches removed.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-wood-200/70 text-wood-900 px-2.5 py-1.5 rounded-lg">
+                        Dim: Raw, unprocessed form
+                    </div>
+                </div>
+
+                <!-- 2. Balk -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">2. Balk</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L21–23</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="48" y="14" width="52" height="52" fill="#f59e0b" stroke="#fef3c7" stroke-width="2"/>
+                            <text x="74" y="42" text-anchor="middle" fill="#451a03" font-size="8.5" font-weight="bold">&gt;50&times;50mm</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">Roughly square-shaped piece, obtained after removing bark and sapwood from a log.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Cross-section &gt; 50mm &times; 50mm; Length &gt; 200mm
+                    </div>
+                </div>
+
+                <!-- 3. Plank -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">3. Plank</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L24–25</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="25" y="28" width="110" height="24" fill="#fbbf24" stroke="#fef3c7" stroke-width="2"/>
+                            <text x="80" y="43" text-anchor="middle" fill="#451a03" font-size="8.5" font-weight="bold">T &lt; 50mm | B &gt; 50mm</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A piece of timber that is wider than it is thick.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Thickness &lt; 50mm; Breadth &gt; 50mm
+                    </div>
+                </div>
+
+                <!-- 4. Batten -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">4. Batten</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L26–27</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="35" y="24" width="90" height="32" fill="#d97706" stroke="#fef3c7" stroke-width="2"/>
+                            <text x="80" y="43" text-anchor="middle" fill="#fef3c7" font-size="8" font-weight="bold">T:50-100 | B:125-175</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A rectangular piece of timber, narrower and thinner than a plank.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Thickness: 50–100mm; Breadth: 125–175mm
+                    </div>
+                </div>
+
+                <!-- 5. Beam -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">5. Beam</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L28–29</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="15" y="22" width="130" height="36" fill="#b45309" stroke="#fde68a" stroke-width="2.5"/>
+                            <text x="80" y="44" text-anchor="middle" fill="#fef3c7" font-size="8.5" font-weight="bold">LOAD-BEARING BEAM</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A large, horizontal timber piece used as a primary structural element.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-wood-200/70 text-wood-900 px-2.5 py-1.5 rounded-lg">
+                        Large cross-section; varies by load
+                    </div>
+                </div>
+
+                <!-- 6. Board -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">6. Board</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L30–31</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="12" y="32" width="136" height="16" fill="#fcd34d" stroke="#fef3c7" stroke-width="2"/>
+                            <text x="80" y="43" text-anchor="middle" fill="#451a03" font-size="8" font-weight="bold">T &lt; 50mm | Breadth &gt; 150mm</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A thin, wide piece of sawn timber.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Thickness &lt; 50mm; Breadth &gt; 150mm
+                    </div>
+                </div>
+
+                <!-- 7. Deal -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">7. Deal</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L32–33</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <rect x="20" y="22" width="120" height="34" fill="#fdba74" stroke="#fef3c7" stroke-width="2"/>
+                            <text x="80" y="42" text-anchor="middle" fill="#451a03" font-size="8" font-weight="bold">SOFTWOOD: T 50-100 | B &le; 250</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A converted form of a <strong>softwood log</strong>, generally rectangular in cross-section.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Thickness: 50–100mm; Breadth up to 250mm
+                    </div>
+                </div>
+
+                <!-- 8. Pole / Spar -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-wood-50/40 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">8. Pole / Spar</span>
+                            <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">Pg 2, L34–35</span>
+                        </div>
+                        <svg viewBox="0 0 160 80" class="w-full h-20 bg-wood-900 rounded-lg mb-2 p-1">
+                            <circle cx="80" cy="40" r="24" fill="#eab308" stroke="#fef3c7" stroke-width="2"/>
+                            <line x1="56" y1="40" x2="104" y2="40" stroke="#451a03" stroke-width="1.5"/>
+                            <text x="80" y="36" text-anchor="middle" fill="#451a03" font-size="8" font-weight="bold">&empty; &le; 200mm</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2">A long, round-shaped piece of timber.</p>
+                    </div>
+                    <div class="text-xs font-bold bg-amber-100 text-amber-950 px-2.5 py-1.5 rounded-lg border border-amber-300">
+                        Maximum diameter approx. 200mm
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verbatim Reference Table -->
+            <div class="overflow-x-auto rounded-xl border border-wood-200">
+                <table class="min-w-full text-left text-xs md:text-sm">
+                    <thead class="bg-wood-800 text-amber-200 uppercase text-xs">
+                        <tr>
+                            <th class="py-3 px-4">Market Form</th>
+                            <th class="py-3 px-4">Exact PDF Description</th>
+                            <th class="py-3 px-4">Typical Dimensions (Exam High-Yield)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-wood-200 bg-white">
+                        <tr><td class="py-2.5 px-4 font-bold">Log</td><td class="py-2.5 px-4">The trunk of a felled tree with its branches removed.</td><td class="py-2.5 px-4 font-semibold">Raw, unprocessed form.</td></tr>
+                        <tr class="bg-wood-50/50"><td class="py-2.5 px-4 font-bold">Balk</td><td class="py-2.5 px-4">A roughly square-shaped piece of timber, obtained after removing the bark and sapwood from a log.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Cross-section &gt; 50mm &times; 50mm; length &gt; 200mm.</td></tr>
+                        <tr><td class="py-2.5 px-4 font-bold">Plank</td><td class="py-2.5 px-4">A piece of timber that is wider than it is thick.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Thickness &lt; 50mm; breadth &gt; 50mm.</td></tr>
+                        <tr class="bg-wood-50/50"><td class="py-2.5 px-4 font-bold">Batten</td><td class="py-2.5 px-4">A rectangular piece of timber, narrower and thinner than a plank.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Thickness: 50–100mm; Breadth: 125–175mm.</td></tr>
+                        <tr><td class="py-2.5 px-4 font-bold">Beam</td><td class="py-2.5 px-4">A large, horizontal timber piece used as a primary structural element.</td><td class="py-2.5 px-4 font-semibold">Large cross-section; dimensions vary based on load requirements.</td></tr>
+                        <tr class="bg-wood-50/50"><td class="py-2.5 px-4 font-bold">Board</td><td class="py-2.5 px-4">A thin, wide piece of sawn timber.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Thickness &lt; 50mm; Breadth &gt; 150mm.</td></tr>
+                        <tr><td class="py-2.5 px-4 font-bold">Deal</td><td class="py-2.5 px-4">A converted form of a softwood log, generally rectangular in cross-section.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Thickness: 50–100mm; Breadth up to 250mm.</td></tr>
+                        <tr class="bg-wood-50/50"><td class="py-2.5 px-4 font-bold">Pole / Spar</td><td class="py-2.5 px-4">A long, round-shaped piece of timber.</td><td class="py-2.5 px-4 font-semibold text-amber-900">Maximum diameter approx. 200mm.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 4: HARDWOOD VS SOFTWOOD                   -->
+        <!-- ================================================= -->
+        <section id="sec-4" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">4</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">4. Types of Wood: Hardwood and Softwood</h3>
+                        <p class="text-xs text-wood-600">Botanical classification, cellular sap flow structure, and engineering comparison</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 3 &bull; Lines 1–20</span>
+            </div>
+
+            <!-- Key Exam Concept Callout -->
+            <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-xl mb-6">
+                <p class="text-sm text-wood-950 font-medium">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1.5"></i>
+                    <strong>Crucial Classification Rule (Page 3, Lines 2–4):</strong>
+                    Timber is primarily classified into hardwood and softwood based on the <strong>botanical type of tree and its resulting cellular structure</strong>, <em>not necessarily the physical hardness of the wood</em>.
+                </p>
+            </div>
+
+            <!-- Dual Visual SVG Diagram: Hardwood vs Softwood Cellular & Leaf Structure -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="border-2 border-amber-700/30 rounded-xl p-4 bg-amber-50/30">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-extrabold text-wood-900 text-lg">Hardwood (Deciduous)</span>
+                        <span class="text-xs font-bold bg-amber-200 text-amber-950 px-2.5 py-0.5 rounded-full">Oak, Maple, Teak</span>
+                    </div>
+                    <svg viewBox="0 0 300 110" class="w-full h-28 bg-wood-900 rounded-lg mb-2 p-2">
+                        <!-- Broad leaf -->
+                        <path d="M45,85 C20,65 25,25 55,20 C85,25 90,65 65,85 Z" fill="#15803d" stroke="#86efac" stroke-width="2"/>
+                        <line x1="55" y1="20" x2="55" y2="95" stroke="#86efac" stroke-width="2"/>
+                        <text x="55" y="105" text-anchor="middle" fill="#bbf7d0" font-size="8.5" font-weight="bold">Broad-Leaved (Annual Loss)</text>
+                        <!-- Vessels / Pores -->
+                        <rect x="135" y="15" width="145" height="72" rx="6" fill="#78350f" stroke="#fbbf24" stroke-width="1.5"/>
+                        <circle cx="165" cy="40" r="9" fill="#451a03" stroke="#fde68a" stroke-width="1.5"/>
+                        <circle cx="205" cy="55" r="11" fill="#451a03" stroke="#fde68a" stroke-width="1.5"/>
+                        <circle cx="245" cy="38" r="8" fill="#451a03" stroke="#fde68a" stroke-width="1.5"/>
+                        <line x1="140" y1="25" x2="275" y2="25" stroke="#b45309" stroke-width="1.5"/>
+                        <line x1="140" y1="72" x2="275" y2="72" stroke="#b45309" stroke-width="1.5"/>
+                        <text x="207" y="102" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">Complex Pores/Vessels &bull; Closed Grain</text>
+                    </svg>
+                </div>
+
+                <div class="border-2 border-emerald-700/30 rounded-xl p-4 bg-emerald-50/30">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-extrabold text-emerald-950 text-lg">Softwood (Coniferous)</span>
+                        <span class="text-xs font-bold bg-emerald-200 text-emerald-950 px-2.5 py-0.5 rounded-full">Pine, Fir, Spruce</span>
+                    </div>
+                    <svg viewBox="0 0 300 110" class="w-full h-28 bg-wood-900 rounded-lg mb-2 p-2">
+                        <!-- Conifer needles/tree -->
+                        <polygon points="55,15 25,55 42,55 20,85 90,85 68,55 85,55" fill="#047857" stroke="#6ee7b7" stroke-width="1.5"/>
+                        <text x="55" y="105" text-anchor="middle" fill="#a7f3d0" font-size="8.5" font-weight="bold">Needle-Bearing Evergreen</text>
+                        <!-- Simple wood fibers -->
+                        <rect x="135" y="15" width="145" height="72" rx="6" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                        <line x1="150" y1="32" x2="265" y2="32" stroke="#fef3c7" stroke-width="1.5" stroke-dasharray="6 4"/>
+                        <line x1="150" y1="50" x2="265" y2="50" stroke="#fef3c7" stroke-width="1.5" stroke-dasharray="6 4"/>
+                        <line x1="150" y1="68" x2="265" y2="68" stroke="#fef3c7" stroke-width="1.5" stroke-dasharray="6 4"/>
+                        <text x="207" y="102" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">Simple Wood Fibers &bull; Open Light Grain</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Complete 6-Row Comparison Table -->
+            <div class="overflow-x-auto rounded-xl border border-wood-200">
+                <table class="min-w-full text-left text-xs md:text-sm">
+                    <thead class="bg-wood-800 text-amber-200 uppercase text-xs">
+                        <tr>
+                            <th class="py-3 px-4 w-1/5">Feature</th>
+                            <th class="py-3 px-4 w-2/5">Hardwood (Page 3, Lines 6–20)</th>
+                            <th class="py-3 px-4 w-2/5">Softwood (Page 3, Lines 6–20)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-wood-200 bg-white">
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-wood-900">1. Tree Type <span class="block text-[10px] text-amber-800">Lines 6–8</span></td>
+                            <td class="py-3 px-4">Comes from <strong>deciduous (broad-leaved)</strong> trees that lose their leaves annually, e.g., <strong>oak, maple, teak</strong>.</td>
+                            <td class="py-3 px-4">Comes from <strong>coniferous (needle-bearing)</strong> trees that are typically <strong>evergreen</strong>, e.g., <strong>pine, fir, spruce</strong>.</td>
+                        </tr>
+                        <tr class="bg-wood-50/50">
+                            <td class="py-3 px-4 font-bold text-wood-900">2. Structure <span class="block text-[10px] text-amber-800">Lines 9–11</span></td>
+                            <td class="py-3 px-4">Has a <strong>complex structure with pores or vessels</strong> for sap flow; grains are typically <strong>closed and prominently visible</strong>.</td>
+                            <td class="py-3 px-4">Has a <strong>simpler structure</strong>; sap circulates through <strong>wood fibers</strong>; grains are typically <strong>open and light</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-wood-900">3. Density &amp; Weight <span class="block text-[10px] text-amber-800">Lines 12–13</span></td>
+                            <td class="py-3 px-4">Generally <strong>more dense, heavier, and harder</strong>.</td>
+                            <td class="py-3 px-4">Generally <strong>less dense, lighter, and softer</strong>.</td>
+                        </tr>
+                        <tr class="bg-wood-50/50">
+                            <td class="py-3 px-4 font-bold text-wood-900">4. Workability <span class="block text-[10px] text-amber-800">Lines 14–16</span></td>
+                            <td class="py-3 px-4">Often <strong>more difficult to work with</strong> due to its density; can be <strong>harder on tools</strong>.</td>
+                            <td class="py-3 px-4"><strong>Easier to work with</strong> because of its lower density and simpler composition.</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-wood-900">5. Cost &amp; Availability <span class="block text-[10px] text-amber-800">Lines 17–18</span></td>
+                            <td class="py-3 px-4">Generally <strong>more expensive and less readily available</strong>.</td>
+                            <td class="py-3 px-4"><strong>More readily available and less expensive</strong>.</td>
+                        </tr>
+                        <tr class="bg-wood-50/50">
+                            <td class="py-3 px-4 font-bold text-wood-900">6. Common Uses <span class="block text-[10px] text-amber-800">Lines 19–20</span></td>
+                            <td class="py-3 px-4"><strong>Cabinetry, fine furniture, decorative woodwork, flooring</strong>.</td>
+                            <td class="py-3 px-4"><strong>Building construction, framing, roofing, and general structural work</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 5: SEASONING OF WOOD                      -->
+        <!-- ================================================= -->
+        <section id="sec-5" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">5</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">5. Seasoning of Wood</h3>
+                        <p class="text-xs text-wood-600">Controlled moisture reduction: Natural (Air) vs. Artificial (Kiln, Water, Boiling)</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 3 (Lines 21–35) &amp; Page 4 (Lines 1–26)</span>
+            </div>
+
+            <div class="bg-wood-50 border-l-4 border-wood-700 p-4 rounded-r-xl mb-6">
+                <p class="text-sm text-wood-950 leading-relaxed">
+                    <strong>Definition &amp; Problem with Green Timber <span class="text-amber-800">(Page 3, Lines 22–25)</span>:</strong>
+                    Seasoning is the controlled process of <strong>reducing the moisture content of freshly cut (green) timber</strong>. This is a critical step as green timber is <strong>heavy, weak, prone to decay, and will shrink and warp as it dries</strong>.
+                </p>
+            </div>
+
+            <!-- 3 Seasoning Method Cards with SVG Schematics -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+                <!-- Method 1: Natural (Air) Seasoning -->
+                <div class="border border-wood-200 rounded-xl p-5 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-extrabold text-wood-900 text-base">1. Natural (Air) Seasoning</h4>
+                        <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 3, L26–35</span>
+                    </div>
+                    <svg viewBox="0 0 220 95" class="w-full h-24 bg-wood-900 rounded-lg mb-3 p-1">
+                        <!-- Covered Shed Roof -->
+                        <polygon points="15,28 110,6 205,28" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+                        <!-- Stacked planks with air gaps -->
+                        <rect x="45" y="38" width="130" height="8" fill="#d97706"/>
+                        <rect x="45" y="54" width="130" height="8" fill="#d97706"/>
+                        <rect x="45" y="70" width="130" height="8" fill="#d97706"/>
+                        <!-- Airflow arrows -->
+                        <path d="M20,48 L195,48" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <path d="M20,64 L195,64" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+                        <text x="110" y="90" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">COVERED SHED &bull; 12–15% MOISTURE</text>
+                    </svg>
+                    <ul class="text-xs text-wood-900 space-y-1.5 flex-1">
+                        <li>&bull; <strong>Process:</strong> Sawn timber stacked under a <strong>covered shed</strong> allowing free air circulation around each piece.</li>
+                        <li>&bull; <strong>Duration:</strong> Takes <strong>several months to years</strong> (depends on climate &amp; thickness).</li>
+                        <li>&bull; <strong>Moisture Content:</strong> Reduces moisture to <strong>12–15%</strong>.</li>
+                        <li>&bull; <strong>Advantages:</strong> Simple, inexpensive, superior for certain uses.</li>
+                        <li>&bull; <strong>Disadvantages:</strong> Very slow process; requires a large storage area.</li>
+                    </ul>
+                </div>
+
+                <!-- Method 2: Artificial Kiln Seasoning -->
+                <div class="border border-wood-200 rounded-xl p-5 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-extrabold text-wood-900 text-base">2. Artificial: Kiln Seasoning</h4>
+                        <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 4, L1–10</span>
+                    </div>
+                    <svg viewBox="0 0 220 95" class="w-full h-24 bg-wood-900 rounded-lg mb-3 p-1">
+                        <rect x="25" y="12" width="170" height="65" rx="6" fill="#451a03" stroke="#f97316" stroke-width="2"/>
+                        <circle cx="55" cy="44" r="14" fill="none" stroke="#fb923c" stroke-width="2"/>
+                        <line x1="45" y1="44" x2="65" y2="44" stroke="#fb923c" stroke-width="2"/>
+                        <line x1="55" y1="34" x2="55" y2="54" stroke="#fb923c" stroke-width="2"/>
+                        <rect x="85" y="30" width="90" height="8" fill="#f59e0b"/>
+                        <rect x="85" y="45" width="90" height="8" fill="#f59e0b"/>
+                        <text x="110" y="90" text-anchor="middle" fill="#fed7aa" font-size="8.5" font-weight="bold">KILN OVEN &bull; COMPLETED IN ~7 DAYS</text>
+                    </svg>
+                    <ul class="text-xs text-wood-900 space-y-1.5 flex-1">
+                        <li>&bull; <strong>Process:</strong> Timber placed in a large oven (<strong>kiln</strong>) where <strong>heated air, steam, or dehumidified air</strong> is circulated to rapidly and uniformly remove moisture.</li>
+                        <li>&bull; <strong>Duration:</strong> Completed in <strong>about 7 days</strong>.</li>
+                        <li>&bull; <strong>Advantages:</strong> Fast, <strong>precise control over final moisture content</strong>, seasons to very low moisture levels.</li>
+                        <li>&bull; <strong>Disadvantages:</strong> More expensive; requires specialized equipment.</li>
+                    </ul>
+                </div>
+
+                <!-- Method 3: Water & Boiling Seasoning -->
+                <div class="border border-wood-200 rounded-xl p-5 bg-gradient-to-b from-white to-wood-50 flex flex-col">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-extrabold text-wood-900 text-base">3. Water &amp; Boiling Methods</h4>
+                        <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 4, L12–15</span>
+                    </div>
+                    <svg viewBox="0 0 220 95" class="w-full h-24 bg-sky-950 rounded-lg mb-3 p-1">
+                        <path d="M15,35 Q60,25 110,35 T205,35 L205,75 L15,75 Z" fill="#0284c7" opacity="0.7"/>
+                        <rect x="45" y="42" width="130" height="16" rx="6" fill="#92400e" stroke="#fde68a" stroke-width="1.5"/>
+                        <text x="110" y="53" text-anchor="middle" fill="#fef3c7" font-size="8.5" font-weight="bold">LOG IMMERSED TO LEACH SAP</text>
+                        <text x="110" y="90" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">WATER SEASONING &amp; STEAM BOILING</text>
+                    </svg>
+                    <ul class="text-xs text-wood-900 space-y-2 flex-1">
+                        <li>&bull; <strong>Water Seasoning (Line 13):</strong> Logs are <strong>immersed in water to leach out sap</strong>, then dried in the air.</li>
+                        <li>&bull; <strong>Boiling (Lines 14–15):</strong> Exposing wood to <strong>boiling water or steam</strong>, which is <strong>quick but expensive</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5 Objectives of Seasoning -->
+            <div class="bg-amber-50/70 rounded-xl p-5 border border-amber-200">
+                <h4 class="font-extrabold text-wood-900 text-sm uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-bullseye text-amber-600 mr-1.5"></i>
+                    5 Core Objectives of Seasoning (Page 4, Lines 16–26)
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+                    <div class="bg-white p-3 rounded-lg border border-amber-200">
+                        <strong class="block text-wood-900 mb-1">1. Reduce Shrinkage &amp; Warping</strong>
+                        Prevents wood from changing shape after it is used in a structure.
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-amber-200">
+                        <strong class="block text-wood-900 mb-1">2. Increase Strength &amp; Workability</strong>
+                        Makes wood easier to cut and less prone to decay and insect attack.
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-amber-200">
+                        <strong class="block text-wood-900 mb-1">3. Reduce Weight</strong>
+                        Makes the timber lighter and easier to handle.
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-amber-200">
+                        <strong class="block text-wood-900 mb-1">4. Suitable for Finishing</strong>
+                        Allows for better paint and polish adhesion.
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-amber-200">
+                        <strong class="block text-wood-900 mb-1">5. Prevent Splitting &amp; Decay</strong>
+                        Reduces the risk of splitting and biological fungal decay.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 6: CARPENTRY JOINTS                       -->
+        <!-- ================================================= -->
+        <section id="sec-6" class="bg-white rounded-2xl shadow-md border border-wood-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-wood-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-wood-800 text-amber-400 flex items-center justify-center font-black text-lg">6</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-wood-900">6. Carpentry Joints</h3>
+                        <p class="text-xs text-wood-600">Functional classifications and all 9 traditional woodworking joints with SVG schematics</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 4 (Lines 27–30) &amp; Page 5 (Lines 1–35)</span>
+            </div>
+
+            <!-- Definition & Part A: Classification by Function -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-wood-900 text-white p-4 rounded-xl flex flex-col justify-center">
+                    <div class="text-xs font-bold text-amber-400 uppercase mb-1">Joint Selection (Pg 4, L27–30)</div>
+                    <p class="text-xs text-wood-100 leading-relaxed">
+                        A carpentry joint connects two or more pieces of wood. Choice depends on <strong>required strength</strong>, <strong>appearance</strong>, and the <strong>type of stress</strong> the joint will endure.
+                    </p>
+                </div>
+                <div class="bg-wood-50 border border-wood-200 p-4 rounded-xl">
+                    <span class="text-[10px] font-bold text-amber-800">Classification A1 (Pg 5, L3–4)</span>
+                    <h4 class="font-extrabold text-wood-900 text-sm mt-0.5 mb-1">1. Widening Joints (Edge Joints)</h4>
+                    <p class="text-xs text-wood-800">Used to join boards <strong>side-by-side</strong> to create a wider panel (e.g., <strong>Tongue and Groove</strong>).</p>
+                </div>
+                <div class="bg-wood-50 border border-wood-200 p-4 rounded-xl">
+                    <span class="text-[10px] font-bold text-amber-800">Classification A2 (Pg 5, L5–6)</span>
+                    <h4 class="font-extrabold text-wood-900 text-sm mt-0.5 mb-1">2. Corner Joints</h4>
+                    <p class="text-xs text-wood-800">Used to join two pieces at an angle, typically at the <strong>corners of frames or boxes</strong> (e.g., <strong>Butt, Miter, Dovetail</strong>).</p>
+                </div>
+                <div class="bg-wood-50 border border-wood-200 p-4 rounded-xl">
+                    <span class="text-[10px] font-bold text-amber-800">Classification A3 (Pg 5, L7–8)</span>
+                    <h4 class="font-extrabold text-wood-900 text-sm mt-0.5 mb-1">3. Framing Joints</h4>
+                    <p class="text-xs text-wood-800">Used to connect the <strong>structural members of a frame</strong> (e.g., <strong>Mortise and Tenon</strong>).</p>
+                </div>
+            </div>
+
+            <!-- Part B: 9 Common Types of Joints Visual SVG Cards -->
+            <h4 class="text-sm font-bold uppercase tracking-wider text-wood-700 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-puzzle-piece text-amber-600"></i>
+                B. Common Types of Joints — Visual Schematics &amp; Typical Uses (Page 5, Lines 10–35)
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- 1. Butt Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">1. Butt Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L12–13</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="35" y="15" width="26" height="50" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="61" y="39" width="85" height="26" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="105" y="25" fill="#fde68a" font-size="8.5" font-weight="bold">90&deg; Square Butt</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> The simplest joint; the end of one piece is butted against another.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Basic framing, where strength is not a primary concern.
+                    </div>
+                </div>
+
+                <!-- 2. Miter Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">2. Miter Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L14–15</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <polygon points="35,15 61,15 61,39 35,65" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <polygon points="35,65 61,39 145,39 145,65" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="108" y="25" fill="#fde68a" font-size="8.5" font-weight="bold">Angled Corner Cut</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> Similar to a butt joint, but both pieces are cut at a <strong>15&deg; angle</strong> <em>(verbatim PDF text; 45&deg; in standard practice)</em> to form a neat corner.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Picture frames, window and door casings.
+                    </div>
+                </div>
+
+                <!-- 3. Lap Joint (Half-Lap) -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">3. Lap (Half-Lap) Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L16–18</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="75" y="10" width="28" height="60" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="30" y="28" width="120" height="24" fill="#f59e0b" fill-opacity="0.85" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="90" y="43" text-anchor="middle" fill="#451a03" font-size="8" font-weight="bold">50% Thickness Removed</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> One piece overlaps another. In a <strong>Half-Lap Joint</strong>, half of each piece's thickness is removed so they fit flush.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Cabinetry, bracing, and furniture frames.
+                    </div>
+                </div>
+
+                <!-- 4. Dado Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">4. Dado Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L19–20</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="35" y="10" width="26" height="60" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="48" y="30" width="95" height="20" fill="#fbbf24" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="105" y="22" fill="#fde68a" font-size="8.5" font-weight="bold">Slot Across Grain</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> A <strong>square slot is cut across the grain</strong> of one piece for another piece to fit into.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Bookshelves, cabinets, and drawer dividers.
+                    </div>
+                </div>
+
+                <!-- 5. Tongue and Groove -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">5. Tongue and Groove</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L21–23</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <!-- Left board with tongue -->
+                            <polygon points="18,26 78,26 78,34 90,34 90,46 78,46 78,54 18,54" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <!-- Right board with groove -->
+                            <polygon points="98,26 162,26 162,54 98,54 98,46 110,46 110,34 98,34" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="90" y="18" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">Edge-to-Edge Widening</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> A groove is cut along the edge of one board, and a matching <strong>tongue (ridge)</strong> is cut on the edge of the other.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Flooring, paneling, and tabletops.
+                    </div>
+                </div>
+
+                <!-- 6. Box (Finger) Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">6. Box (Finger) Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L24–25</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="40" y="14" width="22" height="13" fill="#d97706" stroke="#fde68a"/>
+                            <rect x="40" y="27" width="22" height="13" fill="#fbbf24" stroke="#fde68a"/>
+                            <rect x="40" y="40" width="22" height="13" fill="#d97706" stroke="#fde68a"/>
+                            <rect x="40" y="53" width="22" height="13" fill="#fbbf24" stroke="#fde68a"/>
+                            <rect x="62" y="14" width="75" height="52" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="100" y="43" text-anchor="middle" fill="#451a03" font-size="8.5" font-weight="bold">Square Fingers</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> A series of interlocking, <strong>square "fingers"</strong> are cut at the ends of two boards.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Corners of boxes, drawers, and chests.
+                    </div>
+                </div>
+
+                <!-- 7. Dovetail Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">7. Dovetail Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L26–28</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="40" y="14" width="98" height="52" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <polygon points="40,20 65,16 65,32 40,28" fill="#92400e" stroke="#fde68a"/>
+                            <polygon points="40,48 65,44 65,60 40,56" fill="#92400e" stroke="#fde68a"/>
+                            <text x="103" y="43" text-anchor="middle" fill="#451a03" font-size="8.5" font-weight="bold">Angled Locking Tails</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> A form of box joint where the fingers are <strong>cut at an angle</strong>, creating a "dovetail" shape that locks together.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> High-quality drawers, cabinets, and furniture; known for exceptional strength.
+                    </div>
+                </div>
+
+                <!-- 8. Mortise and Tenon -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">8. Mortise and Tenon</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L29–31</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <!-- Mortise post -->
+                            <rect x="28" y="10" width="32" height="60" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="42" y="28" width="18" height="24" fill="#451a03" stroke="#fde68a" stroke-width="1"/>
+                            <!-- Tenon rail -->
+                            <polygon points="75,30 92,30 92,20 152,20 152,60 92,60 92,50 75,50" fill="#fbbf24" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="122" y="43" text-anchor="middle" fill="#451a03" font-size="8.5" font-weight="bold">Tenon &rarr; Mortise</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> A <strong>mortise (hole or slot)</strong> is cut into one piece, and a matching <strong>tenon (tongue)</strong> is cut on the end of the other to fit snugly inside.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> Door and window frames, furniture, timber framing; one of the strongest traditional joints.
+                    </div>
+                </div>
+
+                <!-- 9. Dowelled Joint -->
+                <div class="border border-wood-200 rounded-xl p-4 bg-white shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-extrabold text-wood-900">9. Dowelled Joint</span>
+                            <span class="text-[10px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">Pg 5, L32–34</span>
+                        </div>
+                        <svg viewBox="0 0 180 80" class="w-full h-24 bg-wood-950 rounded-lg mb-3 p-1">
+                            <rect x="20" y="18" width="55" height="44" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="75" y="26" width="30" height="8" rx="3" fill="#fef08a" stroke="#78350f" stroke-width="1.5"/>
+                            <rect x="75" y="46" width="30" height="8" rx="3" fill="#fef08a" stroke="#78350f" stroke-width="1.5"/>
+                            <rect x="105" y="18" width="55" height="44" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="90" y="14" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">Wooden Dowel Pins</text>
+                        </svg>
+                        <p class="text-xs text-wood-800 mb-2"><strong>Description:</strong> <strong>Wooden dowels (pins)</strong> are inserted into corresponding holes drilled into both pieces for alignment and mechanical strength.</p>
+                    </div>
+                    <div class="text-xs bg-wood-100 text-wood-900 px-3 py-1.5 rounded-lg font-medium">
+                        <strong>Use:</strong> A simpler alternative to mortise and tenon for furniture and cabinet construction.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: INTERACTIVE 84-QUESTION QUIZ + SUB-TOPIC OVERVIEW SIDEBAR      -->
+    <!-- ===================================================================== -->
+    <main id="view-quiz" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- LEFT/CENTER COLUMN (8 Cols): Active Question Card -->
+            <div class="lg:col-span-8 flex flex-col gap-4">
+                
+                <!-- Top Stats & Controls Bar -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-wood-200 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-wood-500">Current Progress</div>
+                            <div id="quiz-progress-label" class="text-lg font-extrabold text-wood-900">Question 1 of 84</div>
+                        </div>
+                        <div class="h-8 w-px bg-wood-200"></div>
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-wood-500">Score</div>
+                            <div id="quiz-score-label" class="text-lg font-extrabold text-emerald-700">0 Correct (0%)</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="resetQuiz()" class="px-3 py-1.5 rounded-lg border border-wood-300 bg-wood-50 hover:bg-wood-100 text-wood-800 text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span>Reset Quiz</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Question Card -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-8 border-wood-700 border-x border-b border-wood-200 p-6 md:p-8 relative">
+                    
+                    <!-- Chapter / Sub-topic Badges + Info Button -->
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span id="q-chapter-badge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-wood-800 text-amber-300">
+                                1. Introduction to Carpentry
+                            </span>
+                            <span id="q-subtopic-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                                1.1 Scope of Carpentry
+                            </span>
+                        </div>
+
+                        <!-- Info Button (Shows PDF Page & Line Number) -->
+                        <div class="relative">
+                            <button id="info-btn" onclick="toggleInfoPopover()" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold flex items-center gap-1.5 transition shadow-sm" title="Show Original PDF Page &amp; Line Reference">
+                                <i class="fa-solid fa-circle-info text-amber-600 text-sm"></i>
+                                <span>PDF Page &amp; Line Info</span>
+                            </button>
+
+                            <!-- Popover Card -->
+                            <div id="info-popover" class="hidden absolute right-0 mt-2 w-80 sm:w-96 bg-wood-950 text-white rounded-2xl shadow-2xl p-4 z-30 border border-amber-500/40 animate-fade">
+                                <div class="flex items-center justify-between border-b border-wood-800 pb-2 mb-2.5">
+                                    <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-file-pdf"></i> Original PDF Citation
+                                    </span>
+                                    <button onclick="toggleInfoPopover()" class="text-wood-400 hover:text-white text-xs">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-1.5 text-xs">
+                                    <div class="flex justify-between">
+                                        <span class="text-wood-300">Document:</span>
+                                        <span class="font-bold text-amber-200">Carpentry notes_Tutorial notes.pdf</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-wood-300">Chapter / Section:</span>
+                                        <span id="info-chapter" class="font-bold text-white text-right">1. Introduction to Carpentry</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-wood-300">Sub-Topic:</span>
+                                        <span id="info-subtopic" class="font-bold text-amber-300 text-right">1.1 Scope of Carpentry</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-wood-300">Exact PDF Location:</span>
+                                        <span id="info-location" class="font-extrabold bg-amber-500 text-wood-950 px-2 py-0.5 rounded">Page 1, Lines 6–7</span>
+                                    </div>
+                                    <div class="pt-2 mt-2 border-t border-wood-800">
+                                        <button onclick="jumpToNotesSection()" class="w-full py-1.5 bg-wood-800 hover:bg-wood-700 text-amber-300 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5">
+                                            <i class="fa-solid fa-book-open"></i>
+                                            <span>Open This Section in Study Notes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <h2 id="q-text" class="text-xl md:text-2xl font-extrabold text-wood-950 leading-snug mb-6">
+                        Loading question...
+                    </h2>
+
+                    <!-- Options Container -->
+                    <div id="q-options" class="space-y-3 mb-6"></div>
+
+                    <!-- Explanation Box -->
+                    <div id="q-explanation-box" class="hidden rounded-xl p-4 mb-6 border-l-4 animate-fade">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h4 id="q-feedback-title" class="font-extrabold text-sm"></h4>
+                            <span id="q-explanation-citation" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/80 text-wood-900 border border-wood-300"></span>
+                        </div>
+                        <p id="q-explanation-text" class="text-sm text-wood-900 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Bottom Navigation Buttons -->
+                    <div class="flex items-center justify-between pt-4 border-t border-wood-100">
+                        <button id="btn-prev" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl font-bold text-sm border border-wood-300 text-wood-800 hover:bg-wood-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        <span class="text-xs text-wood-500 hidden sm:inline">Tip: Use keys <kbd class="px-1.5 py-0.5 bg-wood-100 rounded border border-wood-300 font-semibold">A–D</kbd> &amp; <kbd class="px-1.5 py-0.5 bg-wood-100 rounded border border-wood-300 font-semibold">&larr;/&rarr;</kbd></span>
+                        <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-wood-800 hover:bg-wood-900 text-amber-300 shadow-md transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                            <span>Next Question</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR (4 Cols): Question Overview Divided by Sub-Topics -->
+            <aside class="lg:col-span-4 bg-white rounded-2xl shadow-md border border-wood-200 overflow-hidden sticky top-[76px]">
+                <div class="bg-wood-900 text-white p-4 border-b-2 border-amber-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-table-cells text-amber-400"></i>
+                            <span>Question Overview (84)</span>
+                        </h3>
+                        <span id="sidebar-answered-count" class="text-xs font-bold text-amber-300">0/84 Answered</span>
+                    </div>
+                    <!-- Legend -->
+                    <div class="flex items-center gap-3 mt-2.5 text-[11px] text-wood-200">
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Correct</span>
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Wrong</span>
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span> Current</span>
+                    </div>
+                </div>
+
+                <!-- Scrollable Sub-topic Grid Container -->
+                <div id="sidebar-topics-container" class="p-4 max-h-[68vh] overflow-y-auto custom-scroll space-y-5 bg-wood-50/50">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION DATA & LOGIC (VANILLA JS - ZERO TRANSPILATION CRASHES)    -->
+    <!-- ===================================================================== -->
+    <script>
+        // Complete 84-Question Dataset with Chapter, Sub-topic, PDF Page, and Line Numbers
+        const questions = [
+            { id: 1, question: "According to the text, carpentry encompasses the construction of large-scale buildings down to what smaller items?", options: ["A) Metal pipes", "B) Furniture and cabinets", "C) Circuit boards", "D) Glass windows"], correctAnswer: "B", explanation: "The scope of carpentry ranges from large-scale construction to finer items like furniture and cabinets.", chapter: "1. Introduction to Carpentry", subtopic: "1.1 Scope & Definition", page: 1, lines: "Lines 6–7", secId: "sec-1" },
+            { id: 2, question: "What aspect of a building does 'framing' specifically refer to in carpentry?", options: ["A) The exterior paint", "B) The electrical wiring", "C) The structural skeleton including floors, walls, and roofs", "D) The foundation pouring"], correctAnswer: "C", explanation: "Framing is the building of the structural skeleton of a building, including floors, walls, and roofs.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 13–14", secId: "sec-1" },
+            { id: 3, question: "What property makes timber particularly useful regarding temperature control?", options: ["A) High heat conductivity", "B) Low heat conductivity", "C) High electrical resistance", "D) Thermal expansion"], correctAnswer: "B", explanation: "Timber is prized for its strength, workability, and low heat conductivity.", chapter: "2. Timber Properties", subtopic: "2.1 Definition of Timber", page: 1, lines: "Lines 23–25", secId: "sec-2" },
+            { id: 4, question: "What specific layers must be removed from a log to create a 'Balk'?", options: ["A) The branches and leaves", "B) The pith and heartwood", "C) The bark and sapwood", "D) The roots and stump"], correctAnswer: "C", explanation: "A balk is a roughly square-shaped piece of timber obtained after removing the bark and sapwood from a log.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Balk", page: 2, lines: "Lines 21–23", secId: "sec-3" },
+            { id: 5, question: "The classification of wood into hardwood and softwood is fundamentally based on what?", options: ["A) The physical hardness of the wood", "B) The weight of the wood", "C) The botanical type of tree and cellular structure", "D) The color of the wood"], correctAnswer: "C", explanation: "The classification is based on the botanical type of tree and its resulting cellular structure, not necessarily physical hardness.", chapter: "4. Types of Wood", subtopic: "4.1 Classification Basis", page: 3, lines: "Lines 2–4", secId: "sec-4" },
+            { id: 6, question: "Are softwood trees generally deciduous or evergreen?", options: ["A) Deciduous", "B) Evergreen", "C) Both", "D) Neither"], correctAnswer: "B", explanation: "Softwood comes from coniferous (needle-bearing) trees that are typically evergreen.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 7–8", secId: "sec-4" },
+            { id: 7, question: "Are hardwood trees generally deciduous or evergreen?", options: ["A) Deciduous", "B) Evergreen", "C) Both", "D) Neither"], correctAnswer: "A", explanation: "Hardwood comes from deciduous (broad-leaved) trees that lose their leaves annually.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 6–7", secId: "sec-4" },
+            { id: 8, question: "Which type of wood has a complex structure with pores or vessels specifically for sap flow?", options: ["A) Hardwood", "B) Softwood", "C) Plywood", "D) Chipboard"], correctAnswer: "A", explanation: "Hardwood has a complex structure with pores or vessels for sap flow.", chapter: "4. Types of Wood", subtopic: "4.3 Cellular Structure", page: 3, lines: "Lines 9–10", secId: "sec-4" },
+            { id: 9, question: "Which type of wood circulates sap through simpler wood fibers rather than complex vessels?", options: ["A) Hardwood", "B) Softwood", "C) Oak", "D) Teak"], correctAnswer: "B", explanation: "Softwood has a simpler structure where sap circulates through wood fibers.", chapter: "4. Types of Wood", subtopic: "4.3 Cellular Structure", page: 3, lines: "Lines 10–11", secId: "sec-4" },
+            { id: 10, question: "Why is hardwood often more difficult to work with and harder on tools?", options: ["A) Due to its high moisture content", "B) Due to its low density", "C) Due to its high density", "D) Due to its artificial seasoning"], correctAnswer: "C", explanation: "Hardwood is often more difficult to work with due to its density; it can be harder on tools.", chapter: "4. Types of Wood", subtopic: "4.5 Workability", page: 3, lines: "Lines 14–15", secId: "sec-4" },
+            { id: 11, question: "In natural seasoning, what structure protects the stacked timber from direct weather while allowing air circulation?", options: ["A) A sealed vacuum chamber", "B) A covered shed", "C) A plastic tarp", "D) An underground bunker"], correctAnswer: "B", explanation: "Sawn timber is stacked under a covered shed to allow for free air circulation.", chapter: "5. Seasoning of Wood", subtopic: "5.1 Natural (Air) Seasoning", page: 3, lines: "Lines 27–29", secId: "sec-5" },
+            { id: 12, question: "Why is green timber considered prone to changing shape after being cut?", options: ["A) Because it absorbs carbon dioxide", "B) Because it will shrink and warp as it dries", "C) Because it expands when exposed to light", "D) Because of insect infestations"], correctAnswer: "B", explanation: "Green timber is heavy, weak, prone to decay, and will shrink and warp as it dries.", chapter: "5. Seasoning of Wood", subtopic: "5.0 Green Timber Issues", page: 3, lines: "Lines 23–25", secId: "sec-5" },
+            { id: 13, question: "What specific agents are circulated in a kiln to remove moisture from timber?", options: ["A) Liquid nitrogen and oxygen", "B) Heated air, steam, or dehumidified air", "C) Boiling water", "D) Chemical solvents"], correctAnswer: "B", explanation: "In a kiln, heated air, steam, or dehumidified air is circulated to rapidly and uniformly remove moisture.", chapter: "5. Seasoning of Wood", subtopic: "5.2 Kiln Seasoning", page: 4, lines: "Lines 4–5", secId: "sec-5" },
+            { id: 14, question: "What is a major advantage of kiln seasoning besides its fast speed?", options: ["A) It requires no equipment", "B) Precise control over final moisture content", "C) It is completely free", "D) It increases the wood's weight"], correctAnswer: "B", explanation: "Advantages include fast speed, precise control over final moisture content, and the ability to season wood to very low moisture levels.", chapter: "5. Seasoning of Wood", subtopic: "5.2 Kiln Seasoning", page: 4, lines: "Lines 7–8", secId: "sec-5" },
+            { id: 15, question: "In water seasoning, what is the specific purpose of immersing the logs in water?", options: ["A) To harden the wood fibers", "B) To leach out sap", "C) To increase the moisture content", "D) To kill all insects"], correctAnswer: "B", explanation: "Logs are immersed in water to leach out sap, then dried in the air.", chapter: "5. Seasoning of Wood", subtopic: "5.3 Water & Boiling Seasoning", page: 4, lines: "Line 13", secId: "sec-5" },
+            { id: 16, question: "Which joint is described in the text as one where strength is not a primary concern?", options: ["A) Mortise and Tenon", "B) Dovetail Joint", "C) Butt Joint", "D) Dado Joint"], correctAnswer: "C", explanation: "The Butt joint is used for basic framing where strength is not a primary concern.", chapter: "6. Carpentry Joints", subtopic: "6.2 Butt Joint", page: 5, lines: "Lines 12–13", secId: "sec-6" },
+            { id: 17, question: "What joint is specifically noted for its use in picture frames and window casings?", options: ["A) Miter Joint", "B) Lap Joint", "C) Box Joint", "D) Dowelled Joint"], correctAnswer: "A", explanation: "The Miter Joint is used for picture frames, window, and door casings.", chapter: "6. Carpentry Joints", subtopic: "6.2 Miter Joint", page: 5, lines: "Lines 14–15", secId: "sec-6" },
+            { id: 18, question: "In which joint does one piece of wood physically overlap another piece?", options: ["A) Butt Joint", "B) Lap Joint", "C) Miter Joint", "D) Dado Joint"], correctAnswer: "B", explanation: "In a Lap Joint, one piece of wood overlaps another.", chapter: "6. Carpentry Joints", subtopic: "6.2 Lap Joint", page: 5, lines: "Lines 16–18", secId: "sec-6" },
+            { id: 19, question: "What type of joint is best suited and commonly used for cabinet drawer dividers?", options: ["A) Mortise and Tenon", "B) Tongue and Groove", "C) Dado Joint", "D) Lap Joint"], correctAnswer: "C", explanation: "A Dado Joint is commonly used for bookshelves, cabinets, and drawer dividers.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dado Joint", page: 5, lines: "Lines 19–20", secId: "sec-6" },
+            { id: 20, question: "Which joint is specifically noted for its use in tabletops, alongside flooring and paneling?", options: ["A) Box Joint", "B) Tongue and Groove", "C) Miter Joint", "D) Dowelled Joint"], correctAnswer: "B", explanation: "Tongue and Groove is used for flooring, paneling, and tabletops.", chapter: "6. Carpentry Joints", subtopic: "6.2 Tongue and Groove", page: 5, lines: "Lines 21–23", secId: "sec-6" },
+            { id: 21, question: "What shape are the interlocking fingers in a standard Box (Finger) Joint?", options: ["A) Triangular", "B) Rounded", "C) Square", "D) Oval"], correctAnswer: "C", explanation: "A Box (Finger) joint features a series of interlocking, square 'fingers'.", chapter: "6. Carpentry Joints", subtopic: "6.2 Box (Finger) Joint", page: 5, lines: "Lines 24–25", secId: "sec-6" },
+            { id: 22, question: "What specific shape characterizes the angled fingers of a Dovetail Joint?", options: ["A) A 'dovetail' shape", "B) A square shape", "C) A circular shape", "D) A triangular point"], correctAnswer: "A", explanation: "The fingers are cut at an angle, creating a 'dovetail' shape that locks together.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dovetail Joint", page: 5, lines: "Lines 26–28", secId: "sec-6" },
+            { id: 23, question: "Which joint is explicitly cited in the text as one of the strongest traditional joints?", options: ["A) Butt Joint", "B) Lap Joint", "C) Mortise and Tenon", "D) Miter Joint"], correctAnswer: "C", explanation: "The Mortise and Tenon is noted as one of the strongest traditional joints.", chapter: "6. Carpentry Joints", subtopic: "6.2 Mortise and Tenon", page: 5, lines: "Lines 29–31", secId: "sec-6" },
+            { id: 24, question: "What does a dowelled joint use to provide alignment and mechanical strength?", options: ["A) Metal screws", "B) Wooden dowels (pins)", "C) Plastic anchors", "D) Wood glue only"], correctAnswer: "B", explanation: "Wooden dowels (pins) are inserted into corresponding holes to provide alignment and strength.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dowelled Joint", page: 5, lines: "Lines 32–34", secId: "sec-6" },
+            { id: 25, question: "What factors determine the choice of a carpentry joint for a specific project?", options: ["A) The color of the wood and the tool used", "B) Required strength, appearance, and the type of stress", "C) The age of the carpenter", "D) The moisture content of the room"], correctAnswer: "B", explanation: "The choice of joint depends on the required strength, appearance, and the type of stress the joint will endure.", chapter: "6. Carpentry Joints", subtopic: "6.0 Joint Selection", page: 4, lines: "Lines 28–30", secId: "sec-6" },
+            { id: 26, question: "Which type of joints are used specifically to connect the structural members of a frame?", options: ["A) Widening Joints", "B) Corner Joints", "C) Framing Joints", "D) Edge Joints"], correctAnswer: "C", explanation: "Framing Joints are used to connect the structural members of a frame.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 7–8", secId: "sec-6" },
+            { id: 27, question: "What is the alternative name provided in the text for Widening Joints?", options: ["A) Corner Joints", "B) Framing Joints", "C) Lap Joints", "D) Edge Joints"], correctAnswer: "D", explanation: "Widening Joints are also referred to as Edge Joints.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 3–4", secId: "sec-6" },
+            { id: 28, question: "Which artificial seasoning method involves directly exposing wood to boiling water or steam?", options: ["A) Kiln Seasoning", "B) Water Seasoning", "C) Boiling", "D) Air Seasoning"], correctAnswer: "C", explanation: "Boiling involves exposing wood to boiling water or steam.", chapter: "5. Seasoning of Wood", subtopic: "5.3 Water & Boiling Seasoning", page: 4, lines: "Lines 14–15", secId: "sec-5" },
+            { id: 29, question: "When a carpenter builds the structural skeleton of a building, what is this process called?", options: ["A) Formwork", "B) Finishing", "C) Framing", "D) Seasoning"], correctAnswer: "C", explanation: "Framing is the building of the structural skeleton of a building.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 13–14", secId: "sec-1" },
+            { id: 30, question: "What type of carpentry work involves installing items like door frames and cabinets?", options: ["A) Formwork", "B) Framing", "C) Interior and Exterior Finishing", "D) Timber Conversion"], correctAnswer: "C", explanation: "Interior and Exterior Finishing includes installing items such as door frames, windows, and cabinets.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 15–16", secId: "sec-1" },
+            { id: 31, question: "What is the primary material used in the skilled trade of carpentry?", options: ["A) Steel", "B) Timber", "C) Concrete", "D) Plastic"], correctAnswer: "B", explanation: "Carpentry is centered on cutting, working, and joining timber.", chapter: "1. Introduction to Carpentry", subtopic: "1.1 Scope & Definition", page: 1, lines: "Lines 5–6", secId: "sec-1" },
+            { id: 32, question: "Which of the following is considered a typical carpentry task related to interior finishing?", options: ["A) Erecting a steel frame", "B) Installing staircases", "C) Pouring concrete", "D) Welding pipes"], correctAnswer: "B", explanation: "Interior finishing includes installing items such as door frames, windows, cabinets, staircases, and trim.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 15–16", secId: "sec-1" },
+            { id: 33, question: "What is formwork (or shuttering) in the context of carpentry?", options: ["A) Permanent wooden flooring", "B) Temporary molds into which concrete is poured", "C) A type of dovetail joint", "D) A chemical treatment for timber"], correctAnswer: "B", explanation: "Formwork involves constructing temporary molds (shuttering) into which concrete is poured.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 17–18", secId: "sec-1" },
+            { id: 34, question: "Which of the following describes a key property of good quality timber related to its internal soundness?", options: ["A) It has an irregular grain", "B) It smells like vinegar", "C) It produces a sonorous sound when struck", "D) It is extremely lightweight"], correctAnswer: "C", explanation: "Good timber should produce a sonorous sound when struck, indicating it is free from internal defects.", chapter: "2. Timber Properties", subtopic: "2.2 Soundness", page: 2, lines: "Lines 7–8", secId: "sec-2" },
+            { id: 35, question: "What is the general relationship between the density and the strength of timber?", options: ["A) Heavier timber is generally weaker", "B) Lighter timber is generally stronger", "C) Heavier timber is generally considered stronger", "D) Density has no effect on strength"], correctAnswer: "C", explanation: "Generally, heavier timber is considered stronger.", chapter: "2. Timber Properties", subtopic: "2.2 Density", page: 2, lines: "Line 9", secId: "sec-2" },
+            { id: 36, question: "After a tree is felled and its branches are removed, what is the raw, unprocessed trunk called?", options: ["A) Balk", "B) Log", "C) Plank", "D) Batten"], correctAnswer: "B", explanation: "A log is the trunk of a felled tree with its branches removed, representing a raw, unprocessed form.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Log", page: 2, lines: "Lines 19–20", secId: "sec-3" },
+            { id: 37, question: "What market form of timber is described as a piece that is wider than it is thick, with a thickness less than 50mm and breadth greater than 50mm?", options: ["A) Plank", "B) Pole Spar", "C) Beam", "D) Deal"], correctAnswer: "A", explanation: "A plank is a piece of timber that is wider than it is thick, with thickness < 50mm and breadth > 50mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Plank", page: 2, lines: "Lines 24–25", secId: "sec-3" },
+            { id: 38, question: "What is the defining characteristic of a 'Balk' in converted timber forms?", options: ["A) A long, round-shaped piece", "B) A roughly square-shaped piece obtained after removing bark and sapwood", "C) A thin, wide board", "D) A small, decorative molding"], correctAnswer: "B", explanation: "A balk is a roughly square-shaped piece of timber obtained after removing the bark and sapwood from a log.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Balk", page: 2, lines: "Lines 21–23", secId: "sec-3" },
+            { id: 39, question: "What market form of timber serves as a large, horizontal primary structural element?", options: ["A) Batten", "B) Deal", "C) Beam", "D) Board"], correctAnswer: "C", explanation: "A beam is a large, horizontal timber piece used as a primary structural element.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Beam", page: 2, lines: "Lines 28–29", secId: "sec-3" },
+            { id: 40, question: "What is the botanical source of hardwood timber?", options: ["A) Deciduous (broad-leaved) trees", "B) Coniferous (needle-bearing) trees", "C) Palm trees", "D) Bamboo plants"], correctAnswer: "A", explanation: "Hardwood comes from deciduous (broad-leaved) trees that lose their leaves annually.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 6–7", secId: "sec-4" },
+            { id: 41, question: "Which of the following is an example of a tree that produces softwood?", options: ["A) Oak", "B) Pine", "C) Maple", "D) Teak"], correctAnswer: "B", explanation: "Softwood comes from coniferous (needle-bearing) trees such as pine, fir, and spruce.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 7–8", secId: "sec-4" },
+            { id: 42, question: "How does sap flow differ structurally in hardwood compared to softwood?", options: ["A) Hardwood has a simpler structure; softwood uses complex pores", "B) Hardwood uses complex pores or vessels; softwood circulates sap through wood fibers", "C) Hardwood does not have sap; softwood does", "D) Both use identical structures"], correctAnswer: "B", explanation: "Hardwood has a complex structure with pores or vessels for sap flow, while softwood circulates sap through simpler wood fibers.", chapter: "4. Types of Wood", subtopic: "4.3 Cellular Structure", page: 3, lines: "Lines 9–11", secId: "sec-4" },
+            { id: 43, question: "Which category of wood is generally considered easier to work with due to its lower density and simpler composition?", options: ["A) Hardwood", "B) Softwood", "C) Both are equally easy", "D) Neither"], correctAnswer: "B", explanation: "Softwood is easier to work with because of its lower density and simpler composition.", chapter: "4. Types of Wood", subtopic: "4.5 Workability", page: 3, lines: "Lines 14–16", secId: "sec-4" },
+            { id: 44, question: "What is a common application for hardwood timber?", options: ["A) General structural framing", "B) Fine furniture and cabinetry", "C) Temporary formwork", "D) Roofing supports"], correctAnswer: "B", explanation: "Hardwood is commonly used for cabinetry, fine furniture, decorative woodwork, and flooring.", chapter: "4. Types of Wood", subtopic: "4.7 Common Uses", page: 3, lines: "Lines 19–20", secId: "sec-4" },
+            { id: 45, question: "What is the primary purpose of seasoning wood?", options: ["A) To change its color", "B) To reduce its moisture content", "C) To make it heavier", "D) To increase its sap flow"], correctAnswer: "B", explanation: "Seasoning is the controlled process of reducing the moisture content of freshly cut (green) timber.", chapter: "5. Seasoning of Wood", subtopic: "5.0 Green Timber Issues", page: 3, lines: "Lines 22–23", secId: "sec-5" },
+            { id: 46, question: "Why is freshly cut (green) timber considered problematic for immediate use in construction?", options: ["A) It is too dry and brittle", "B) It is too light to support weight", "C) It is heavy, weak, prone to decay, and will shrink", "D) It repels paint immediately"], correctAnswer: "C", explanation: "Green timber is heavy, weak, prone to decay, and will shrink and warp as it dries.", chapter: "5. Seasoning of Wood", subtopic: "5.0 Green Timber Issues", page: 3, lines: "Lines 23–25", secId: "sec-5" },
+            { id: 47, question: "In natural (air) seasoning, approximately what moisture content percentage is achieved?", options: ["A) 0-5%", "B) 12-15%", "C) 30-40%", "D) 50-60%"], correctAnswer: "B", explanation: "Natural seasoning reduces moisture to 12-15%, suitable for many applications.", chapter: "5. Seasoning of Wood", subtopic: "5.1 Natural (Air) Seasoning", page: 3, lines: "Line 31", secId: "sec-5" },
+            { id: 48, question: "What is a primary disadvantage of natural (air) seasoning?", options: ["A) It damages the wood grain", "B) It is very expensive", "C) It is a very slow process", "D) It makes the wood too dry"], correctAnswer: "C", explanation: "Natural seasoning is a very slow process, taking months to years.", chapter: "5. Seasoning of Wood", subtopic: "5.1 Natural (Air) Seasoning", page: 3, lines: "Line 34", secId: "sec-5" },
+            { id: 49, question: "Which artificial seasoning method uses a large oven to rapidly and uniformly remove moisture?", options: ["A) Water Seasoning", "B) Boiling", "C) Kiln Seasoning", "D) Air Seasoning"], correctAnswer: "C", explanation: "Kiln seasoning places timber in a large oven (kiln) to rapidly and uniformly remove moisture.", chapter: "5. Seasoning of Wood", subtopic: "5.2 Kiln Seasoning", page: 4, lines: "Lines 2–5", secId: "sec-5" },
+            { id: 50, question: "Approximately how long does kiln seasoning take to complete?", options: ["A) About 7 days", "B) Several months", "C) 24 hours", "D) 3-5 years"], correctAnswer: "A", explanation: "Kiln seasoning can be completed in about 7 days.", chapter: "5. Seasoning of Wood", subtopic: "5.2 Kiln Seasoning", page: 4, lines: "Line 6", secId: "sec-5" },
+            { id: 51, question: "What is the process of water seasoning?", options: ["A) Exposing wood to boiling water", "B) Spraying wood with high-pressure hoses", "C) Immersing logs in water to leach out sap, then air drying", "D) Freezing logs in ice"], correctAnswer: "C", explanation: "Water seasoning involves immersing logs in water to leach out sap, then drying them in the air.", chapter: "5. Seasoning of Wood", subtopic: "5.3 Water & Boiling Seasoning", page: 4, lines: "Line 13", secId: "sec-5" },
+            { id: 52, question: "Which of the following is an objective of seasoning wood?", options: ["A) To increase shrinkage and warping", "B) To increase weight", "C) To make it suitable for finishing and polish adhesion", "D) To make it harder to cut"], correctAnswer: "C", explanation: "Seasoning allows for better paint and polish adhesion, making it suitable for finishing.", chapter: "5. Seasoning of Wood", subtopic: "5.4 Objectives of Seasoning", page: 4, lines: "Lines 22–23", secId: "sec-5" },
+            { id: 53, question: "How are carpentry joints broadly classified based on their function?", options: ["A) By length, width, and depth", "B) Widening, Corner, and Framing joints", "C) Temporary and Permanent joints", "D) Hardwood and Softwood joints"], correctAnswer: "B", explanation: "Woodworking joints are broadly classified into Widening (Edge), Corner, and Framing joints.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 1–8", secId: "sec-6" },
+            { id: 54, question: "Which classification of joint is used to join boards side-by-side to create a wider panel?", options: ["A) Corner Joints", "B) Framing Joints", "C) Widening Joints (Edge Joints)", "D) Dado Joints"], correctAnswer: "C", explanation: "Widening Joints (Edge Joints) are used to join boards side-by-side to create a wider panel.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 3–4", secId: "sec-6" },
+            { id: 55, question: "What is the simplest type of carpentry joint where the end of one piece is pushed against another?", options: ["A) Miter Joint", "B) Lap Joint", "C) Butt Joint", "D) Dovetail Joint"], correctAnswer: "C", explanation: "The butt joint is the simplest joint; the end of one piece is butted against another.", chapter: "6. Carpentry Joints", subtopic: "6.2 Butt Joint", page: 5, lines: "Lines 12–13", secId: "sec-6" },
+            { id: 56, question: "In a half-lap joint, how are the two pieces of wood prepared to fit flush?", options: ["A) They are cut at 45-degree angles", "B) Half of each piece's thickness is removed", "C) A square slot is cut in only one piece", "D) Wooden pins are inserted"], correctAnswer: "B", explanation: "In a Half-Lap Joint, half of each piece's thickness is removed so they fit flush.", chapter: "6. Carpentry Joints", subtopic: "6.2 Lap Joint", page: 5, lines: "Lines 16–18", secId: "sec-6" },
+            { id: 57, question: "Which joint involves a square slot cut across the grain of one piece for another piece to fit into, commonly used in bookshelves?", options: ["A) Tongue and Groove", "B) Dado Joint", "C) Miter Joint", "D) Box Joint"], correctAnswer: "B", explanation: "A Dado Joint involves a square slot cut across the grain of one piece for another piece to fit into.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dado Joint", page: 5, lines: "Lines 19–20", secId: "sec-6" },
+            { id: 58, question: "What joint is commonly used for flooring and paneling, featuring a ridge on one edge that fits into a slot on the adjacent edge?", options: ["A) Dovetail Joint", "B) Mortise and Tenon", "C) Tongue and Groove", "D) Butt Joint"], correctAnswer: "C", explanation: "A Tongue and Groove joint features a groove on one edge and a matching tongue (ridge) on the other.", chapter: "6. Carpentry Joints", subtopic: "6.2 Tongue and Groove", page: 5, lines: "Lines 21–23", secId: "sec-6" },
+            { id: 59, question: "Which joint features interlocking square \"fingers\" cut at the ends of two boards?", options: ["A) Box (Finger) Joint", "B) Dovetail Joint", "C) Miter Joint", "D) Dado Joint"], correctAnswer: "A", explanation: "A Box (Finger) Joint uses a series of interlocking, square \"fingers\" cut at the ends of two boards.", chapter: "6. Carpentry Joints", subtopic: "6.2 Box (Finger) Joint", page: 5, lines: "Lines 24–25", secId: "sec-6" },
+            { id: 60, question: "What joint is a variation of a box joint where the fingers are cut at an angle, providing exceptional strength for high-quality drawers?", options: ["A) Dado Joint", "B) Lap Joint", "C) Mortise and Tenon", "D) Dovetail Joint"], correctAnswer: "D", explanation: "A Dovetail Joint is a form of box joint where the fingers are cut at an angle, locking them together.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dovetail Joint", page: 5, lines: "Lines 26–28", secId: "sec-6" },
+            { id: 61, question: "Which traditional framing joint features a slot cut into one piece and a matching tongue cut on the end of another to fit snugly inside?", options: ["A) Box Joint", "B) Mortise and Tenon", "C) Dowelled Joint", "D) Miter Joint"], correctAnswer: "B", explanation: "A Mortise and Tenon joint features a mortise (hole/slot) cut into one piece and a matching tenon (tongue) to fit inside.", chapter: "6. Carpentry Joints", subtopic: "6.2 Mortise and Tenon", page: 5, lines: "Lines 29–31", secId: "sec-6" },
+            { id: 62, question: "What joint uses inserted wooden pins to provide alignment and mechanical strength as a simpler alternative to a mortise and tenon?", options: ["A) Butt Joint", "B) Dowelled Joint", "C) Dado Joint", "D) Lap Joint"], correctAnswer: "B", explanation: "A Dowelled Joint uses wooden dowels (pins) inserted into corresponding holes in both pieces.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dowelled Joint", page: 5, lines: "Lines 32–34", secId: "sec-6" },
+            { id: 63, question: "Besides timber, what modern materials have been increasingly incorporated into the carpenter's role over time?", options: ["A) Steel and glass", "B) Plywood, chipboard, and metal", "C) Plastics and resins", "D) Brick and mortar"], correctAnswer: "B", explanation: "Over time, carpentry has incorporated modern materials like plywood, chipboard, and metal.", chapter: "1. Introduction to Carpentry", subtopic: "1.3 Evolution of Materials", page: 1, lines: "Lines 19–21", secId: "sec-1" },
+            { id: 64, question: "In addition to building physical frameworks, what administrative or preparatory task is a key part of a carpenter's work?", options: ["A) Pouring concrete", "B) Welding steel", "C) Reading and interpreting plans", "D) Surveying land"], correctAnswer: "C", explanation: "Carpenters must read and interpret plans, working from construction drawings and performing necessary calculations.", chapter: "1. Introduction to Carpentry", subtopic: "1.2 Tasks of a Carpenter", page: 1, lines: "Lines 11–12", secId: "sec-1" },
+            { id: 65, question: "What aesthetic appearance characteristics indicate good quality timber?", options: ["A) Dark, matte surface with no smell", "B) Uniform color, shining fresh-cut surface, and a sweet smell", "C) Highly variable color with a strong odor", "D) Bleached surface with visible sap"], correctAnswer: "B", explanation: "Good timber should have a uniform color, a shining fresh-cut surface, and a sweet smell.", chapter: "2. Timber Properties", subtopic: "2.2 Appearance", page: 2, lines: "Lines 5–6", secId: "sec-2" },
+            { id: 66, question: "What type of physical texture is desirable in good quality timber?", options: ["A) Rough and open grain", "B) Variable and wavy grain", "C) Uniform and close grain", "D) Spongy and porous grain"], correctAnswer: "C", explanation: "Good timber should possess a uniform and close grain texture.", chapter: "2. Timber Properties", subtopic: "2.2 Texture", page: 2, lines: "Line 10", secId: "sec-2" },
+            { id: 67, question: "What are the specific dimensional requirements that define a 'Balk' of timber?", options: ["A) Thickness < 50mm", "B) Cross-section > 50mm x 50mm and length > 200mm", "C) Maximum diameter 200mm", "D) Thickness 50-100mm"], correctAnswer: "B", explanation: "A Balk is a roughly square-shaped piece with a cross-section > 50mm x 50mm and length > 200mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Balk", page: 2, lines: "Lines 21–23", secId: "sec-3" },
+            { id: 68, question: "What is a 'Batten' in the context of converted timber?", options: ["A) A large structural horizontal piece", "B) A thin, wide piece of sawn timber", "C) A rectangular piece narrower and thinner than a plank", "D) A round-shaped pole"], correctAnswer: "C", explanation: "A batten is narrower and thinner than a plank, with a thickness of 50-100mm and breadth of 125-175mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Batten", page: 2, lines: "Lines 26–27", secId: "sec-3" },
+            { id: 69, question: "What specific dimensions define a 'Board' in the market forms of timber?", options: ["A) Thickness > 100mm", "B) Thickness < 50mm and Breadth > 150mm", "C) A round piece with 200mm diameter", "D) A square piece > 50x50mm"], correctAnswer: "B", explanation: "A Board is a thin, wide piece of sawn timber with thickness < 50mm and breadth > 150mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Board", page: 2, lines: "Lines 30–31", secId: "sec-3" },
+            { id: 70, question: "What is a 'Deal' in the context of market forms of converted timber?", options: ["A) A hardwood plank", "B) A converted form of a softwood log", "C) A round piece of timber", "D) A type of artificial wood"], correctAnswer: "B", explanation: "A Deal is a converted form of a softwood log, generally rectangular in cross-section.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Deal", page: 2, lines: "Lines 32–33", secId: "sec-3" },
+            { id: 71, question: "What are the specific dimensions associated with a 'Deal' of timber?", options: ["A) Thickness < 50mm, Breadth > 150mm", "B) Thickness 50-100mm, Breadth 125-175mm", "C) Thickness 50-100mm, Breadth up to 250mm", "D) Cross-section > 50mm x 50mm"], correctAnswer: "C", explanation: "A Deal has a thickness of 50-100mm and a breadth up to 250mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Deal", page: 2, lines: "Lines 32–33", secId: "sec-3" },
+            { id: 72, question: "What market form refers to a long, round-shaped piece of timber with a maximum diameter of approximately 200mm?", options: ["A) Balk", "B) Pole Spar", "C) Beam", "D) Deal"], correctAnswer: "B", explanation: "A Pole Spar is a long, round-shaped piece of timber with a maximum diameter of approx. 200mm.", chapter: "3. Market Forms of Converted Timber", subtopic: "3.1 Pole Spar", page: 2, lines: "Lines 34–35", secId: "sec-3" },
+            { id: 73, question: "Which of the following are examples of hardwood trees mentioned in the text?", options: ["A) Pine, fir, and spruce", "B) Oak, maple, and teak", "C) Cedar and redwood", "D) Cypress and yew"], correctAnswer: "B", explanation: "Oak, maple, and teak are examples of deciduous trees that produce hardwood.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 6–7", secId: "sec-4" },
+            { id: 74, question: "Which of the following are examples of softwood trees mentioned in the text?", options: ["A) Oak, maple, and teak", "B) Mahogany and walnut", "C) Pine, fir, and spruce", "D) Ash and birch"], correctAnswer: "C", explanation: "Pine, fir, and spruce are coniferous (needle-bearing) trees that produce softwood.", chapter: "4. Types of Wood", subtopic: "4.2 Tree Type", page: 3, lines: "Lines 7–8", secId: "sec-4" },
+            { id: 75, question: "How do the grains typically appear visually in hardwood versus softwood?", options: ["A) Hardwood is open/light; Softwood is closed/prominent", "B) Hardwood is closed/prominent; Softwood is open/light", "C) Both are identical", "D) Hardwood has no grain"], correctAnswer: "B", explanation: "Hardwood grains are typically closed and prominently visible, whereas softwood grains are open and light.", chapter: "4. Types of Wood", subtopic: "4.3 Cellular Structure", page: 3, lines: "Lines 9–11", secId: "sec-4" },
+            { id: 76, question: "In terms of cost and availability, how does hardwood generally compare to softwood?", options: ["A) Hardwood is less expensive and readily available", "B) Hardwood is more expensive and less readily available", "C) They are identical in cost", "D) Softwood is extremely rare"], correctAnswer: "B", explanation: "Hardwood is generally more expensive and less readily available compared to softwood.", chapter: "4. Types of Wood", subtopic: "4.6 Cost & Availability", page: 3, lines: "Lines 17–18", secId: "sec-4" },
+            { id: 77, question: "In natural (air) seasoning, how is the timber physically stacked?", options: ["A) Buried underground", "B) Under a covered shed to allow free air circulation", "C) Tightly bound together to prevent airflow", "D) Submerged in shallow water"], correctAnswer: "B", explanation: "Sawn timber is stacked under a covered shed in a way that permits free air to flow around each piece.", chapter: "5. Seasoning of Wood", subtopic: "5.1 Natural (Air) Seasoning", page: 3, lines: "Lines 27–29", secId: "sec-5" },
+            { id: 78, question: "Which artificial seasoning method is described as quick but expensive and involves directly applying steam or boiling water?", options: ["A) Kiln Seasoning", "B) Boiling", "C) Water Seasoning", "D) Air Seasoning"], correctAnswer: "B", explanation: "Boiling involves exposing wood to boiling water or steam, which is quick but expensive.", chapter: "5. Seasoning of Wood", subtopic: "5.3 Water & Boiling Seasoning", page: 4, lines: "Lines 14–15", secId: "sec-5" },
+            { id: 79, question: "How does seasoning wood benefit its overall weight?", options: ["A) It increases the weight to make it denser", "B) It makes the timber lighter and easier to handle", "C) It does not affect the weight", "D) It randomly fluctuates the weight"], correctAnswer: "B", explanation: "Seasoning reduces weight by removing moisture, making the timber lighter and easier to handle.", chapter: "5. Seasoning of Wood", subtopic: "5.4 Objectives of Seasoning", page: 4, lines: "Line 21", secId: "sec-5" },
+            { id: 80, question: "How does seasoning wood reduce the risk of biological damage?", options: ["A) By coating it in a toxic resin", "B) By making it less prone to decay and insect attack", "C) By petrifying the wood", "D) By increasing the sap content"], correctAnswer: "B", explanation: "Reducing the moisture content makes the wood less prone to decay and insect attack.", chapter: "5. Seasoning of Wood", subtopic: "5.4 Objectives of Seasoning", page: 4, lines: "Lines 19–20", secId: "sec-5" },
+            { id: 81, question: "Which joint classification is typically used specifically at the corners of frames or boxes?", options: ["A) Widening Joints", "B) Framing Joints", "C) Corner Joints", "D) Splicing Joints"], correctAnswer: "C", explanation: "Corner Joints are used to join two pieces at an angle, typically at the corners of frames or boxes.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 5–6", secId: "sec-6" },
+            { id: 82, question: "What is a primary example of a Framing Joint used specifically to connect structural members?", options: ["A) Tongue and Groove", "B) Mortise and Tenon", "C) Butt Joint", "D) Miter Joint"], correctAnswer: "B", explanation: "Mortise and Tenon is an example of a framing joint used to connect the structural members of a frame.", chapter: "6. Carpentry Joints", subtopic: "6.1 Classification by Function", page: 5, lines: "Lines 7–8", secId: "sec-6" },
+            { id: 83, question: "According to the provided text, what specific angle are the pieces cut at to form a neat corner in a Miter Joint?", options: ["A) 45 degrees", "B) 90 degrees", "C) 15 degrees", "D) 30 degrees"], correctAnswer: "C", explanation: "The PDF text specifically states on Page 5, Line 14 that both pieces are cut at a 15-degree angle to form a neat corner.", chapter: "6. Carpentry Joints", subtopic: "6.2 Miter Joint", page: 5, lines: "Lines 14–15", secId: "sec-6" },
+            { id: 84, question: "What is a typical practical use case for a Dado Joint?", options: ["A) Heavy timber framing", "B) Picture frames", "C) Bookshelves, cabinets, and drawer dividers", "D) Flooring"], correctAnswer: "C", explanation: "Dado joints are commonly used for bookshelves, cabinets, and drawer dividers.", chapter: "6. Carpentry Joints", subtopic: "6.2 Dado Joint", page: 5, lines: "Lines 19–20", secId: "sec-6" }
+        ];
+
+        // Quiz State
+        let currentIdx = 0;
+        let userAnswers = {}; // { questionIndex: 'A' | 'B' | 'C' | 'D' }
+
+        // Switch between Study Notes and Quiz Mode
+        function switchTab(mode) {
+            const notesView = document.getElementById('view-notes');
+            const quizView = document.getElementById('view-quiz');
+            const btnNotes = document.getElementById('tab-btn-notes');
+            const btnQuiz = document.getElementById('tab-btn-quiz');
+
+            if (mode === 'notes') {
+                notesView.classList.remove('hidden');
+                quizView.classList.add('hidden');
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-wood-950 shadow-md";
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-wood-200 hover:text-white hover:bg-wood-800/60";
+            } else {
+                notesView.classList.add('hidden');
+                quizView.classList.remove('hidden');
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-wood-950 shadow-md";
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-wood-200 hover:text-white hover:bg-wood-800/60";
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        // Toggle PDF Page/Line Info Popover
+        function toggleInfoPopover() {
+            const pop = document.getElementById('info-popover');
+            pop.classList.toggle('hidden');
+        }
+
+        // Jump from Quiz Question Info directly to the corresponding Study Notes section
+        function jumpToNotesSection() {
+            const q = questions[currentIdx];
+            document.getElementById('info-popover').classList.add('hidden');
+            switchTab('notes');
+            setTimeout(() => {
+                const el = document.getElementById(q.secId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 80);
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const q = questions[currentIdx];
+            const selected = userAnswers[currentIdx] || null;
+
+            // Update Progress & Score
+            const answeredKeys = Object.keys(userAnswers);
+            let correctCount = 0;
+            answeredKeys.forEach(k => {
+                if (userAnswers[k] === questions[k].correctAnswer) correctCount++;
+            });
+            const pct = answeredKeys.length > 0 ? Math.round((correctCount / answeredKeys.length) * 100) : 0;
+
+            document.getElementById('quiz-progress-label').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+            document.getElementById('quiz-score-label').textContent = `${correctCount} Correct (${pct}%)`;
+            document.getElementById('header-score-pill').textContent = `${correctCount}/${questions.length}`;
+            document.getElementById('sidebar-answered-count').textContent = `${answeredKeys.length}/${questions.length} Answered`;
+
+            // Update Badges & Info Popover
+            document.getElementById('q-chapter-badge').textContent = q.chapter;
+            document.getElementById('q-subtopic-badge').textContent = q.subtopic;
+            document.getElementById('info-chapter').textContent = q.chapter;
+            document.getElementById('info-subtopic').textContent = q.subtopic;
+            document.getElementById('info-location').textContent = `Page ${q.page}, ${q.lines}`;
+
+            // Question Text
+            document.getElementById('q-text').textContent = `${currentIdx + 1}. ${q.question}`;
+
+            // Render Options
+            const optsContainer = document.getElementById('q-options');
+            optsContainer.innerHTML = '';
+
+            q.options.forEach(optText => {
+                const letter = optText.charAt(0);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+
+                let baseClasses = "w-full text-left p-4 rounded-xl border-2 font-semibold text-sm md:text-base transition-all flex items-center justify-between ";
+
+                if (!selected) {
+                    baseClasses += "bg-wood-50/50 border-wood-200 text-wood-950 hover:border-amber-600 hover:bg-amber-50/60";
+                } else {
+                    if (letter === q.correctAnswer) {
+                        baseClasses += "bg-emerald-50 border-emerald-500 text-emerald-950 shadow-sm";
+                    } else if (letter === selected && letter !== q.correctAnswer) {
+                        baseClasses += "bg-rose-50 border-rose-500 text-rose-950";
+                    } else {
+                        baseClasses += "bg-gray-50 border-gray-200 text-gray-400 opacity-70";
+                    }
+                }
+
+                btn.className = baseClasses;
+                btn.disabled = !!selected;
+                btn.onclick = () => selectOption(letter);
+
+                const spanText = document.createElement('span');
+                spanText.textContent = optText;
+                btn.appendChild(spanText);
+
+                if (selected) {
+                    const icon = document.createElement('i');
+                    if (letter === q.correctAnswer) {
+                        icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                    } else if (letter === selected) {
+                        icon.className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+                    }
+                    btn.appendChild(icon);
+                }
+
+                optsContainer.appendChild(btn);
+            });
+
+            // Explanation Box
+            const expBox = document.getElementById('q-explanation-box');
+            if (selected) {
+                const isCorrect = selected === q.correctAnswer;
+                expBox.className = `rounded-xl p-4 mb-6 border-l-4 animate-fade ${isCorrect ? 'bg-emerald-50 border-emerald-600' : 'bg-amber-50 border-amber-600'}`;
+                document.getElementById('q-feedback-title').innerHTML = isCorrect
+                    ? '<i class="fa-solid fa-check-circle text-emerald-600 mr-1.5"></i>Spot On! Correct Answer'
+                    : `<i class="fa-solid fa-triangle-exclamation text-rose-600 mr-1.5"></i>Incorrect — Correct Answer is ${q.correctAnswer}`;
+                document.getElementById('q-explanation-citation').innerHTML = `<i class="fa-regular fa-file-pdf mr-1 text-amber-700"></i>PDF Page ${q.page}, ${q.lines}`;
+                document.getElementById('q-explanation-text').textContent = q.explanation;
+            } else {
+                expBox.className = 'hidden';
+            }
+
+            // Prev / Next button state
+            document.getElementById('btn-prev').disabled = currentIdx === 0;
+            document.getElementById('btn-next').disabled = currentIdx === questions.length - 1;
+        }
+
+        // Handle Option Selection
+        function selectOption(letter) {
+            if (userAnswers[currentIdx]) return;
+            userAnswers[currentIdx] = letter;
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentIdx = index;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            currentIdx = 0;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        // Render Right Sidebar Grouped by Chapter & Sub-topic
+        function renderSidebar() {
+            const container = document.getElementById('sidebar-topics-container');
+            container.innerHTML = '';
+
+            // Group questions by Chapter
+            const chaptersMap = {};
+            questions.forEach((q, idx) => {
+                if (!chaptersMap[q.chapter]) {
+                    chaptersMap[q.chapter] = [];
+                }
+                chaptersMap[q.chapter].push({ ...q, idx });
+            });
+
+            Object.keys(chaptersMap).sort().forEach(chapterTitle => {
+                const groupItems = chaptersMap[chapterTitle];
+                const sectionEl = document.createElement('div');
+                sectionEl.className = "bg-white p-3.5 rounded-xl border border-wood-200 shadow-sm";
+
+                // Group Header with Sub-topic count
+                const headerEl = document.createElement('div');
+                headerEl.className = "flex items-center justify-between border-b border-wood-100 pb-2 mb-2.5";
+                headerEl.innerHTML = `
+                    <span class="font-extrabold text-wood-900 text-xs">${chapterTitle}</span>
+                    <span class="text-[10px] font-bold bg-wood-100 text-wood-700 px-2 py-0.5 rounded-full">${groupItems.length} Qs</span>
+                `;
+                sectionEl.appendChild(headerEl);
+
+                // Grid of question buttons
+                const gridEl = document.createElement('div');
+                gridEl.className = "grid grid-cols-6 gap-1.5";
+
+                groupItems.forEach(item => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    const ans = userAnswers[item.idx];
+                    const isCurrent = item.idx === currentIdx;
+
+                    let cls = "h-8 rounded-lg font-bold text-xs transition-all flex items-center justify-center ";
+                    if (ans) {
+                        if (ans === item.correctAnswer) {
+                            cls += "bg-emerald-600 text-white ";
+                        } else {
+                            cls += "bg-rose-600 text-white ";
+                        }
+                    } else {
+                        cls += "bg-wood-100 text-wood-800 hover:bg-wood-200 ";
+                    }
+
+                    if (isCurrent) {
+                        cls += "ring-2 ring-amber-500 ring-offset-1 font-black scale-105";
+                    }
+
+                    btn.className = cls;
+                    btn.textContent = item.idx + 1;
+                    btn.title = `${item.subtopic} (Page ${item.page}, ${item.lines}): ${item.question}`;
+                    btn.onclick = () => jumpToQuestion(item.idx);
+                    gridEl.appendChild(btn);
+                });
+
+                sectionEl.appendChild(gridEl);
+                container.appendChild(sectionEl);
+            });
+        }
+
+        // Keyboard Shortcuts for Quiz Mode
+        window.addEventListener('keydown', (e) => {
+            const quizVisible = !document.getElementById('view-quiz').classList.contains('hidden');
+            if (!quizVisible) return;
+
+            const key = e.key.toUpperCase();
+            if (['A', 'B', 'C', 'D'].includes(key)) {
+                selectOption(key);
+            } else if (e.key === 'ArrowRight') {
+                nextQuestion();
+            } else if (e.key === 'ArrowLeft') {
+                prevQuestion();
+            }
+        });
+
+        // Initialize Quiz State on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+            renderSidebar();
+        });
+    </script>
+</body>
+</html>
