@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fittings Shop Master — Complete Tutorial Notes &amp; 132-Question Quiz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        steel: {
+                            50: '#f4f7f9',
+                            100: '#e5ecf2',
+                            200: '#ccdbe6',
+                            300: '#a6c1d4',
+                            400: '#789fbd',
+                            500: '#5682a4',
+                            600: '#426889',
+                            700: '#365470',
+                            800: '#2f475e',
+                            900: '#1e2f40',
+                            950: '#111c27',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f7f9;
+            color: #111c27;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #e5ecf2;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #789fbd;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #426889;
+        }
+        .steel-pattern {
+            background-color: #1e2f40;
+            background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .pdf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            letter-spacing: 0.02em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.22s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-cyan-200 selection:text-steel-950">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="steel-pattern text-white shadow-xl sticky top-0 z-50 border-b-4 border-amber-500">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-amber-500 text-steel-950 flex items-center justify-center shadow-md font-black text-xl">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-white">Fittings Shop Master</h1>
+                        <span class="text-xs bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 px-2 py-0.5 rounded-full font-semibold">Aug 2026</span>
+                    </div>
+                    <p class="text-xs text-steel-200">Prepared by Dr. Sumanta Banerjee &bull; Complete Tutorial Notes &amp; 132-MCQ Bank</p>
+                </div>
+            </div>
+
+            <!-- Main Mode Switcher Tabs -->
+            <div class="flex items-center bg-steel-950/80 p-1.5 rounded-xl border border-steel-700">
+                <button id="tab-btn-notes" onclick="switchTab('notes')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-steel-950 shadow-md">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Study Notes &amp; Diagrams</span>
+                </button>
+                <button id="tab-btn-quiz" onclick="switchTab('quiz')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-steel-200 hover:text-white hover:bg-steel-800/60">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Interactive Quiz (132 MCQs)</span>
+                    <span id="header-score-pill" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-steel-800 text-amber-300 border border-steel-600">0/132</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: COMPLETE STUDY NOTES (PDF RECREATED + CUSTOM SVG DIAGRAMS)     -->
+    <!-- ===================================================================== -->
+    <main id="view-notes" class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- Sticky Quick Section Jumper Bar -->
+        <div class="bg-white/95 backdrop-blur border border-steel-200 rounded-2xl p-3 mb-6 shadow-sm sticky top-[72px] z-30 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+                <span class="text-steel-600 px-2 py-1 uppercase tracking-wider"><i class="fa-solid fa-compass mr-1 text-amber-600"></i>Jump to PDF Section:</span>
+                <a href="#sec-1" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">1. Intro &amp; Importance</a>
+                <a href="#sec-2" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">2. Fitting Operations (8)</a>
+                <a href="#sec-3" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">3. Screw Threads</a>
+                <a href="#sec-4" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">4. Tapping &amp; Dieing</a>
+                <a href="#sec-5" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">5. Twist Drill</a>
+                <a href="#sec-6" class="px-3 py-1.5 rounded-lg bg-steel-100 hover:bg-amber-500 hover:text-steel-950 text-steel-800 transition">6. Upright Drilling Machine</a>
+            </div>
+            <button onclick="switchTab('quiz')" class="text-xs font-bold bg-steel-900 hover:bg-steel-950 text-amber-400 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 ml-auto shadow-sm">
+                <span>Test Yourself (132 MCQs)</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Document Banner -->
+        <div class="bg-gradient-to-r from-steel-950 via-steel-900 to-steel-950 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-lg border border-steel-700 relative overflow-hidden">
+            <div class="relative z-10 max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold mb-3">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>VERBATIM RECREATION WITH TECHNICAL DIAGRAMS &bull; PAGES 1 TO 6</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-extrabold font-serif mb-2">Fittings Shop Overview: Complete Tutorial Notes</h2>
+                <p class="text-steel-200 text-sm md:text-base leading-relaxed">
+                    Every definition, workshop tool classification, thread profile, tap drill formula, twist drill angle, and upright drilling machine specification from Dr. Sumanta Banerjee's official tutorial notes, enriched with custom technical SVG schematics and exact PDF page/line citations.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- SECTION 1: INTRODUCTION & IMPORTANCE OF FITTINGS  -->
+        <!-- ================================================= -->
+        <section id="sec-1" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">1</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">1. Introduction to Fittings &amp; Its Importance</h3>
+                        <p class="text-xs text-steel-600">Fundamental workshop practice, tolerances, and the 5 engineering pillars of fitting</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 1 &bull; Lines 4–31</span>
+            </div>
+
+            <!-- Verbatim Overview Box -->
+            <div class="bg-steel-50 border-l-4 border-steel-800 p-5 rounded-r-xl mb-6">
+                <p class="text-steel-950 leading-relaxed mb-3">
+                    <strong>Introduction to Fittings <span class="text-xs font-semibold text-amber-800">(Page 1, Lines 5–14)</span>:</strong>
+                    Fitting is a fundamental workshop practice that involves the <strong>assembly of mechanical components</strong> to form a functional machine or structure. It is the art of <strong>manually cutting, shaping, and finishing metal parts to precise dimensions</strong> so that they can be joined together. Fitting work is primarily performed on a <strong>workbench using hand tools</strong>, but it also involves the use of <strong>power tools for efficiency and accuracy</strong>.
+                </p>
+                <p class="text-steel-900 text-sm leading-relaxed">
+                    <strong>The Fitter's Role &amp; Tolerances <span class="text-xs font-semibold text-amber-800">(Page 1, Lines 11–14)</span>:</strong>
+                    A fitter's job is to ensure that components fit together with the <strong>correct tolerances</strong>, allowing for <strong>movement</strong>, <strong>securing parts</strong>, or creating a <strong>tight seal</strong> as required. In engineering and manufacturing, fitting is the <strong>crucial link between design and the final product</strong> <span class="text-xs font-semibold text-amber-800">(Lines 16–17)</span>.
+                </p>
+            </div>
+
+            <!-- 5 Pillars of Importance of Fittings -->
+            <h4 class="text-sm font-bold uppercase tracking-wider text-steel-700 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-award text-amber-600"></i>
+                5 Pillars of Importance of Fittings (Page 1, Lines 18–31)
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Pillar 1: Precision & Accuracy -->
+                <div class="border border-steel-200 rounded-xl p-4 bg-gradient-to-b from-white to-steel-50 flex flex-col">
+                    <div class="h-28 bg-steel-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-steel-700">
+                        <svg viewBox="0 0 180 95" class="w-full h-full">
+                            <circle cx="90" cy="44" r="28" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 2"/>
+                            <circle cx="90" cy="44" r="14" fill="#0284c7" fill-opacity="0.3" stroke="#facc15" stroke-width="2"/>
+                            <line x1="52" y1="44" x2="128" y2="44" stroke="#bae6fd" stroke-width="1.5"/>
+                            <line x1="90" y1="8" x2="90" y2="80" stroke="#bae6fd" stroke-width="1.5"/>
+                            <text x="90" y="90" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">&plusmn;0.01mm INTERCHANGEABILITY</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-steel-900 text-sm">1. Precision &amp; Accuracy</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-1.5">Page 1, Lines 18–20</span>
+                    <p class="text-xs text-steel-800 leading-relaxed">Ensures manufactured parts meet <strong>exact dimensions</strong> specified in the design, guaranteeing <strong>interchangeability</strong> and proper function.</p>
+                </div>
+
+                <!-- Pillar 2: Assembly & Functionality -->
+                <div class="border border-steel-200 rounded-xl p-4 bg-gradient-to-b from-white to-steel-50 flex flex-col">
+                    <div class="h-28 bg-steel-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-steel-700">
+                        <svg viewBox="0 0 180 95" class="w-full h-full">
+                            <rect x="28" y="25" width="52" height="36" rx="4" fill="#334155" stroke="#38bdf8" stroke-width="2"/>
+                            <rect x="78" y="34" width="22" height="18" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <polygon points="105,25 152,25 152,61 105,61 105,52 122,52 122,34 105,34" fill="#475569" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="90" y="88" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">PREVENTS WEAR &amp; FAILURE</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-steel-900 text-sm">2. Assembly &amp; Functionality</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-1.5">Page 1, Lines 21–23</span>
+                    <p class="text-xs text-steel-800 leading-relaxed">Without precise fitting, components cannot be assembled correctly. <strong>Poor fitting leads to machine failure, excessive wear, and inefficiency.</strong></p>
+                </div>
+
+                <!-- Pillar 3: Quality Control -->
+                <div class="border border-steel-200 rounded-xl p-4 bg-gradient-to-b from-white to-steel-50 flex flex-col">
+                    <div class="h-28 bg-steel-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-steel-700">
+                        <svg viewBox="0 0 180 95" class="w-full h-full">
+                            <rect x="45" y="18" width="90" height="50" rx="5" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
+                            <polyline points="68,44 84,56 114,28" fill="none" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
+                            <text x="90" y="88" text-anchor="middle" fill="#6ee7b7" font-size="8.5" font-weight="bold">CASTING ERROR CORRECTION</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-steel-900 text-sm">3. Quality Control</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-1.5">Page 1, Lines 24–25</span>
+                    <p class="text-xs text-steel-800 leading-relaxed">Essential for <strong>checking and correcting minor dimensional errors</strong> in castings or machined parts.</p>
+                </div>
+
+                <!-- Pillar 4: Maintenance & Repair -->
+                <div class="border border-steel-200 rounded-xl p-4 bg-gradient-to-b from-white to-steel-50 flex flex-col">
+                    <div class="h-28 bg-steel-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-steel-700">
+                        <svg viewBox="0 0 180 95" class="w-full h-full">
+                            <path d="M55,62 L105,22 L120,35 L70,75 Z" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <circle cx="115" cy="27" r="12" fill="#1e293b" stroke="#f59e0b" stroke-width="3"/>
+                            <text x="90" y="88" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">ON-SITE PART REPLACEMENT</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-steel-900 text-sm">4. Maintenance &amp; Repair</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-1.5">Page 1, Lines 26–28</span>
+                    <p class="text-xs text-steel-800 leading-relaxed">Vital for <strong>repairing worn-out parts or replacing components on-site</strong>, keeping machinery operational.</p>
+                </div>
+
+                <!-- Pillar 5: Versatility -->
+                <div class="border border-steel-200 rounded-xl p-4 bg-gradient-to-b from-white to-steel-50 flex flex-col">
+                    <div class="h-28 bg-steel-950 rounded-lg mb-3 flex items-center justify-center p-2 border border-steel-700">
+                        <svg viewBox="0 0 180 95" class="w-full h-full">
+                            <polygon points="90,14 102,40 132,44 108,60 114,76 90,64 66,76 72,60 48,44 78,40" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="90" y="88" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">AERO &bull; AUTO &bull; SHIP &bull; CIVIL</text>
+                        </svg>
+                    </div>
+                    <span class="font-extrabold text-steel-900 text-sm">5. Versatility</span>
+                    <span class="text-[11px] font-bold text-amber-800 mb-1.5">Page 1, Lines 29–31</span>
+                    <p class="text-xs text-steel-800 leading-relaxed">Required in almost every sector: <strong>automotive, aerospace, shipbuilding, and construction</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 2: FITTING OPERATIONS & WORKSHOP TOOLS    -->
+        <!-- ================================================= -->
+        <section id="sec-2" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">2</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">2. Fitting Operations &amp; Workshop Tools</h3>
+                        <p class="text-xs text-steel-600">All 8 core manual &amp; machine fitting operations with tool classifications</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 2 (Lines 1–30) &amp; Page 3 (Lines 1–20)</span>
+            </div>
+
+            <!-- 8 Operations Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Operation 1: Job Holding -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-grip-lines-vertical text-amber-600 mr-2"></i>1. Job Holding</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 2, Lines 4–10</span>
+                        </div>
+                        <p class="text-xs text-steel-700 mb-3">The workpiece must be held securely to perform operations safely and accurately. Common tools include:</p>
+                        <svg viewBox="0 0 360 95" class="w-full h-24 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Bench Vice -->
+                            <rect x="15" y="38" width="55" height="32" fill="#3b82f6" stroke="#93c5fd" stroke-width="1.5"/>
+                            <rect x="22" y="20" width="14" height="20" fill="#60a5fa"/>
+                            <rect x="50" y="20" width="14" height="20" fill="#60a5fa"/>
+                            <line x1="8" y1="30" x2="78" y2="30" stroke="#facc15" stroke-width="2.5"/>
+                            <text x="42" y="85" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">Bench Vice</text>
+                            <!-- V-Block -->
+                            <polygon points="105,25 125,25 140,48 155,25 175,25 175,70 105,70" fill="#475569" stroke="#cbd5e1" stroke-width="1.5"/>
+                            <circle cx="140" cy="34" r="11" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <text x="140" y="85" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">V-Block (Round Job)</text>
+                            <!-- Angle Plate -->
+                            <polyline points="205,20 205,70 255,70" fill="none" stroke="#34d399" stroke-width="6"/>
+                            <rect x="205" y="58" width="12" height="12" fill="none" stroke="#fde68a" stroke-width="1.2"/>
+                            <text x="232" y="85" text-anchor="middle" fill="#6ee7b7" font-size="8.5" font-weight="bold">Angle Plate (90&deg;)</text>
+                            <!-- C-Clamp -->
+                            <path d="M325,22 L295,22 L295,68 L325,68" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+                            <line x1="318" y1="14" x2="318" y2="48" stroke="#fde68a" stroke-width="2.5"/>
+                            <text x="312" y="85" text-anchor="middle" fill="#fed7aa" font-size="8.5" font-weight="bold">C-Clamp</text>
+                        </svg>
+                        <ul class="text-xs text-steel-900 space-y-1.5">
+                            <li>&bull; <strong>Bench Vice:</strong> The most common tool, used for <strong>filing, sawing, and chipping</strong>.</li>
+                            <li>&bull; <strong>V-Block &amp; Clamps:</strong> Specifically used for holding <strong>round or cylindrical jobs</strong>.</li>
+                            <li>&bull; <strong>Angle Plate:</strong> Used to hold workpieces at an exact <strong>90&deg; angle</strong>.</li>
+                            <li>&bull; <strong>C-Clamps:</strong> Used for holding jobs on a <strong>machine table</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Operation 2: Filing -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-ruler-horizontal text-amber-600 mr-2"></i>2. Filing</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 2, Lines 11–14</span>
+                        </div>
+                        <p class="text-xs text-steel-700 mb-3">A metal removal process using a <strong>hardened steel file</strong> to remove burrs, smoothen surfaces, and bring a workpiece to its final shape and size.</p>
+                        <svg viewBox="0 0 360 95" class="w-full h-24 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- File Handle -->
+                            <rect x="20" y="34" width="65" height="24" rx="10" fill="#d97706" stroke="#fde68a" stroke-width="1.5"/>
+                            <!-- Tang -->
+                            <polygon points="85,41 110,36 110,56 85,51" fill="#94a3b8"/>
+                            <!-- File Blade with Cross-hatched Teeth -->
+                            <rect x="110" y="32" width="220" height="28" rx="3" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.5"/>
+                            <line x1="125" y1="32" x2="140" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="150" y1="32" x2="165" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="175" y1="32" x2="190" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="200" y1="32" x2="215" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="225" y1="32" x2="240" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="250" y1="32" x2="265" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="275" y1="32" x2="290" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <line x1="300" y1="32" x2="315" y2="60" stroke="#334155" stroke-width="1.5"/>
+                            <text x="180" y="84" text-anchor="middle" fill="#fde68a" font-size="9" font-weight="bold">HARDENED STEEL FILE &bull; CLASSIFIED BY SHAPE, CUT &amp; LENGTH</text>
+                        </svg>
+                        <div class="bg-white p-3 rounded-lg border border-steel-200 text-xs text-steel-900 space-y-1">
+                            <div><strong>Primary File Classifications:</strong></div>
+                            <div>1. <strong>By Shape</strong> (flat, round, half-round, triangular, square)</div>
+                            <div>2. <strong>By Cut Grade:</strong> <span class="font-bold text-amber-900">Rough &bull; Bastard &bull; Second Cut &bull; Smooth</span></div>
+                            <div>3. <strong>By Length</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operation 3: Measuring -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-ruler-combined text-amber-600 mr-2"></i>3. Measuring</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 2, Lines 15–23</span>
+                        </div>
+                        <p class="text-xs text-steel-700 mb-3">Determining the dimensions of a workpiece to ensure it meets specifications:</p>
+                        <svg viewBox="0 0 360 95" class="w-full h-24 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Vernier Caliper -->
+                            <rect x="20" y="30" width="155" height="12" fill="#94a3b8" stroke="#f8fafc" stroke-width="1"/>
+                            <polygon points="20,30 20,72 34,72 34,42" fill="#cbd5e1"/>
+                            <polygon points="72,30 72,72 58,72 58,42" fill="#38bdf8"/>
+                            <rect x="58" y="26" width="35" height="18" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="95" y="85" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">Vernier Caliper (ID/OD)</text>
+                            <!-- Micrometer -->
+                            <path d="M215,25 C195,25 195,68 215,68 L245,68 L245,52 L222,52 C210,52 210,40 222,40 L245,40 L245,25 Z" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <rect x="245" y="38" width="55" height="16" fill="#cbd5e1" stroke="#475569"/>
+                            <rect x="300" y="34" width="32" height="24" rx="2" fill="#94a3b8" stroke="#f8fafc"/>
+                            <text x="270" y="85" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">Micrometer (High-Precision)</text>
+                        </svg>
+                        <ul class="text-xs text-steel-900 space-y-1.5">
+                            <li>&bull; <strong>Steel Rule:</strong> For basic linear measurements.</li>
+                            <li>&bull; <strong>Outside/Inside Calipers:</strong> For <strong>transferring and comparing dimensions</strong>.</li>
+                            <li>&bull; <strong>Vernier Caliper:</strong> For precise linear measurements and <strong>internal/external diameters</strong>.</li>
+                            <li>&bull; <strong>Micrometer:</strong> For <strong>very high-precision measurements of thickness and diameters</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Operation 4: Marking -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-compass-drafting text-amber-600 mr-2"></i>4. Marking (First Step)</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Pg 2, L24–30 &amp; Pg 3, L1–4</span>
+                        </div>
+                        <p class="text-xs text-steel-700 mb-3">Transferring dimensions and outlines from a drawing onto the workpiece. <strong>It is the very first step in any fitting operation.</strong></p>
+                        <svg viewBox="0 0 360 95" class="w-full h-24 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Surface Plate -->
+                            <rect x="20" y="64" width="160" height="14" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                            <!-- Vernier Height Gauge -->
+                            <rect x="45" y="52" width="32" height="12" fill="#f59e0b"/>
+                            <rect x="57" y="12" width="8" height="40" fill="#cbd5e1"/>
+                            <rect x="53" y="28" width="42" height="10" fill="#38bdf8"/>
+                            <!-- Workpiece -->
+                            <rect x="115" y="34" width="45" height="30" fill="#334155" stroke="#bae6fd" stroke-width="1.5"/>
+                            <line x1="95" y1="34" x2="160" y2="34" stroke="#facc15" stroke-width="1.5" stroke-dasharray="3 2"/>
+                            <!-- Center Punch & Divider -->
+                            <polygon points="240,18 252,18 252,52 246,66 240,52" fill="#f59e0b" stroke="#fde68a" stroke-width="1.2"/>
+                            <circle cx="246" cy="70" r="2.5" fill="#38bdf8"/>
+                            <path d="M305,66 L320,20 L335,66" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+                            <text x="100" y="90" text-anchor="middle" fill="#bae6fd" font-size="8" font-weight="bold">Surface Plate + Height Gauge</text>
+                            <text x="285" y="90" text-anchor="middle" fill="#fde68a" font-size="8" font-weight="bold">Center Punch &amp; Divider</text>
+                        </svg>
+                        <ul class="text-xs text-steel-900 space-y-1.5">
+                            <li>&bull; <strong>Surface Plate:</strong> A <strong>true flat surface</strong> used as a reference.</li>
+                            <li>&bull; <strong>Scriber:</strong> A <strong>sharp-pointed tool</strong> used for drawing lines.</li>
+                            <li>&bull; <strong>Vernier Height Gauge:</strong> Used to mark <strong>precise heights from a surface plate</strong>.</li>
+                            <li>&bull; <strong>Dividers:</strong> Used for <strong>marking arcs, circles, and transferring distances</strong>.</li>
+                            <li>&bull; <strong>Center Punch:</strong> Creates an <strong>indent at the center of a hole or intersection of lines to guide a drill</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Operation 5: Sawing -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-lines-leaning text-amber-600 mr-2"></i>5. Sawing</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 3, Lines 5–8</span>
+                        </div>
+                        <svg viewBox="0 0 360 85" class="w-full h-20 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Hacksaw Frame -->
+                            <polyline points="60,55 60,20 290,20 290,55" fill="none" stroke="#38bdf8" stroke-width="5"/>
+                            <!-- Handle -->
+                            <rect x="28" y="32" width="32" height="28" rx="6" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <!-- Blade with teeth -->
+                            <line x1="60" y1="55" x2="290" y2="55" stroke="#fde68a" stroke-width="3" stroke-dasharray="4 2"/>
+                            <text x="175" y="76" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">HACKSAW: FRAME + BLADE WITH TEETH</text>
+                        </svg>
+                        <p class="text-xs text-steel-900 leading-relaxed">
+                            The process of cutting metal manually using a <strong>hacksaw</strong>. Used for cutting <strong>bars, rods, and pipes to a rough length</strong>. Consists of a <strong>frame and a blade with teeth</strong>. The blade must be chosen based on the <strong>material being cut</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Operation 6: Chipping -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-hammer text-amber-600 mr-2"></i>6. Chipping</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 3, Lines 9–12</span>
+                        </div>
+                        <svg viewBox="0 0 360 85" class="w-full h-20 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Workpiece -->
+                            <rect x="60" y="52" width="220" height="16" fill="#475569" stroke="#cbd5e1"/>
+                            <!-- Angled Chisel -->
+                            <polygon points="150,52 225,18 232,28 162,52" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                            <!-- Ball-peen Hammer head -->
+                            <rect x="242" y="10" width="28" height="14" fill="#38bdf8"/>
+                            <circle cx="242" cy="17" r="7" fill="#38bdf8"/>
+                            <text x="180" y="79" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">CHISEL AT SPECIFIC ANGLE + BALL-PEEN HAMMER</text>
+                        </svg>
+                        <p class="text-xs text-steel-900 leading-relaxed">
+                            Removing excess metal using a <strong>chisel and a hammer</strong>. Used for <strong>roughing out surfaces, cutting off metal, and removing sharp edges</strong>. The chisel is held at a <strong>specific angle</strong> and struck with a <strong>ball-peen hammer</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Operation 7: Drilling -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-circle-dot text-amber-600 mr-2"></i>7. Drilling</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 3, Lines 13–15</span>
+                        </div>
+                        <svg viewBox="0 0 360 85" class="w-full h-20 bg-steel-950 rounded-lg mb-3 p-2">
+                            <rect x="85" y="48" width="190" height="22" fill="#334155" stroke="#94a3b8"/>
+                            <polygon points="168,10 192,10 192,48 180,60 168,48" fill="#38bdf8" stroke="#bae6fd" stroke-width="1.5"/>
+                            <path d="M155,45 Q145,35 135,42" fill="none" stroke="#facc15" stroke-width="2"/>
+                            <path d="M205,45 Q215,35 225,42" fill="none" stroke="#facc15" stroke-width="2"/>
+                            <text x="180" y="80" text-anchor="middle" fill="#bae6fd" font-size="8.5" font-weight="bold">ROTATING DRILL BIT REMOVES MATERIAL AS CHIPS</text>
+                        </svg>
+                        <p class="text-xs text-steel-900 leading-relaxed">
+                            The process of creating a <strong>circular hole</strong> in a workpiece using a drilling machine. The drill bit is <strong>rotated and fed into the workpiece</strong>, removing material in the form of <strong>chips</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Operation 8: Reaming -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg"><i class="fa-solid fa-bullseye text-amber-600 mr-2"></i>8. Reaming</h4>
+                            <span class="text-[11px] font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 3, Lines 16–20</span>
+                        </div>
+                        <svg viewBox="0 0 360 85" class="w-full h-20 bg-steel-950 rounded-lg mb-3 p-2">
+                            <rect x="85" y="44" width="190" height="24" fill="#334155" stroke="#94a3b8"/>
+                            <rect x="164" y="12" width="32" height="56" fill="#34d399" stroke="#a7f3d0" stroke-width="1.5"/>
+                            <line x1="172" y1="12" x2="172" y2="68" stroke="#064e3b" stroke-width="2"/>
+                            <line x1="180" y1="12" x2="180" y2="68" stroke="#064e3b" stroke-width="2"/>
+                            <line x1="188" y1="12" x2="188" y2="68" stroke="#064e3b" stroke-width="2"/>
+                            <text x="180" y="80" text-anchor="middle" fill="#6ee7b7" font-size="8.5" font-weight="bold">MULTI-EDGED REAMER &bull; PRECISION FINISH FOR DOWEL PINS</text>
+                        </svg>
+                        <p class="text-xs text-steel-900 leading-relaxed">
+                            A <strong>finishing operation that follows drilling</strong>. A <strong>reamer (multi-edged cutting tool)</strong> slightly enlarges and finishes a pre-drilled hole to a <strong>very precise diameter and superior surface finish</strong> for <strong>dowel pins or shafts</strong>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 3: SCREW THREADS & STANDARD THREAD TYPES  -->
+        <!-- ================================================= -->
+        <section id="sec-3" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">3</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">3. Screw Threads: Nomenclature &amp; Standard Types</h3>
+                        <p class="text-xs text-steel-600">Helical ridge geometry, 9 nomenclature parameters, and Metric / BSW / BSP / TPI standards</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 3 (Lines 21–32) &amp; Page 4 (Lines 1–23)</span>
+            </div>
+
+            <div class="bg-steel-50 border-l-4 border-steel-800 p-4 rounded-r-xl mb-6">
+                <p class="text-sm text-steel-950">
+                    <strong>Definition of a Thread <span class="text-amber-800 font-bold">(Page 3, Lines 22–23)</span>:</strong>
+                    A thread is a <strong>helical ridge of uniform section</strong> formed on the outside (<strong>external thread</strong>) or inside (<strong>internal thread</strong>) of a <strong>cylinder or cone</strong>.
+                </p>
+            </div>
+
+            <!-- Master Technical SVG Diagram: Screw Thread Nomenclature -->
+            <div class="bg-steel-950 text-white rounded-2xl p-5 mb-6 border border-steel-800 shadow-inner">
+                <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3 text-center">
+                    Technical Schematic: Screw Thread Nomenclature (Axial Plane Profile)
+                </div>
+                <svg viewBox="0 0 700 240" class="w-full h-auto">
+                    <!-- Thread Profile Teeth (Top) -->
+                    <polyline points="80,95 110,45 125,45 155,95 170,95 200,45 215,45 245,95 260,95 290,45 305,45 335,95 350,95 380,45 395,45 425,95 440,95" fill="#334155" stroke="#38bdf8" stroke-width="2.5"/>
+                    <!-- Thread Core Body -->
+                    <rect x="80" y="95" width="360" height="80" fill="#1e293b"/>
+                    <!-- Center Axis Line -->
+                    <line x1="50" y1="135" x2="640" y2="135" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="10 4 2 4"/>
+                    <text x="645" y="138" fill="#94a3b8" font-size="10" font-weight="bold">AXIS</text>
+
+                    <!-- Pitch Diameter Imaginary Line -->
+                    <line x1="70" y1="70" x2="540" y2="70" stroke="#facc15" stroke-width="1.8" stroke-dasharray="5 3"/>
+                    <text x="545" y="73" fill="#fde047" font-size="11" font-weight="bold">Pitch Diameter (Thread Width = Space Width)</text>
+
+                    <!-- Major / Nominal Diameter Line -->
+                    <line x1="70" y1="45" x2="540" y2="45" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3 3"/>
+                    <text x="545" y="48" fill="#6ee7b7" font-size="11" font-weight="bold">Major (Nominal) Diameter (Largest External)</text>
+
+                    <!-- Minor / Core Diameter Line -->
+                    <line x1="70" y1="95" x2="540" y2="95" stroke="#f97316" stroke-width="1.2" stroke-dasharray="3 3"/>
+                    <text x="545" y="98" fill="#fdba74" font-size="11" font-weight="bold">Minor (Core) Diameter (Smallest External)</text>
+
+                    <!-- Pitch (P) Callout -->
+                    <line x1="117" y1="22" x2="117" y2="45" stroke="#f8fafc" stroke-width="1.5"/>
+                    <line x1="207" y1="22" x2="207" y2="45" stroke="#f8fafc" stroke-width="1.5"/>
+                    <line x1="117" y1="28" x2="207" y2="28" stroke="#facc15" stroke-width="2"/>
+                    <text x="162" y="20" text-anchor="middle" fill="#fde047" font-size="11" font-weight="bold">Pitch (P)</text>
+
+                    <!-- Crest, Root, Flank, Thread Angle Labels -->
+                    <text x="297" y="36" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="bold">Crest (Top)</text>
+                    <text x="252" y="114" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="bold">Root (Bottom)</text>
+                    <text x="336" y="65" fill="#e2e8f0" font-size="10.5" font-weight="bold">&larr; Flank (Side)</text>
+                    <text x="342" y="115" text-anchor="middle" fill="#a7f3d0" font-size="10.5" font-weight="bold">Thread Angle (&theta;) in Axial Plane</text>
+
+                    <!-- Lead Formula Footer -->
+                    <rect x="80" y="190" width="540" height="34" rx="6" fill="#0f172a" stroke="#334155"/>
+                    <text x="350" y="211" text-anchor="middle" fill="#fde68a" font-size="11.5" font-weight="bold">
+                        Single-Start Thread: Lead (L) = Pitch (P) &nbsp;&nbsp;|&nbsp;&nbsp; Multi-Start Thread: Lead (L) = Pitch (P) &times; Number of Starts
+                    </text>
+                </svg>
+            </div>
+
+            <!-- 9 Thread Nomenclature Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-8">
+                <div class="p-3.5 rounded-xl border border-steel-200 bg-steel-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>1. Major (Nominal) Diameter</span><span>Pg 3, L24–25</span></div>
+                    <p class="text-xs text-steel-900">The <strong>largest diameter of an external thread</strong> (or the <strong>smallest diameter of an internal thread</strong>).</p>
+                </div>
+                <div class="p-3.5 rounded-xl border border-steel-200 bg-steel-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>2. Minor (Core) Diameter</span><span>Pg 3, L26–27</span></div>
+                    <p class="text-xs text-steel-900">The <strong>smallest diameter of an external thread</strong> (or the <strong>largest diameter of an internal thread</strong>).</p>
+                </div>
+                <div class="p-3.5 rounded-xl border border-amber-300 bg-amber-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-900 mb-1"><span>3. Pitch Diameter (Critical Fit)</span><span>Pg 3, L28–30</span></div>
+                    <p class="text-xs text-steel-950">Imaginary cylinder diameter where <strong>thread width and space width are equal</strong>. Most critical dimension for thread fit.</p>
+                </div>
+                <div class="p-3.5 rounded-xl border border-steel-200 bg-steel-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>4. Pitch (P)</span><span>Pg 3, L31–32</span></div>
+                    <p class="text-xs text-steel-900">Distance measured <strong>parallel to the thread axis</strong> from a point on one thread to the corresponding point on the adjacent thread.</p>
+                </div>
+                <div class="p-3.5 rounded-xl border border-steel-200 bg-steel-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>5. Lead (L)</span><span>Pg 4, L1–3</span></div>
+                    <p class="text-xs text-steel-900">Distance a screw advances in <strong>one complete revolution</strong>. Single-start: <strong>L = P</strong>. Multi-start: <strong>L = P &times; Starts</strong>.</p>
+                </div>
+                <div class="p-3.5 rounded-xl border border-steel-200 bg-steel-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>6. Flank, Crest &amp; Root</span><span>Pg 4, L4–6</span></div>
+                    <p class="text-xs text-steel-900"><strong>Flank:</strong> Straight side of thread. <strong>Crest:</strong> Top surface of thread. <strong>Root:</strong> Bottom surface of thread.</p>
+                </div>
+            </div>
+
+            <!-- 4 Standard Thread Types Comparison -->
+            <h4 class="text-sm font-bold uppercase tracking-wider text-steel-700 mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-amber-600"></i>
+                Different Types of Standard Threads (Page 4, Lines 9–23)
+            </h4>
+            <div class="overflow-x-auto rounded-xl border border-steel-200">
+                <table class="min-w-full text-left text-xs md:text-sm">
+                    <thead class="bg-steel-900 text-amber-300 uppercase text-xs">
+                        <tr>
+                            <th class="py-3 px-4">Thread Standard</th>
+                            <th class="py-3 px-4">Angle &amp; Profile</th>
+                            <th class="py-3 px-4">Designation &amp; Key Application (PDF Page 4, Lines 10–23)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-steel-200 bg-white">
+                        <tr>
+                            <td class="py-3 px-4 font-extrabold text-steel-900">1. Metric Thread</td>
+                            <td class="py-3 px-4 font-bold text-cyan-800">60&deg; Equilateral Triangle</td>
+                            <td class="py-3 px-4">Most common globally. Nominal diameter and pitch are given in <strong>millimeters</strong> (e.g., <strong>M10 &times; 1.5</strong> = 10mm diameter, 1.5mm pitch).</td>
+                        </tr>
+                        <tr class="bg-steel-50/60">
+                            <td class="py-3 px-4 font-extrabold text-steel-900">2. BSW (British Standard Whitworth)</td>
+                            <td class="py-3 px-4 font-bold text-amber-800">55&deg; Angle (Rounded Crests &amp; Roots)</td>
+                            <td class="py-3 px-4">Size designated by <strong>nominal diameter in inches</strong> (e.g., <strong>1/2" BSW</strong>). Pitch is given in <strong>TPI (Threads Per Inch)</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-extrabold text-steel-900">3. BSP (British Standard Pipe)</td>
+                            <td class="py-3 px-4 font-bold text-amber-800">55&deg; Pipe Thread Angle</td>
+                            <td class="py-3 px-4">Typically <strong>tapered on the male (BSPT)</strong> and <strong>parallel on the female (BSPP)</strong>. Used for <strong>sealing fluid connections</strong>.</td>
+                        </tr>
+                        <tr class="bg-steel-50/60">
+                            <td class="py-3 px-4 font-extrabold text-steel-900">4. TPI (Threads Per Inch)</td>
+                            <td class="py-3 px-4 font-bold text-emerald-800">TPI = 1 / Pitch (Reciprocal)</td>
+                            <td class="py-3 px-4">Number of threads counted along the length of <strong>one inch</strong>. Defines standard fasteners in the Imperial system (<strong>BSW and UNC</strong>).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 4: TAPPING, TAP DRILL CALC & DIEING       -->
+        <!-- ================================================= -->
+        <section id="sec-4" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">4</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">4. Tapping, Tap Drill Size Calculation &amp; Dieing</h3>
+                        <p class="text-xs text-steel-600">Internal threading (Tap), External threading (Die &amp; Stock), and exact tap drill formulas</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 4 (Lines 24–33) &amp; Page 5 (Lines 1–16)</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Left: Tapping & Formulas -->
+                <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-extrabold text-steel-900 text-lg">A. Tapping (Internal Threading)</h4>
+                        <span class="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Pg 4, L24–33 &amp; Pg 5, L1–5</span>
+                    </div>
+                    <p class="text-xs text-steel-800 mb-3 leading-relaxed">
+                        <strong>Tapping</strong> is the process of cutting an <strong>internal thread (within a hole)</strong> using a tool called a <strong>tap</strong>. Before tapping, a hole of a specific diameter must be drilled, known as the <strong>tap drill size</strong>.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2.5 mb-4 text-xs">
+                        <div class="bg-rose-50 border border-rose-200 p-2.5 rounded-lg text-rose-950">
+                            <strong class="block text-rose-700"><i class="fa-solid fa-circle-xmark mr-1"></i>If Tap Drill is Too Small:</strong>
+                            The <strong>tap will break</strong> inside the hole.
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-lg text-amber-950">
+                            <strong class="block text-amber-800"><i class="fa-solid fa-triangle-exclamation mr-1"></i>If Tap Drill is Too Large:</strong>
+                            The resulting threads will be <strong>shallow and weak</strong>.
+                        </div>
+                    </div>
+
+                    <!-- Worked Formulas from PDF -->
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-steel-900 text-white p-3.5 rounded-xl">
+                            <div class="text-amber-400 font-bold uppercase mb-1">1. Metric Threads (60&deg;) Formula (Page 4, Lines 31–33)</div>
+                            <div class="font-mono text-sm bg-steel-950 p-2 rounded border border-steel-700 mb-1.5 text-cyan-300">
+                                Tap Drill Size (mm) = Nominal Diameter (mm) &minus; Pitch (mm)
+                            </div>
+                            <p class="text-steel-200"><strong>PDF Worked Example:</strong> For an <strong>M10 &times; 1.5</strong> thread, Tap Drill = <code>10 &minus; 1.5 = 8.5 mm</code>.</p>
+                        </div>
+
+                        <div class="bg-steel-900 text-white p-3.5 rounded-xl">
+                            <div class="text-amber-400 font-bold uppercase mb-1">2. BSW / UNC Threads (Inch) Formula (Page 5, Lines 1–5)</div>
+                            <div class="font-mono text-sm bg-steel-950 p-2 rounded border border-steel-700 mb-1.5 text-cyan-300">
+                                Tap Drill Size (Inch) = Nominal Diameter (Inch) &minus; (1 / TPI)
+                            </div>
+                            <p class="text-steel-200"><strong>PDF Worked Example:</strong> For a <strong>1/2" BSW thread (12 TPI)</strong>, Tap Drill = <code>0.5 &minus; (1/12) = 0.5 &minus; 0.0833 = 0.4167 inches</code> (&approx; <strong>27/64" drill</strong>).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Dieing (External Thread Cutting) + Interactive Calculator -->
+                <div class="space-y-4">
+                    <div class="border border-steel-200 rounded-xl p-5 bg-steel-50/50">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-extrabold text-steel-900 text-lg">B. Dieing (External Thread Cutting)</h4>
+                            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Page 5, Lines 6–16</span>
+                        </div>
+                        <svg viewBox="0 0 360 80" class="w-full h-20 bg-steel-950 rounded-lg mb-3 p-2">
+                            <!-- Stock Handles -->
+                            <line x1="40" y1="40" x2="320" y2="40" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
+                            <!-- Die Holder Center -->
+                            <circle cx="180" cy="40" r="26" fill="#f59e0b" stroke="#fde68a" stroke-width="2"/>
+                            <!-- Internal teeth hole -->
+                            <circle cx="180" cy="40" r="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 2"/>
+                            <text x="180" y="74" text-anchor="middle" fill="#fde68a" font-size="8.5" font-weight="bold">DIE FITTED IN STOCK (HOLDER) &bull; INTERNAL TEETH CUT ROD</text>
+                        </svg>
+                        <ul class="text-xs text-steel-900 space-y-1.5 leading-relaxed">
+                            <li>&bull; <strong>Definition:</strong> Cutting an <strong>external thread on a cylindrical rod</strong> using a hardened steel tool called a <strong>die</strong> (which has a central hole with <strong>internal teeth</strong>).</li>
+                            <li>&bull; <strong>Work Holding &amp; Lubrication:</strong> Rod is held securely in a vice, often with a <strong>V-block to protect it</strong>. <strong>Cutting oil</strong> is applied for lubrication.</li>
+                            <li>&bull; <strong>Stock &amp; Starting:</strong> The die is fitted into a <strong>stock (a holder)</strong>, placed <strong>squarely on the end of the rod</strong>, and <strong>turned with gentle pressure</strong> to start the cut.</li>
+                            <li>&bull; <strong>Chip Breaking:</strong> After a few threads are cut, the die is <strong>reversed slightly to break the chips</strong>, then advanced forward again.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Interactive Tap Drill Size Calculator -->
+                    <div class="border-2 border-amber-400/70 rounded-xl p-4 bg-amber-50/50">
+                        <div class="text-xs font-extrabold uppercase tracking-wider text-steel-900 mb-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-calculator text-amber-600"></i>
+                            Interactive Tap Drill Size Calculator (Metric &amp; Imperial)
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs items-end">
+                            <div>
+                                <label class="block font-bold text-steel-700 mb-1">System</label>
+                                <select id="calc-type" onchange="updateTapCalc()" class="w-full p-2 rounded-lg border border-steel-300 bg-white font-bold">
+                                    <option value="metric">Metric (mm)</option>
+                                    <option value="inch">BSW / UNC (Inch)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label id="calc-d-label" class="block font-bold text-steel-700 mb-1">Nominal Dia (mm)</label>
+                                <input id="calc-d" type="number" step="any" value="10" oninput="updateTapCalc()" class="w-full p-2 rounded-lg border border-steel-300 bg-white font-bold">
+                            </div>
+                            <div>
+                                <label id="calc-p-label" class="block font-bold text-steel-700 mb-1">Pitch (mm)</label>
+                                <input id="calc-p" type="number" step="any" value="1.5" oninput="updateTapCalc()" class="w-full p-2 rounded-lg border border-steel-300 bg-white font-bold">
+                            </div>
+                        </div>
+                        <div id="calc-result" class="mt-2.5 p-2.5 rounded-lg bg-steel-900 text-amber-300 font-mono text-xs font-bold text-center">
+                            Tap Drill Size = 10 &minus; 1.5 = 8.5000 mm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 5: TWIST DRILL AND ITS NOMENCLATURE       -->
+        <!-- ================================================= -->
+        <section id="sec-5" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">5</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">5. Twist Drill &amp; Its Nomenclature</h3>
+                        <p class="text-xs text-steel-600">Complete geometry of the twist drill, shank types, and cutting point angles (118&deg; vs 135&deg;)</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 5 &bull; Lines 17–34</span>
+            </div>
+
+            <!-- Labeled Technical SVG Diagram of Twist Drill -->
+            <div class="bg-steel-950 text-white rounded-2xl p-5 mb-6 border border-steel-800 shadow-inner">
+                <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2 text-center">
+                    Technical Diagram: Twist Drill Geometry &amp; Point Angles
+                </div>
+                <svg viewBox="0 0 720 210" class="w-full h-auto">
+                    <!-- Shank (Left) -->
+                    <polygon points="50,82 190,74 190,126 50,118" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
+                    <text x="120" y="104" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="bold">SHANK</text>
+                    <!-- Neck -->
+                    <rect x="190" y="78" width="22" height="44" fill="#475569" stroke="#cbd5e1"/>
+                    <!-- Body with Helical Flutes & Lands -->
+                    <rect x="212" y="74" width="320" height="52" fill="#334155" stroke="#38bdf8" stroke-width="2"/>
+                    <!-- Helical Flute curves -->
+                    <path d="M230,74 C265,74 275,126 310,126 L355,126 C320,126 310,74 275,74 Z" fill="#0ea5e9" fill-opacity="0.45"/>
+                    <path d="M350,74 C385,74 395,126 430,126 L475,126 C440,126 430,74 395,74 Z" fill="#0ea5e9" fill-opacity="0.45"/>
+                    <path d="M465,74 C490,74 505,126 532,126 L532,74 Z" fill="#0ea5e9" fill-opacity="0.45"/>
+                    <!-- Conical Cutting Point -->
+                    <polygon points="532,74 595,100 532,126" fill="#f59e0b" stroke="#fde68a" stroke-width="2.5"/>
+
+                    <!-- Dimension Brackets -->
+                    <line x1="50" y1="45" x2="190" y2="45" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="120" y="36" text-anchor="middle" fill="#cbd5e1" font-size="10.5" font-weight="bold">Shank (Straight or Morse Taper)</text>
+
+                    <line x1="212" y1="45" x2="532" y2="45" stroke="#38bdf8" stroke-width="1.5"/>
+                    <text x="372" y="36" text-anchor="middle" fill="#bae6fd" font-size="10.5" font-weight="bold">Body (Flutes, Face &amp; Lands/Margin)</text>
+
+                    <line x1="532" y1="45" x2="595" y2="45" stroke="#facc15" stroke-width="1.5"/>
+                    <text x="575" y="36" text-anchor="middle" fill="#fde047" font-size="10.5" font-weight="bold">Conical Point</text>
+
+                    <!-- Point Angle Callout -->
+                    <path d="M615,72 A38,38 0 0,1 615,128" fill="none" stroke="#34d399" stroke-width="2"/>
+                    <text x="665" y="96" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="bold">Point Angle</text>
+                    <text x="665" y="112" text-anchor="middle" fill="#a7f3d0" font-size="10" font-weight="bold">118&deg; (Steel)</text>
+                    <text x="665" y="126" text-anchor="middle" fill="#fde68a" font-size="10" font-weight="bold">135&deg; (Harder)</text>
+
+                    <!-- Bottom Callouts -->
+                    <text x="295" y="160" text-anchor="middle" fill="#7dd3fc" font-size="10.5" font-weight="bold">Helical Flutes: Form Cutting Edges, Chip Escape &amp; Cutting Fluid Flow</text>
+                    <text x="360" y="185" text-anchor="middle" fill="#fde68a" font-size="10.5" font-weight="bold">Lands (Margin): Narrow Cylindrical Strips Guiding Drill in Hole &bull; Lip: Leading Cutting Edge</text>
+                </svg>
+            </div>
+
+            <!-- 9 Twist Drill Nomenclature Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>1. Point</span><span>Page 5, Line 19</span></div>
+                    <p class="text-xs text-steel-900">The <strong>conical cutting end</strong> of the twist drill.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>2. Body</span><span>Page 5, Line 20</span></div>
+                    <p class="text-xs text-steel-900">The <strong>main cylindrical part</strong> extending from the flutes to the shank.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>3. Shank</span><span>Page 5, Lines 21–22</span></div>
+                    <p class="text-xs text-steel-900">The <strong>driving end</strong> of the drill: either <strong>straight</strong> (held in a chuck) or <strong>tapered (Morse taper, held directly in the spindle)</strong>.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>4. Flutes</span><span>Page 5, Lines 23–25</span></div>
+                    <p class="text-xs text-steel-900"><strong>Helical grooves</strong> running along the body. They <strong>form the cutting edges</strong>, allow <strong>chips to escape</strong>, and permit <strong>cutting fluid to reach the point</strong>.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>5. Lands (Margin)</span><span>Page 5, Lines 26–27</span></div>
+                    <p class="text-xs text-steel-900">The <strong>narrow cylindrical strips on the periphery</strong> of the drill body that <strong>guide the drill in the hole</strong>.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>6. Face</span><span>Page 5, Line 28</span></div>
+                    <p class="text-xs text-steel-900">The <strong>surface of the flute on which the chip slides</strong>.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>7. Lip (Cutting Edge)</span><span>Page 5, Line 29</span></div>
+                    <p class="text-xs text-steel-900">The <strong>leading edge of the drill point</strong> that performs the cutting action.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-steel-200 bg-steel-50/60">
+                    <div class="flex justify-between text-xs font-bold text-amber-800 mb-1"><span>8. Lip Clearance Angle</span><span>Page 5, Lines 30–31</span></div>
+                    <p class="text-xs text-steel-900">Angle between the <strong>lip and a plane perpendicular to the drill axis</strong>. Provides clearance for the cutting edge.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-amber-300 bg-amber-50/70">
+                    <div class="flex justify-between text-xs font-bold text-amber-900 mb-1"><span>9. Point Angle (118&deg; / 135&deg;)</span><span>Page 5, Lines 32–34</span></div>
+                    <p class="text-xs text-steel-950">Angle between the <strong>two cutting lips</strong>: typically <strong>118&deg; for general-purpose drilling in steel</strong> and <strong>135&deg; for harder materials</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 6: UPRIGHT DRILLING MACHINE               -->
+        <!-- ================================================= -->
+        <section id="sec-6" class="bg-white rounded-2xl shadow-md border border-steel-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-steel-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-steel-900 text-amber-400 flex items-center justify-center font-black text-lg">6</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-steel-900">6. Power Tools — Upright Drilling Machine</h3>
+                        <p class="text-xs text-steel-600">Construction components, multi-purpose operations, work holding, and shop safety rules</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 6 &bull; Lines 1–28</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mb-6">
+                <!-- Left 5 Cols: Custom Technical SVG Schematic of Upright Drilling Machine -->
+                <div class="lg:col-span-5 bg-steel-950 text-white rounded-2xl p-5 border border-steel-800 shadow-inner">
+                    <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-2 text-center">
+                        Labeled Schematic: Upright Drilling Machine
+                    </div>
+                    <svg viewBox="0 0 320 310" class="w-full h-auto">
+                        <!-- Base bolted to floor -->
+                        <rect x="40" y="268" width="160" height="22" rx="3" fill="#475569" stroke="#cbd5e1" stroke-width="2"/>
+                        <line x1="60" y1="262" x2="60" y2="295" stroke="#facc15" stroke-width="3"/>
+                        <line x1="180" y1="262" x2="180" y2="295" stroke="#facc15" stroke-width="3"/>
+                        <text x="255" y="283" text-anchor="middle" fill="#fde68a" font-size="9.5" font-weight="bold">1. Heavy Base (Bolted)</text>
+
+                        <!-- Vertical Cylindrical Column / Pillar -->
+                        <rect x="65" y="38" width="24" height="230" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+                        <text x="34" y="155" text-anchor="middle" fill="#bae6fd" font-size="9.5" font-weight="bold" transform="rotate(-90 34,155)">2. Column (Pillar)</text>
+
+                        <!-- Head (Motor, Belt/Gear Drive) -->
+                        <rect x="55" y="20" width="140" height="45" rx="6" fill="#0284c7" stroke="#bae6fd" stroke-width="2"/>
+                        <text x="125" y="46" text-anchor="middle" fill="#f8fafc" font-size="10" font-weight="bold">4. Head (Motor &amp; Drive)</text>
+
+                        <!-- Feed Mechanism Hand Lever -->
+                        <line x1="155" y1="65" x2="185" y2="95" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="187" cy="97" r="5" fill="#fde047"/>
+                        <text x="250" y="92" text-anchor="middle" fill="#fde68a" font-size="9.5" font-weight="bold">7. Feed Lever</text>
+
+                        <!-- Rotating Spindle -->
+                        <rect x="142" y="65" width="12" height="42" fill="#cbd5e1"/>
+                        <text x="248" y="114" text-anchor="middle" fill="#bae6fd" font-size="9.5" font-weight="bold">5. Rotating Spindle</text>
+
+                        <!-- Drill Chuck -->
+                        <polygon points="136,107 160,107 156,126 140,126" fill="#f59e0b" stroke="#fde68a" stroke-width="1.5"/>
+                        <text x="248" y="132" text-anchor="middle" fill="#fde68a" font-size="9.5" font-weight="bold">6. Drill Chuck</text>
+
+                        <!-- Twist Drill Bit -->
+                        <polygon points="145,126 151,126 151,162 148,168 145,162" fill="#38bdf8"/>
+
+                        <!-- Adjustable Table with T-Slots -->
+                        <rect x="89" y="185" width="115" height="18" rx="2" fill="#334155" stroke="#34d399" stroke-width="2"/>
+                        <rect x="122" y="168" width="52" height="17" fill="#475569" stroke="#facc15" stroke-width="1.5"/>
+                        <text x="252" y="198" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-weight="bold">3. Table (with T-Slots)</text>
+                    </svg>
+                </div>
+
+                <!-- Right 7 Cols: 7 Construction Components + Operations, Work Holding & Safety -->
+                <div class="lg:col-span-7 space-y-4">
+                    <h4 class="font-extrabold text-steel-900 text-base">7 Core Construction Components (Page 6, Lines 4–18):</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">1. Base (Lines 5–6):</strong>
+                            Heavy, rigid base supports the entire machine and is <strong>bolted to the floor to prevent vibration</strong>.
+                        </div>
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">2. Column / Pillar (Lines 7–8):</strong>
+                            A <strong>vertical cylindrical column</strong> rising from the base that supports all other components.
+                        </div>
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">3. Table (Lines 9–11):</strong>
+                            Mounted on the column; can be <strong>raised, lowered, and sometimes tilted</strong>. Features <strong>T-slots</strong> to clamp workpieces and vises securely.
+                        </div>
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">4. Head (Lines 12–13):</strong>
+                            Upper part of the machine housing the <strong>drive mechanism, motor, and spindle</strong>.
+                        </div>
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">5. Spindle (Lines 14–15):</strong>
+                            Rotating shaft holding the chuck/tool. Driven by a motor via a <strong>belt or gear drive</strong>.
+                        </div>
+                        <div class="p-3 rounded-xl border border-steel-200 bg-steel-50/70">
+                            <strong class="text-steel-950 block">6. Drill Chuck &amp; 7. Feed Mechanism (Lines 16–18):</strong>
+                            <strong>Drill Chuck</strong> attaches to spindle to hold the drill bit. <strong>Feed Mechanism</strong> (hand lever or automatic) moves spindle &amp; drill down into workpiece.
+                        </div>
+                    </div>
+
+                    <!-- Operations, Work Holding, and Safety Callout Boxes -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-2">
+                        <div class="p-3.5 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-950">
+                            <div class="font-extrabold uppercase text-cyan-800 mb-1"><i class="fa-solid fa-gears mr-1"></i>Operations (Pg 6, L19–21)</div>
+                            Besides simple drilling, it performs <strong>reaming, tapping (using a tapping attachment), countersinking, and counterboring</strong>.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950">
+                            <div class="font-extrabold uppercase text-amber-800 mb-1"><i class="fa-solid fa-lock mr-1"></i>Work Holding (Pg 6, L22–24)</div>
+                            A <strong>machine vice</strong> is the most common method. For larger parts, <strong>T-bolts and clamps</strong> are used directly on the table.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">
+                            <div class="font-extrabold uppercase text-rose-800 mb-1"><i class="fa-solid fa-helmet-safety mr-1"></i>Safety Rules (Pg 6, L25–28)</div>
+                            Always wear <strong>safety glasses</strong>, secure workpiece, ensure drill bit is <strong>sharp and tightened</strong>, and <strong>never wear loose clothing or jewelry</strong> near the rotating spindle.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: INTERACTIVE 132-QUESTION QUIZ + SUB-TOPIC OVERVIEW SIDEBAR     -->
+    <!-- ===================================================================== -->
+    <main id="view-quiz" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- LEFT/CENTER COLUMN (8 Cols): Active Question Card -->
+            <div class="lg:col-span-8 flex flex-col gap-4">
+
+                <!-- Top Stats & Controls Bar -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-steel-200 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-steel-500">Current Progress</div>
+                            <div id="quiz-progress-label" class="text-lg font-extrabold text-steel-900">Question 1 of 132</div>
+                        </div>
+                        <div class="h-8 w-px bg-steel-200"></div>
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-steel-500">Score</div>
+                            <div id="quiz-score-label" class="text-lg font-extrabold text-emerald-700">0 Correct (0%)</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="resetQuiz()" class="px-3 py-1.5 rounded-lg border border-steel-300 bg-steel-50 hover:bg-steel-100 text-steel-800 text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span>Reset Quiz</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Question Card -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-8 border-steel-800 border-x border-b border-steel-200 p-6 md:p-8 relative">
+
+                    <!-- Chapter / Sub-topic Badges + Info Button -->
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span id="q-chapter-badge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-steel-900 text-amber-300">
+                                1. Introduction &amp; Importance
+                            </span>
+                            <span id="q-subtopic-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+                                1.1 Purpose of Fitting
+                            </span>
+                        </div>
+
+                        <!-- Info Button (Shows PDF Page & Line Number) -->
+                        <div class="relative">
+                            <button id="info-btn" onclick="toggleInfoPopover()" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold flex items-center gap-1.5 transition shadow-sm" title="Show Original PDF Page &amp; Line Reference">
+                                <i class="fa-solid fa-circle-info text-amber-600 text-sm"></i>
+                                <span>PDF Page &amp; Line Info</span>
+                            </button>
+
+                            <!-- Popover Card -->
+                            <div id="info-popover" class="hidden absolute right-0 mt-2 w-80 sm:w-96 bg-steel-950 text-white rounded-2xl shadow-2xl p-4 z-30 border border-amber-500/40 animate-fade">
+                                <div class="flex items-center justify-between border-b border-steel-800 pb-2 mb-2.5">
+                                    <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-file-pdf"></i> Original PDF Citation
+                                    </span>
+                                    <button onclick="toggleInfoPopover()" class="text-steel-400 hover:text-white text-xs">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-1.5 text-xs">
+                                    <div class="flex justify-between">
+                                        <span class="text-steel-300">Document:</span>
+                                        <span class="font-bold text-amber-200">Fittings Shop_tutorial notes.pdf</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-steel-300">Chapter / Section:</span>
+                                        <span id="info-chapter" class="font-bold text-white text-right">1. Introduction &amp; Importance</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-steel-300">Sub-Topic:</span>
+                                        <span id="info-subtopic" class="font-bold text-amber-300 text-right">1.1 Purpose of Fitting</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-steel-300">Exact PDF Location:</span>
+                                        <span id="info-location" class="font-extrabold bg-amber-500 text-steel-950 px-2 py-0.5 rounded">Page 1, Lines 5–8</span>
+                                    </div>
+                                    <div class="pt-2 mt-2 border-t border-steel-800">
+                                        <button onclick="jumpToNotesSection()" class="w-full py-1.5 bg-steel-800 hover:bg-steel-700 text-amber-300 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5">
+                                            <i class="fa-solid fa-book-open"></i>
+                                            <span>Open This Section in Study Notes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <h2 id="q-text" class="text-xl md:text-2xl font-extrabold text-steel-950 leading-snug mb-6">
+                        Loading question...
+                    </h2>
+
+                    <!-- Options Container -->
+                    <div id="q-options" class="space-y-3 mb-6"></div>
+
+                    <!-- Explanation Box -->
+                    <div id="q-explanation-box" class="hidden rounded-xl p-4 mb-6 border-l-4 animate-fade">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <h4 id="q-feedback-title" class="font-extrabold text-sm"></h4>
+                            <span id="q-explanation-citation" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/80 text-steel-900 border border-steel-300"></span>
+                        </div>
+                        <p id="q-explanation-text" class="text-sm text-steel-900 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Bottom Navigation Buttons -->
+                    <div class="flex items-center justify-between pt-4 border-t border-steel-100">
+                        <button id="btn-prev" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl font-bold text-sm border border-steel-300 text-steel-800 hover:bg-steel-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        <span class="text-xs text-steel-500 hidden sm:inline">Tip: Use keys <kbd class="px-1.5 py-0.5 bg-steel-100 rounded border border-steel-300 font-semibold">A–D</kbd> &amp; <kbd class="px-1.5 py-0.5 bg-steel-100 rounded border border-steel-300 font-semibold">&larr;/&rarr;</kbd></span>
+                        <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-steel-900 hover:bg-steel-950 text-amber-300 shadow-md transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                            <span>Next Question</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR (4 Cols): Question Overview Divided by Chapters -->
+            <aside class="lg:col-span-4 bg-white rounded-2xl shadow-md border border-steel-200 overflow-hidden sticky top-[76px]">
+                <div class="bg-steel-900 text-white p-4 border-b-2 border-amber-500">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-table-cells text-amber-400"></i>
+                            <span>Question Overview (132)</span>
+                        </h3>
+                        <span id="sidebar-answered-count" class="text-xs font-bold text-amber-300">0/132 Answered</span>
+                    </div>
+                    <!-- Legend -->
+                    <div class="flex items-center gap-3 mt-2.5 text-[11px] text-steel-200">
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Correct</span>
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Wrong</span>
+                        <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span> Current</span>
+                    </div>
+                </div>
+
+                <!-- Scrollable Sub-topic Grid Container -->
+                <div id="sidebar-topics-container" class="p-4 max-h-[68vh] overflow-y-auto custom-scroll space-y-5 bg-steel-50/50">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION DATA & LOGIC (ALL 132 QUESTIONS FROM fitting.txt)         -->
+    <!-- ===================================================================== -->
+    <script>
+        // Complete 132-Question Dataset from fitting.txt with Chapter, Sub-topic, PDF Page, and Line Numbers
+        const questions = [
+            { id: 1, question: "What is the primary purpose of a fitting operation in a workshop?", options: ["A) To melt metals together", "B) To assemble mechanical components manually", "C) To paint machine parts", "D) To program CNC machines"], correctAnswer: "B", explanation: "Fitting involves manually cutting, shaping, and assembling components to form a functional machine.", chapter: "1. Introduction & Importance", subtopic: "1.1 Introduction to Fittings", page: 1, lines: "Lines 5–8", secId: "sec-1" },
+            { id: 2, question: "Which job holding tool is specifically used for holding round or cylindrical jobs?", options: ["A) Bench Vice", "B) C-Clamps", "C) Angle Plate", "D) V-Block & Clamps"], correctAnswer: "D", explanation: "V-Blocks and Clamps are designed specifically to hold round or cylindrical jobs securely.", chapter: "2. Fitting Operations", subtopic: "2.1 Job Holding Tools", page: 2, lines: "Line 8", secId: "sec-2" },
+            { id: 3, question: "Which holding tool is used to hold workpieces at exactly a 90-degree angle?", options: ["A) V-Block", "B) C-Clamp", "C) Angle Plate", "D) Bench Vice"], correctAnswer: "C", explanation: "An Angle Plate is used to hold workpieces at a 90-degree angle.", chapter: "2. Fitting Operations", subtopic: "2.1 Job Holding Tools", page: 2, lines: "Line 9", secId: "sec-2" },
+            { id: 4, question: "What is the most common holding tool used for filing, sawing, and chipping?", options: ["A) Angle Plate", "B) C-Clamp", "C) V-Block", "D) Bench Vice"], correctAnswer: "D", explanation: "The bench vice is the most common tool used for filing, sawing, and chipping operations.", chapter: "2. Fitting Operations", subtopic: "2.1 Job Holding Tools", page: 2, lines: "Lines 6–7", secId: "sec-2" },
+            { id: 5, question: "How are files primarily classified?", options: ["A) By color, weight, and brand", "B) By shape, cut, and length", "C) By material, cost, and origin", "D) By handle type, width, and thickness"], correctAnswer: "B", explanation: "Files are classified by their shape, cut (e.g., rough, bastard), and length.", chapter: "2. Fitting Operations", subtopic: "2.2 Filing Operation", page: 2, lines: "Lines 13–14", secId: "sec-2" },
+            { id: 6, question: "Which measuring tool is used for very high-precision measurements of thickness and diameters?", options: ["A) Steel Rule", "B) Outside Caliper", "C) Vernier Caliper", "D) Micrometer"], correctAnswer: "D", explanation: "A micrometer is used for very high-precision measurements of thickness and diameters.", chapter: "2. Fitting Operations", subtopic: "2.3 Measuring Tools", page: 2, lines: "Lines 21–23", secId: "sec-2" },
+            { id: 7, question: "Which measuring tool is best suited for transferring and comparing dimensions?", options: ["A) Outside/Inside Calipers", "B) Micrometer", "C) Steel Rule", "D) Vernier Height Gauge"], correctAnswer: "A", explanation: "Outside and inside calipers are used for transferring and comparing dimensions.", chapter: "2. Fitting Operations", subtopic: "2.3 Measuring Tools", page: 2, lines: "Line 18", secId: "sec-2" },
+            { id: 8, question: "What marking tool provides a true flat reference surface?", options: ["A) Surface Plate", "B) Vernier Height Gauge", "C) Angle Plate", "D) Try Square"], correctAnswer: "A", explanation: "A surface plate is a true flat surface used as a reference during marking.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 2, lines: "Line 27", secId: "sec-2" },
+            { id: 9, question: "Which tool is used to mark precise heights from a surface plate?", options: ["A) Scriber", "B) Center Punch", "C) Vernier Height Gauge", "D) Dividers"], correctAnswer: "C", explanation: "A Vernier Height Gauge is used to mark precise heights from a reference surface plate.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 2, lines: "Lines 29–30", secId: "sec-2" },
+            { id: 10, question: "What tool is used to create an indent at the center of a hole to guide a drill?", options: ["A) Scriber", "B) Center Punch", "C) Chisel", "D) File"], correctAnswer: "B", explanation: "A center punch creates an indent to guide a drill bit accurately.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 3, lines: "Lines 2–4", secId: "sec-2" },
+            { id: 11, question: "Which tool is used for marking arcs, circles, and transferring distances?", options: ["A) Center Punch", "B) Dividers", "C) Scriber", "D) Caliper"], correctAnswer: "B", explanation: "Dividers are used for marking arcs, circles, and transferring distances.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 3, lines: "Line 1", secId: "sec-2" },
+            { id: 12, question: "What tool is used manually to cut bars, rods, and pipes to a rough length?", options: ["A) Chisel", "B) File", "C) Hacksaw", "D) Reamer"], correctAnswer: "C", explanation: "A hacksaw is used for manual metal cutting of bars, rods, and pipes.", chapter: "2. Fitting Operations", subtopic: "2.5 Sawing Operation", page: 3, lines: "Lines 5–7", secId: "sec-2" },
+            { id: 13, question: "Which operation removes excess metal using a chisel struck by a ball-peen hammer?", options: ["A) Filing", "B) Sawing", "C) Reaming", "D) Chipping"], correctAnswer: "D", explanation: "Chipping is the process of removing excess metal using a chisel and hammer.", chapter: "2. Fitting Operations", subtopic: "2.6 Chipping Operation", page: 3, lines: "Lines 9–12", secId: "sec-2" },
+            { id: 14, question: "What operation follows drilling to enlarge and finish a hole to a highly precise diameter?", options: ["A) Tapping", "B) Boring", "C) Reaming", "D) Dieing"], correctAnswer: "C", explanation: "Reaming uses a multi-edged cutting tool to finish a pre-drilled hole accurately.", chapter: "2. Fitting Operations", subtopic: "2.8 Reaming Operation", page: 3, lines: "Lines 16–20", secId: "sec-2" },
+            { id: 15, question: "What is the largest diameter of an external thread known as?", options: ["A) Minor Diameter", "B) Major Diameter", "C) Pitch Diameter", "D) Core Diameter"], correctAnswer: "B", explanation: "The major diameter, or nominal diameter, is the largest diameter of an external thread.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 24–25", secId: "sec-3" },
+            { id: 16, question: "Which dimension is an imaginary cylinder diameter that is the most critical for thread fit?", options: ["A) Pitch Diameter", "B) Major Diameter", "C) Minor Diameter", "D) Root Diameter"], correctAnswer: "A", explanation: "The pitch diameter is the imaginary cylinder where thread and space widths are equal, making it critical for thread fit.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 28–30", secId: "sec-3" },
+            { id: 17, question: "What is the distance measured parallel to the thread axis from one thread point to the corresponding point on the adjacent thread?", options: ["A) Lead", "B) Pitch", "C) Flank", "D) Crest"], correctAnswer: "B", explanation: "Pitch is the distance from a point on one thread to the corresponding point on the next.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 31–32", secId: "sec-3" },
+            { id: 18, question: "In a single-start thread, what is the relationship between Lead and Pitch?", options: ["A) Lead is twice the Pitch", "B) Lead is half the Pitch", "C) Lead is independent of Pitch", "D) Lead equals Pitch"], correctAnswer: "D", explanation: "In a single-start thread, the screw advances by exactly one pitch per revolution, so Lead = Pitch.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Lines 1–2", secId: "sec-3" },
+            { id: 19, question: "What is the top surface of a thread called?", options: ["A) Root", "B) Flank", "C) Crest", "D) Pitch"], correctAnswer: "C", explanation: "The crest is the top surface of the thread.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Line 5", secId: "sec-3" },
+            { id: 20, question: "What is the straight side of a thread called?", options: ["A) Root", "B) Crest", "C) Flank", "D) Margin"], correctAnswer: "C", explanation: "The straight side of the thread connecting crest and root is the flank.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Line 4", secId: "sec-3" },
+            { id: 21, question: "What is the standard thread angle for a Metric Thread?", options: ["A) 45 degrees", "B) 55 degrees", "C) 60 degrees", "D) 90 degrees"], correctAnswer: "C", explanation: "Metric threads have a profile of an equilateral triangle with a 60-degree angle.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 10–11", secId: "sec-3" },
+            { id: 22, question: "What is the standard thread angle for a British Standard Whitworth (BSW) thread?", options: ["A) 55 degrees", "B) 60 degrees", "C) 45 degrees", "D) 90 degrees"], correctAnswer: "A", explanation: "BSW threads have a 55-degree thread angle with rounded crests and roots.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 14–15", secId: "sec-3" },
+            { id: 23, question: "Which thread standard is typically used for sealing fluid connections in pipes?", options: ["A) Metric", "B) BSW", "C) UNC", "D) BSP"], correctAnswer: "D", explanation: "British Standard Pipe (BSP) threads are used for sealing fluid connections.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 18–20", secId: "sec-3" },
+            { id: 24, question: "What does TPI stand for in Imperial thread systems?", options: ["A) Turns Per Inch", "B) Threads Per Inch", "C) Torque Per Inch", "D) Tension Per Inch"], correctAnswer: "B", explanation: "TPI stands for Threads Per Inch, which is the reciprocal of the pitch.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 21–23", secId: "sec-3" },
+            { id: 25, question: "What tool is used to cut an internal thread within a hole?", options: ["A) Die", "B) Reamer", "C) Tap", "D) Chisel"], correctAnswer: "C", explanation: "Tapping is the process of cutting an internal thread using a tool called a tap.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 25–26", secId: "sec-4" },
+            { id: 26, question: "What happens if the tap drill size is too large for the desired thread?", options: ["A) The tap will break", "B) The threads will be shallow and weak", "C) The tap will get stuck", "D) It will create a stronger thread"], correctAnswer: "B", explanation: "If the tap drill size is too large, the resulting threads will be shallow and weak.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 28–30", secId: "sec-4" },
+            { id: 27, question: "What is the tap drill size for an M10 x 1.5 metric thread?", options: ["A) 8.5 mm", "B) 11.5 mm", "C) 10.0 mm", "D) 7.5 mm"], correctAnswer: "A", explanation: "Tap Drill Size = Nominal Diameter - Pitch (10 - 1.5 = 8.5 mm).", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 31–33", secId: "sec-4" },
+            { id: 28, question: "What tool is used to cut an external thread on a cylindrical rod?", options: ["A) Tap", "B) Die", "C) Reamer", "D) File"], correctAnswer: "B", explanation: "Dieing is the process of cutting an external thread using a tool called a die.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 7–8", secId: "sec-4" },
+            { id: 29, question: "During the dieing process, why is the die periodically reversed slightly?", options: ["A) To cool the rod", "B) To sharpen the die", "C) To break the chips", "D) To lubricate the threads"], correctAnswer: "C", explanation: "Reversing the die slightly helps break the metal chips being formed during the cutting process.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 14–15", secId: "sec-4" },
+            { id: 30, question: "What is the driving end of a twist drill called?", options: ["A) Point", "B) Flute", "C) Body", "D) Shank"], correctAnswer: "D", explanation: "The shank is the driving end of the drill, which is held in a chuck or directly in the spindle.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 21–22", secId: "sec-5" },
+            { id: 31, question: "What feature on a twist drill allows cutting fluid to reach the point and chips to escape?", options: ["A) Flutes", "B) Lands", "C) Shanks", "D) Margins"], correctAnswer: "A", explanation: "Flutes are the helical grooves that allow chips to escape and fluid to reach the cutting point.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 23–25", secId: "sec-5" },
+            { id: 32, question: "What are the narrow cylindrical strips on the periphery of the drill body that guide it in the hole?", options: ["A) Faces", "B) Lips", "C) Lands (Margin)", "D) Flutes"], correctAnswer: "C", explanation: "Lands, or margins, guide the drill straight within the hole.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 26–27", secId: "sec-5" },
+            { id: 33, question: "What is the typical point angle for general-purpose drilling in steel?", options: ["A) 90 degrees", "B) 118 degrees", "C) 135 degrees", "D) 60 degrees"], correctAnswer: "B", explanation: "A 118-degree point angle is typical for general-purpose drilling in steel.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 32–34", secId: "sec-5" },
+            { id: 34, question: "What drill point angle is recommended for harder materials?", options: ["A) 90 degrees", "B) 118 degrees", "C) 135 degrees", "D) 150 degrees"], correctAnswer: "C", explanation: "A 135-degree point angle is typically used for drilling into harder materials.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 32–34", secId: "sec-5" },
+            { id: 35, question: "In an upright drilling machine, what component supports the entire machine and is bolted to the floor?", options: ["A) Table", "B) Head", "C) Column", "D) Base"], correctAnswer: "D", explanation: "The heavy, rigid base supports the machine and prevents vibration.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 5–6", secId: "sec-6" },
+            { id: 36, question: "Which part of an upright drilling machine houses the motor, spindle, and drive mechanism?", options: ["A) Head", "B) Base", "C) Column", "D) Table"], correctAnswer: "A", explanation: "The head is the upper part of the machine housing the motor and drive mechanism.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 12–13", secId: "sec-6" },
+            { id: 37, question: "In an upright drilling machine, what component attaches to the spindle and holds the drill bit?", options: ["A) V-Block", "B) Drill Chuck", "C) Collet", "D) Machine Vise"], correctAnswer: "B", explanation: "The drill chuck attaches to the spindle and securely holds the drill bit.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Line 16", secId: "sec-6" },
+            { id: 38, question: "What mechanism on a drilling machine moves the spindle and drill bit down into the workpiece?", options: ["A) Chuck mechanism", "B) Feed mechanism", "C) Table tilt mechanism", "D) Base support"], correctAnswer: "B", explanation: "The feed mechanism (hand lever or automatic) moves the spindle and drill down into the workpiece.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 17–18", secId: "sec-6" },
+            { id: 39, question: "What is a critical safety rule when operating an upright drilling machine?", options: ["A) Always wear loose clothing", "B) Hold small workpieces by hand", "C) Secure the workpiece firmly", "D) Leave the chuck key in the chuck"], correctAnswer: "C", explanation: "Securing the workpiece firmly (e.g., in a machine vice) is a critical safety measure to prevent injury.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 25–28", secId: "sec-6" },
+            { id: 40, question: "Which fitting operation relies on checking and correcting minor dimensional errors in castings?", options: ["A) Filing", "B) Quality Control", "C) Tapping", "D) Sawing"], correctAnswer: "B", explanation: "Quality control in fitting involves checking and correcting minor dimensional errors in castings or machined parts.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 24–25", secId: "sec-1" },
+            { id: 41, question: "What type of tools are primarily used for fitting work on a workbench?", options: ["A) Power tools only", "B) CNC machines", "C) Hand tools", "D) Welding equipment"], correctAnswer: "C", explanation: "Fitting work is primarily performed on a workbench using hand tools, though power tools are also used.", chapter: "1. Introduction & Importance", subtopic: "1.1 Introduction to Fittings", page: 1, lines: "Lines 8–10", secId: "sec-1" },
+            { id: 42, question: "Which of the following is a consequence of poor fitting?", options: ["A) Interchangeability", "B) Improved efficiency", "C) Superior surface finish", "D) Excessive wear"], correctAnswer: "D", explanation: "Poor fitting can lead to machine failure, excessive wear, and inefficiency.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 21–23", secId: "sec-1" },
+            { id: 43, question: "In which maintenance scenario is fitting considered vital?", options: ["A) Painting machine guards", "B) Replacing software on a CNC", "C) Repairing worn-out parts on-site", "D) Lubricating bearings"], correctAnswer: "C", explanation: "Fitting is vital in maintenance for repairing worn-out parts or replacing components on-site.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 26–28", secId: "sec-1" },
+            { id: 44, question: "Which holding tool is specifically used for securing jobs on a machine table?", options: ["A) Bench Vice", "B) Angle Plate", "C) C-Clamps", "D) Dividers"], correctAnswer: "C", explanation: "C-Clamps are used for holding jobs on a machine table.", chapter: "2. Fitting Operations", subtopic: "2.1 Job Holding Tools", page: 2, lines: "Line 10", secId: "sec-2" },
+            { id: 45, question: "What material is a file typically made from?", options: ["A) Cast iron", "B) Hardened steel", "C) Aluminum alloy", "D) Mild steel"], correctAnswer: "B", explanation: "Filing is a metal removal process using a hardened steel file.", chapter: "2. Fitting Operations", subtopic: "2.2 Filing Operation", page: 2, lines: "Lines 11–12", secId: "sec-2" },
+            { id: 46, question: "Which of the following is a standard classification for the cut of a file?", options: ["A) Heavy", "B) Fine", "C) Bastard", "D) Coarse"], correctAnswer: "C", explanation: "Files are classified by their cut into categories such as rough, bastard, second cut, and smooth.", chapter: "2. Fitting Operations", subtopic: "2.2 Filing Operation", page: 2, lines: "Lines 13–14", secId: "sec-2" },
+            { id: 47, question: "What measuring tool would you use to accurately measure an internal diameter?", options: ["A) Steel Rule", "B) Vernier Caliper", "C) Micrometer", "D) Try Square"], correctAnswer: "B", explanation: "A Vernier Caliper is used for precise linear measurements and internal/external diameters.", chapter: "2. Fitting Operations", subtopic: "2.3 Measuring Tools", page: 2, lines: "Lines 19–20", secId: "sec-2" },
+            { id: 48, question: "What is considered the very first step in any fitting operation?", options: ["A) Marking", "B) Drilling", "C) Sawing", "D) Filing"], correctAnswer: "A", explanation: "Marking is the process of transferring dimensions from a drawing and is the first step in any fitting operation.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 2, lines: "Lines 25–26", secId: "sec-2" },
+            { id: 49, question: "What shape is the profile of a metric thread?", options: ["A) Square", "B) Trapezoidal", "C) Equilateral triangle", "D) Semicircle"], correctAnswer: "C", explanation: "The profile of a metric thread is an equilateral triangle with a 60-degree angle.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 10–11", secId: "sec-3" },
+            { id: 50, question: "What does the designation 'M10 x 1.5' represent?", options: ["A) A 10-inch thread with 1.5 TPI", "B) A metric thread with a 10mm pitch and 1.5mm diameter", "C) A metric thread with a 10mm nominal diameter and 1.5mm pitch", "D) A pipe thread measuring 10mm long"], correctAnswer: "C", explanation: "In 'M10 x 1.5', 10 is the nominal diameter in mm and 1.5 is the pitch in mm.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 11–13", secId: "sec-3" },
+            { id: 51, question: "How is the size of a British Standard Whitworth (BSW) thread designated?", options: ["A) By thread angle in degrees", "B) By nominal diameter in inches", "C) By core diameter in millimeters", "D) By pitch diameter in inches"], correctAnswer: "B", explanation: "The size of a BSW thread is designated by the nominal diameter in inches.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 15–16", secId: "sec-3" },
+            { id: 52, question: "In a British Standard Pipe (BSP) thread, what is the typical configuration for male and female threads?", options: ["A) Both are tapered", "B) Tapered male and parallel female", "C) Parallel male and tapered female", "D) Both are parallel"], correctAnswer: "B", explanation: "BSP threads are typically tapered on the male (BSPT) and parallel on the female (BSPP).", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 18–20", secId: "sec-3" },
+            { id: 53, question: "What happens if the tap drill size used before tapping is too small?", options: ["A) The threads will be too deep", "B) The tap will slip", "C) The tap will break", "D) The threads will be shallow"], correctAnswer: "C", explanation: "If the drilled hole is too small, the tap will break during the tapping process.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 28–29", secId: "sec-4" },
+            { id: 54, question: "For a 1/2\" BSW thread with 12 TPI, what is the approximate tap drill size in inches?", options: ["A) 0.5000 inches", "B) 0.4167 inches", "C) 0.3500 inches", "D) 0.4850 inches"], correctAnswer: "B", explanation: "The tap drill calculation (0.5 - 1/12) results in 0.4167 inches.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 5, lines: "Lines 4–5", secId: "sec-4" },
+            { id: 55, question: "What tool is used to hold a die during the dieing process?", options: ["A) Chuck", "B) Spindle", "C) Stock", "D) V-Block"], correctAnswer: "C", explanation: "The die is fitted into a holder called a stock so it can be turned manually.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 11–12", secId: "sec-4" },
+            { id: 56, question: "During dieing, what is often used to protect the rod while it is held in the vice?", options: ["A) C-Clamp", "B) V-Block", "C) Angle Plate", "D) Try Square"], correctAnswer: "B", explanation: "A V-block is often used to hold the rod securely in the vice and protect its surface.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 10–11", secId: "sec-4" },
+            { id: 57, question: "On a twist drill, what is the specific name for the conical cutting end?", options: ["A) Shank", "B) Flute", "C) Body", "D) Point"], correctAnswer: "D", explanation: "The point is the conical cutting end of the drill.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Line 19", secId: "sec-5" },
+            { id: 58, question: "What part of a twist drill is described as the surface of the flute on which the chip slides?", options: ["A) Lip", "B) Land", "C) Face", "D) Shank"], correctAnswer: "C", explanation: "The face is the surface of the flute on which the chip slides.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Line 28", secId: "sec-5" },
+            { id: 59, question: "What type of shank on a drill bit allows it to be held directly in the machine's spindle?", options: ["A) Square shank", "B) Straight shank", "C) Morse taper shank", "D) Threaded shank"], correctAnswer: "C", explanation: "A tapered shank, such as a Morse taper, allows the drill to be held directly in the spindle.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 21–22", secId: "sec-5" },
+            { id: 60, question: "What is the angle between the drill's lip and a plane perpendicular to the drill axis called?", options: ["A) Point Angle", "B) Thread Angle", "C) Lip Clearance Angle", "D) Flute Angle"], correctAnswer: "C", explanation: "The lip clearance angle provides necessary clearance for the cutting edge to function.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 30–31", secId: "sec-5" },
+            { id: 61, question: "What feature on the worktable of an upright drilling machine allows workpieces and vises to be securely clamped?", options: ["A) T-slots", "B) V-blocks", "C) Threaded inserts", "D) Magnetic base"], correctAnswer: "A", explanation: "The worktable has T-slots to allow workpieces and vises to be clamped securely.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 9–11", secId: "sec-6" },
+            { id: 62, question: "How is the spindle of an upright drilling machine driven by the motor?", options: ["A) Hydraulics", "B) Pneumatics", "C) Belt or gear drive", "D) Direct manual crank"], correctAnswer: "C", explanation: "The spindle is driven by a motor via a belt or gear drive.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 14–15", secId: "sec-6" },
+            { id: 63, question: "Which of the following operations can be performed on an upright drilling machine using a specific attachment?", options: ["A) Dieing", "B) Tapping", "C) Sawing", "D) Chipping"], correctAnswer: "B", explanation: "Tapping can be performed on the machine by using a tapping attachment.", chapter: "6. Upright Drilling Machine", subtopic: "6.2 Machine Operations", page: 6, lines: "Lines 19–21", secId: "sec-6" },
+            { id: 64, question: "What should be used to clamp larger parts directly to the table of a drilling machine?", options: ["A) Machine vice", "B) Bench vice", "C) T-bolts and clamps", "D) Hand pressure"], correctAnswer: "C", explanation: "For larger parts that do not fit in a vice, T-bolts and clamps are used directly on the table.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 22–24", secId: "sec-6" },
+            { id: 65, question: "What must a worker never wear near the rotating spindle of a drilling machine?", options: ["A) Safety glasses", "B) Steel-toed boots", "C) Loose clothing or jewelry", "D) A shop apron"], correctAnswer: "C", explanation: "Operators must never wear loose clothing or jewelry near the rotating spindle to prevent entanglement.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 27–28", secId: "sec-6" },
+            { id: 66, question: "In a multi-start thread, how is the Lead calculated?", options: ["A) Lead = Pitch / Number of Starts", "B) Lead = Pitch + Number of Starts", "C) Lead = Pitch * Number of Starts", "D) Lead = Pitch - Number of Starts"], correctAnswer: "C", explanation: "In a multi-start thread, the Lead equals the Pitch multiplied by the Number of Starts.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Lines 2–3", secId: "sec-3" },
+            { id: 67, question: "According to thread nomenclature, what is the largest diameter of an internal thread called?", options: ["A) Minor Diameter", "B) Major Diameter", "C) Pitch Diameter", "D) Root Diameter"], correctAnswer: "A", explanation: "The Minor Diameter is defined as the smallest diameter of an external thread or the largest diameter of an internal thread.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 26–27", secId: "sec-3" },
+            { id: 68, question: "Which operation uses a multi-edged cutting tool to slightly enlarge a pre-drilled hole for a dowel pin?", options: ["A) Tapping", "B) Counterboring", "C) Drilling", "D) Reaming"], correctAnswer: "D", explanation: "Reaming is a finishing operation that ensures a highly accurate hole for dowel pins or shafts.", chapter: "2. Fitting Operations", subtopic: "2.8 Reaming Operation", page: 3, lines: "Lines 16–20", secId: "sec-2" },
+            { id: 69, question: "What is the primary purpose of applying cutting oil during the dieing process?", options: ["A) To clean the threads", "B) To harden the steel", "C) For lubrication", "D) To wash away chips"], correctAnswer: "C", explanation: "Cutting oil is applied for lubrication during the manual thread cutting process.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Line 11", secId: "sec-4" },
+            { id: 70, question: "What is the primary difference between a metric thread and a BSW thread?", options: ["A) Metric has a 60-degree angle, BSW has a 55-degree angle", "B) Metric is imperial, BSW is metric", "C) Metric has rounded roots, BSW has sharp roots", "D) There is no difference"], correctAnswer: "A", explanation: "Metric threads use a 60-degree angle, whereas BSW uses a 55-degree angle.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 10–15", secId: "sec-3" },
+            { id: 71, question: "Which thread standard features rounded crests and roots?", options: ["A) Metric", "B) UNC", "C) BSW", "D) BSPP"], correctAnswer: "C", explanation: "BSW (British Standard Whitworth) threads have a 55-degree angle with rounded crests and roots.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 14–15", secId: "sec-3" },
+            { id: 72, question: "What specific type of hammer is recommended for striking a chisel during chipping?", options: ["A) Claw hammer", "B) Sledgehammer", "C) Mallet", "D) Ball-peen hammer"], correctAnswer: "D", explanation: "The chisel is struck with a ball-peen hammer during chipping operations.", chapter: "2. Fitting Operations", subtopic: "2.6 Chipping Operation", page: 3, lines: "Lines 11–12", secId: "sec-2" },
+            { id: 73, question: "What is the vertical cylindrical component of an upright drilling machine that supports the other parts?", options: ["A) Head", "B) Base", "C) Spindle", "D) Column"], correctAnswer: "D", explanation: "The column (or pillar) is the vertical cylindrical part that rises from the base and supports the table and head.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 7–8", secId: "sec-6" },
+            { id: 74, question: "What operation is described as a metal removal process to remove burrs and smoothen surfaces?", options: ["A) Tapping", "B) Sawing", "C) Filing", "D) Drilling"], correctAnswer: "C", explanation: "Filing uses a hardened steel file to remove burrs, smoothen surfaces, and shape the workpiece.", chapter: "2. Fitting Operations", subtopic: "2.2 Filing Operation", page: 2, lines: "Lines 11–13", secId: "sec-2" },
+            { id: 75, question: "Which tool is generally used for linear measurements but offers less precision than a micrometer?", options: ["A) Vernier Caliper", "B) Steel Rule", "C) Dial Indicator", "D) Surface Plate"], correctAnswer: "B", explanation: "A steel rule is used for basic linear measurements but is not as precise as vernier calipers or micrometers.", chapter: "2. Fitting Operations", subtopic: "2.3 Measuring Tools", page: 2, lines: "Line 17", secId: "sec-2" },
+            { id: 76, question: "What is the purpose of the lip clearance angle on a twist drill?", options: ["A) To allow chips to escape", "B) To guide the drill in the hole", "C) To provide clearance for the cutting edge", "D) To hold the drill in the chuck"], correctAnswer: "C", explanation: "The lip clearance angle provides clearance for the cutting edge so it can bite into the material.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 30–31", secId: "sec-5" },
+            { id: 77, question: "What part of the twist drill connects the flutes to the shank?", options: ["A) Point", "B) Body", "C) Margin", "D) Web"], correctAnswer: "B", explanation: "The body is the main cylindrical part from the flutes to the shank.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Line 20", secId: "sec-5" },
+            { id: 78, question: "Which measuring tool is used as a true flat reference surface for marking?", options: ["A) Try Square", "B) Angle Plate", "C) Surface Plate", "D) Vernier Height Gauge"], correctAnswer: "C", explanation: "A surface plate provides a true flat reference surface for marking operations.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 2, lines: "Line 27", secId: "sec-2" },
+            { id: 79, question: "What is the bottom surface of a thread called?", options: ["A) Root", "B) Crest", "C) Flank", "D) Pitch"], correctAnswer: "A", explanation: "The bottom surface of the thread is called the root.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Line 6", secId: "sec-3" },
+            { id: 80, question: "What tool features helical grooves that run along its body to permit cutting fluid to reach the point?", options: ["A) Tap", "B) Reamer", "C) Twist Drill", "D) Die"], correctAnswer: "C", explanation: "The flutes on a twist drill allow cutting fluid to reach the cutting point.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 23–25", secId: "sec-5" },
+            { id: 81, question: "Which power tool is characterized by a heavy base bolted to the floor and a worktable with T-slots?", options: ["A) Lathe", "B) Upright Drilling Machine", "C) CNC Milling Machine", "D) Bench Grinder"], correctAnswer: "B", explanation: "The upright drilling machine has a rigid base bolted to the floor and a table with T-slots.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 5–11", secId: "sec-6" },
+            { id: 82, question: "In engineering and manufacturing, fitting serves as the crucial link between what two stages?", options: ["A) Design and the final product", "B) Initial concept and marketing", "C) Prototyping and mass production", "D) Casting and machining"], correctAnswer: "A", explanation: "Fitting is the crucial link between design and the final product.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 16–17", secId: "sec-1" },
+            { id: 83, question: "Which fitting aspect ensures that manufactured parts meet exact dimensions, guaranteeing interchangeability?", options: ["A) Assembly", "B) Quality Control", "C) Precision and Accuracy", "D) Versatility"], correctAnswer: "C", explanation: "Precision and accuracy ensure dimensions match the design, guaranteeing interchangeability.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 18–20", secId: "sec-1" },
+            { id: 84, question: "According to the text, which of the following is a sector where fitting skills are explicitly required?", options: ["A) Aerospace", "B) Software development", "C) Textile weaving", "D) Food processing"], correctAnswer: "A", explanation: "Fitting skills are required in sectors like automotive, aerospace, shipbuilding, and construction.", chapter: "1. Introduction & Importance", subtopic: "1.2 Importance of Fittings", page: 1, lines: "Lines 29–31", secId: "sec-1" },
+            { id: 85, question: "What specific marking tool has a sharp point and is used for drawing lines on a workpiece?", options: ["A) Scriber", "B) Center Punch", "C) Divider", "D) Chisel"], correctAnswer: "A", explanation: "A scriber is a sharp-pointed tool used for drawing lines.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 2, lines: "Line 28", secId: "sec-2" },
+            { id: 86, question: "When choosing a hacksaw blade for a sawing operation, what is the primary factor that dictates the choice?", options: ["A) The material being cut", "B) The length of the hacksaw frame", "C) The ambient temperature", "D) The worker's strength"], correctAnswer: "A", explanation: "The blade must be chosen based on the material being cut.", chapter: "2. Fitting Operations", subtopic: "2.5 Sawing Operation", page: 3, lines: "Lines 7–8", secId: "sec-2" },
+            { id: 87, question: "Chipping is primarily used for which of the following tasks?", options: ["A) Polishing surfaces", "B) Roughing out surfaces and cutting off metal", "C) Cutting internal threads", "D) Measuring high-precision diameters"], correctAnswer: "B", explanation: "Chipping is used for roughing out surfaces, cutting off metal, and removing sharp edges.", chapter: "2. Fitting Operations", subtopic: "2.6 Chipping Operation", page: 3, lines: "Lines 9–11", secId: "sec-2" },
+            { id: 88, question: "How does a twist drill remove material during a drilling operation?", options: ["A) By melting the metal", "B) In the form of chips", "C) By evaporating the material", "D) By compressing the metal"], correctAnswer: "B", explanation: "The drill bit removes material in the form of chips as it is rotated and fed into the workpiece.", chapter: "2. Fitting Operations", subtopic: "2.7 Drilling Operation", page: 3, lines: "Lines 14–15", secId: "sec-2" },
+            { id: 89, question: "Why is reaming specifically used for holes intended for dowel pins or shafts?", options: ["A) It is faster than drilling", "B) It cuts a new thread in the hole", "C) It achieves a superior surface finish and precise diameter", "D) It makes the hole larger than the pin"], correctAnswer: "C", explanation: "Reaming ensures a highly accurate hole and superior surface finish, ideal for dowel pins.", chapter: "2. Fitting Operations", subtopic: "2.8 Reaming Operation", page: 3, lines: "Lines 16–20", secId: "sec-2" },
+            { id: 90, question: "According to thread nomenclature, what describes the imaginary cylinder diameter that passes through the threads where thread width and space width are equal?", options: ["A) Pitch Diameter", "B) Major Diameter", "C) Minor Diameter", "D) Core Diameter"], correctAnswer: "A", explanation: "This is the exact definition of the Pitch Diameter, which is critical for thread fit.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 28–30", secId: "sec-3" },
+            { id: 91, question: "The pitch of a thread is measured in what direction relative to the axis of the thread?", options: ["A) Perpendicular to the axis", "B) Parallel to the axis", "C) At a 45-degree angle to the axis", "D) Tangential to the axis"], correctAnswer: "B", explanation: "Pitch is measured parallel to the axis of the thread from a point on one thread to the corresponding point on the adjacent thread.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 31–32", secId: "sec-3" },
+            { id: 92, question: "What specific thread profile takes the shape of an equilateral triangle?", options: ["A) BSW Thread", "B) Metric Thread", "C) BSP Thread", "D) UNC Thread"], correctAnswer: "B", explanation: "The metric thread profile is an equilateral triangle with a 60-degree angle.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 10–11", secId: "sec-3" },
+            { id: 93, question: "What does the '1.5' signify in a metric thread designated as M10x1.5?", options: ["A) The thread angle", "B) The pitch in millimeters", "C) The nominal diameter", "D) The length of the thread"], correctAnswer: "B", explanation: "In this designation, 1.5 represents the pitch in millimeters.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 11–13", secId: "sec-3" },
+            { id: 94, question: "How is the pitch designated in a British Standard Whitworth (BSW) thread?", options: ["A) In millimeters", "B) In threads per inch (TPI)", "C) By thread angle", "D) By core diameter"], correctAnswer: "B", explanation: "The pitch of a BSW thread is given in TPI (Threads Per Inch).", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 16–17", secId: "sec-3" },
+            { id: 95, question: "What is the primary purpose of a British Standard Pipe (BSP) thread?", options: ["A) For securing structural beams", "B) Sealing fluid connections", "C) High-speed linear motion", "D) Fastening wood components"], correctAnswer: "B", explanation: "BSP threads are typically used for sealing fluid connections.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 18–20", secId: "sec-3" },
+            { id: 96, question: "The term TPI (Threads Per Inch) is mathematically defined as what?", options: ["A) The square of the pitch", "B) The reciprocal of the pitch", "C) Half of the pitch diameter", "D) Twice the nominal diameter"], correctAnswer: "B", explanation: "TPI is the reciprocal of the pitch, counting the number of threads in one inch.", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 21–22", secId: "sec-3" },
+            { id: 97, question: "If you drill a hole for tapping and the tap drill size is too small, what is the most likely outcome?", options: ["A) The threads will be shallow and weak", "B) The tap will break", "C) The threads will strip easily", "D) The hole will become tapered"], correctAnswer: "B", explanation: "If the hole is too small, the tap will bind and break during cutting.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 28–29", secId: "sec-4" },
+            { id: 98, question: "What mathematical formula is used to calculate the tap drill size for an inch-based BSW thread?", options: ["A) Nominal Diameter - Pitch", "B) Nominal Diameter + Pitch", "C) Nominal Diameter - (1 / TPI)", "D) Nominal Diameter * TPI"], correctAnswer: "C", explanation: "For inch threads, the tap drill size equals Nominal Diameter minus (1 divided by TPI).", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 5, lines: "Lines 1–3", secId: "sec-4" },
+            { id: 99, question: "What specific part of a die has internal teeth for cutting external threads?", options: ["A) The stock", "B) The central hole", "C) The shank", "D) The body"], correctAnswer: "B", explanation: "A die is a hardened steel tool with a hole that has internal teeth.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 8–9", secId: "sec-4" },
+            { id: 100, question: "How is a die initially applied to a rod to start the cutting process?", options: ["A) Hammered onto the end", "B) Spun at high speed with a motor", "C) Placed squarely on the end and turned with gentle pressure", "D) Heated and pressed"], correctAnswer: "C", explanation: "The die is placed squarely on the end of the rod and turned with gentle pressure to start.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 12–13", secId: "sec-4" },
+            { id: 101, question: "What specific type of drill shank is designed to be held directly in the machine's spindle?", options: ["A) Straight shank", "B) Threaded shank", "C) Morse taper shank", "D) Square shank"], correctAnswer: "C", explanation: "A tapered shank, such as a Morse taper, is held directly in the spindle.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 21–22", secId: "sec-5" },
+            { id: 102, question: "The cutting edges of a twist drill are formed by which structural feature?", options: ["A) The lands", "B) The shank", "C) The flutes", "D) The point angle"], correctAnswer: "C", explanation: "The flutes form the cutting edges and allow chips to escape.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Lines 23–25", secId: "sec-5" },
+            { id: 103, question: "What defines the 'Face' of a twist drill?", options: ["A) The top of the shank", "B) The leading edge of the drill point", "C) The surface of the flute on which the chip slides", "D) The narrow strips on the periphery"], correctAnswer: "C", explanation: "The face is the surface of the flute on which the chip slides.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Line 28", secId: "sec-5" },
+            { id: 104, question: "What is the leading edge of a twist drill point called?", options: ["A) Flank", "B) Face", "C) Lip (Cutting Edge)", "D) Margin"], correctAnswer: "C", explanation: "The leading edge of the drill point is known as the Lip or Cutting Edge.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.1 Twist Drill Parts", page: 5, lines: "Line 29", secId: "sec-5" },
+            { id: 105, question: "What is the typical point angle of a twist drill used for general-purpose drilling in steel?", options: ["A) 90 degrees", "B) 118 degrees", "C) 135 degrees", "D) 150 degrees"], correctAnswer: "B", explanation: "118 degrees is typical for general-purpose drilling in steel.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 32–34", secId: "sec-5" },
+            { id: 106, question: "Why is the base of an upright drilling machine heavy, rigid, and bolted to the floor?", options: ["A) To hold extra drill bits", "B) To prevent vibration", "C) To make it easier to clean", "D) To support the ceiling"], correctAnswer: "B", explanation: "The base is bolted to the floor to prevent vibration during heavy drilling.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 5–6", secId: "sec-6" },
+            { id: 107, question: "Besides simple drilling, what other operations can be performed on an upright drilling machine?", options: ["A) Milling and turning", "B) Welding and brazing", "C) Reaming, tapping, countersinking, and counterboring", "D) Sawing and chipping"], correctAnswer: "C", explanation: "The upright drilling machine can be used for reaming, tapping, countersinking, and counterboring.", chapter: "6. Upright Drilling Machine", subtopic: "6.2 Machine Operations", page: 6, lines: "Lines 19–21", secId: "sec-6" },
+            { id: 108, question: "When operating an upright drilling machine, what is the primary danger of wearing loose clothing or jewelry?", options: ["A) Scratching the workpiece", "B) Getting oil on clothing", "C) Becoming entangled in the rotating spindle", "D) Dropping jewelry in the coolant"], correctAnswer: "C", explanation: "Loose clothing or jewelry can easily become caught in the rotating spindle.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 27–28", secId: "sec-6" },
+            { id: 109, question: "What specific component on an upright drilling machine table allows for the secure clamping of workpieces?", options: ["A) T-slots", "B) V-blocks", "C) Threaded chucks", "D) Magnetic clamps"], correctAnswer: "A", explanation: "The worktable has T-slots that allow workpieces and vises to be clamped securely.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 9–11", secId: "sec-6" },
+            { id: 110, question: "What connects the drive mechanism and motor to the drill chuck on an upright drilling machine?", options: ["A) The Column", "B) The Table", "C) The Spindle", "D) The Feed Lever"], correctAnswer: "C", explanation: "The spindle is a rotating shaft that is driven by the motor and holds the drill chuck.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 14–15", secId: "sec-6" },
+            { id: 111, question: "What is the purpose of reversing the die slightly during the dieing process?", options: ["A) To cool the tool down", "B) To clear the cutting oil", "C) To break the chips", "D) To polish the threads"], correctAnswer: "C", explanation: "Reversing the die slightly helps to break the chips that are formed during cutting.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 14–15", secId: "sec-4" },
+            { id: 112, question: "According to the text, a fitter's job involves ensuring components fit with correct tolerances to allow for what?", options: ["A) Only aesthetic appeal", "B) Movement, securing parts, or a tight seal", "C) Preventing rust", "D) Electrical conductivity"], correctAnswer: "B", explanation: "A fitter ensures correct tolerances allow for movement, securing parts, or creating a tight seal.", chapter: "1. Introduction & Importance", subtopic: "1.1 Introduction to Fittings", page: 1, lines: "Lines 11–14", secId: "sec-1" },
+            { id: 113, question: "What geometric shape describes a thread formed on a cylinder or cone?", options: ["A) A straight line", "B) A helical ridge", "C) A series of concentric circles", "D) A flat groove"], correctAnswer: "B", explanation: "A thread is defined as a helical ridge of uniform section formed on the outside or inside of a cylinder or cone.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 22–23", secId: "sec-3" },
+            { id: 114, question: "What specific term defines the exact linear distance a screw advances in one complete revolution?", options: ["A) Pitch", "B) Flank", "C) Lead", "D) Crest"], correctAnswer: "C", explanation: "Lead is the distance a screw advances in one complete revolution.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Lines 1–2", secId: "sec-3" },
+            { id: 115, question: "What is the mathematical formula used to calculate the tap drill size for a Metric Thread?", options: ["A) Nominal Diameter + Pitch", "B) Nominal Diameter / Pitch", "C) Nominal Diameter - Pitch", "D) Nominal Diameter * Pitch"], correctAnswer: "C", explanation: "For Metric Threads, Tap Drill Size (mm) = Nominal Diameter (mm) - Pitch (mm).", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 31–32", secId: "sec-4" },
+            { id: 116, question: "What is the specific name of the hole that must be prepared before using a tap?", options: ["A) Clearance hole", "B) Tap drill size", "C) Pilot hole", "D) Countersink"], correctAnswer: "B", explanation: "Before tapping, a hole of a specific diameter known as the tap drill size must be drilled.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 4, lines: "Lines 26–27", secId: "sec-4" },
+            { id: 117, question: "What are the two primary structural components that make up a hacksaw?", options: ["A) Motor and blade", "B) Handle and chain", "C) Frame and blade with teeth", "D) Stock and die"], correctAnswer: "C", explanation: "The manual hacksaw consists of a frame and a blade with teeth.", chapter: "2. Fitting Operations", subtopic: "2.5 Sawing Operation", page: 3, lines: "Lines 6–7", secId: "sec-2" },
+            { id: 118, question: "Besides the center of a hole, where else is a center punch specifically used to create a guiding indent?", options: ["A) Along the entire edge of a plate", "B) At the intersection of lines", "C) On the face of a hammer", "D) On the threads of a screw"], correctAnswer: "B", explanation: "A center punch creates an indent at the center of a hole or at the intersection of lines.", chapter: "2. Fitting Operations", subtopic: "2.4 Marking Tools", page: 3, lines: "Lines 2–4", secId: "sec-2" },
+            { id: 119, question: "What are the adjustment capabilities of the worktable on an upright drilling machine?", options: ["A) It is permanently fixed", "B) It can only be rotated", "C) It can be raised, lowered, and sometimes tilted", "D) It only moves left and right"], correctAnswer: "C", explanation: "The worktable mounted on the column can be raised, lowered, and sometimes tilted.", chapter: "6. Upright Drilling Machine", subtopic: "6.1 Machine Construction", page: 6, lines: "Lines 9–10", secId: "sec-6" },
+            { id: 120, question: "What is the most common method used to securely clamp a workpiece to the table of an upright drilling machine?", options: ["A) Holding it by hand", "B) A machine vice", "C) Masking tape", "D) Magnetic base only"], correctAnswer: "B", explanation: "A machine vice is noted as the most common method for work holding on the machine table.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 22–24", secId: "sec-6" },
+            { id: 121, question: "What specific personal protective equipment must always be worn when operating a drilling machine?", options: ["A) Heavy leather gloves", "B) A shop apron", "C) Safety glasses", "D) A respirator"], correctAnswer: "C", explanation: "The safety guidelines explicitly state to always wear safety glasses.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 25–26", secId: "sec-6" },
+            { id: 122, question: "Before operating a drilling machine, what must be ensured regarding the condition of the drill bit?", options: ["A) It must be oiled and loose", "B) It must be dull and flexible", "C) It must be sharp and properly tightened", "D) It must be heated"], correctAnswer: "C", explanation: "Safety rules require ensuring the drill bit is sharp and properly tightened in the chuck.", chapter: "6. Upright Drilling Machine", subtopic: "6.3 Work Holding & Safety", page: 6, lines: "Lines 26–27", secId: "sec-6" },
+            { id: 123, question: "Why are power tools occasionally incorporated into fitting operations that are otherwise primarily manual?", options: ["A) To generate more heat", "B) For efficiency and accuracy", "C) To replace all hand tools completely", "D) Because they are cheaper"], correctAnswer: "B", explanation: "While fitting is primarily done manually, power tools are used for efficiency and accuracy.", chapter: "1. Introduction & Importance", subtopic: "1.1 Introduction to Fittings", page: 1, lines: "Lines 9–11", secId: "sec-1" },
+            { id: 124, question: "Which measuring tool is specifically noted for its ability to precisely measure both internal and external diameters?", options: ["A) Micrometer", "B) Steel Rule", "C) Vernier Caliper", "D) Vernier Height Gauge"], correctAnswer: "C", explanation: "The Vernier Caliper is used for precise linear measurements and internal/external diameters.", chapter: "2. Fitting Operations", subtopic: "2.3 Measuring Tools", page: 2, lines: "Lines 19–20", secId: "sec-2" },
+            { id: 125, question: "During a chipping operation, how must the chisel be positioned relative to the workpiece?", options: ["A) Perpendicular to the surface", "B) Parallel to the surface", "C) At a specific angle", "D) Moving in a circular motion"], correctAnswer: "C", explanation: "The chisel must be held at a specific angle and struck with a ball-peen hammer.", chapter: "2. Fitting Operations", subtopic: "2.6 Chipping Operation", page: 3, lines: "Lines 11–12", secId: "sec-2" },
+            { id: 126, question: "In standard thread nomenclature, what is the alternative term used for the Major Diameter?", options: ["A) Core Diameter", "B) Pitch Diameter", "C) Nominal Diameter", "D) Root Diameter"], correctAnswer: "C", explanation: "The Major Diameter is also referred to as the Nominal Diameter.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 24–25", secId: "sec-3" },
+            { id: 127, question: "In standard thread nomenclature, what is the alternative term used for the Minor Diameter?", options: ["A) Nominal Diameter", "B) Core Diameter", "C) Pitch Diameter", "D) Crest Diameter"], correctAnswer: "B", explanation: "The Minor Diameter is also referred to as the Core Diameter.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 3, lines: "Lines 26–27", secId: "sec-3" },
+            { id: 128, question: "According to thread nomenclature, in what specific plane is the thread angle measured?", options: ["A) A radial plane", "B) A tangential plane", "C) A horizontal plane", "D) An axial plane"], correctAnswer: "D", explanation: "The thread angle is the angle between the flanks of the thread measured in an axial plane.", chapter: "3. Screw Threads", subtopic: "3.1 Thread Nomenclature", page: 4, lines: "Lines 7–8", secId: "sec-3" },
+            { id: 129, question: "Besides BSW, what other thread standard is given as an example of a fastener defined by TPI in the Imperial system?", options: ["A) BSP", "B) Metric", "C) UNC", "D) Acme"], correctAnswer: "C", explanation: "TPI is used to define standard fasteners in the Imperial system (e.g., BSW and UNC).", chapter: "3. Screw Threads", subtopic: "3.2 Standard Thread Types", page: 4, lines: "Lines 21–23", secId: "sec-3" },
+            { id: 130, question: "Based on the provided text's calculation, a tap drill size of 0.4167 inches for a 1/2\" BSW thread is approximately equivalent to what fractional drill bit size?", options: ["A) 1/4\"", "B) 3/8\"", "C) 27/64\"", "D) 15/32\""], correctAnswer: "C", explanation: "The text states that 0.4167 inches is approximately a 27/64\" drill.", chapter: "4. Tapping & Dieing", subtopic: "4.1 Tapping & Tap Drill Size", page: 5, lines: "Lines 4–5", secId: "sec-4" },
+            { id: 131, question: "When starting to cut an external thread, how should the die be applied to the rod once it is placed squarely on the end?", options: ["A) Struck with a mallet", "B) Turned with gentle pressure", "C) Spun rapidly", "D) Pushed inward without turning"], correctAnswer: "B", explanation: "The die is placed squarely on the end of the rod and turned with gentle pressure to start the cut.", chapter: "4. Tapping & Dieing", subtopic: "4.2 Dieing (External Threading)", page: 5, lines: "Lines 12–13", secId: "sec-4" },
+            { id: 132, question: "On a twist drill, the Point Angle is specifically defined as the angle between which two features?", options: ["A) The face and the flank", "B) The shank and the body", "C) The two cutting lips", "D) The flutes and the margin"], correctAnswer: "C", explanation: "The point angle is the angle between the two cutting lips.", chapter: "5. Twist Drill Nomenclature", subtopic: "5.2 Drill Angles", page: 5, lines: "Lines 32–34", secId: "sec-5" }
+        ];
+
+        // Quiz State
+        let currentIdx = 0;
+        let userAnswers = {}; // { questionIndex: 'A' | 'B' | 'C' | 'D' }
+
+        // Interactive Tap Drill Calculator in Section 4
+        function updateTapCalc() {
+            const type = document.getElementById('calc-type').value;
+            const dInput = document.getElementById('calc-d');
+            const pInput = document.getElementById('calc-p');
+            const dLabel = document.getElementById('calc-d-label');
+            const pLabel = document.getElementById('calc-p-label');
+            const resBox = document.getElementById('calc-result');
+
+            const d = parseFloat(dInput.value) || 0;
+            const p = parseFloat(pInput.value) || 0;
+
+            if (type === 'metric') {
+                dLabel.textContent = 'Nominal Dia (mm)';
+                pLabel.textContent = 'Pitch (mm)';
+                const tapSize = d - p;
+                resBox.textContent = `Tap Drill Size = ${d} − ${p} = ${tapSize.toFixed(2)} mm`;
+            } else {
+                dLabel.textContent = 'Nominal Dia (Inch)';
+                pLabel.textContent = 'TPI (Threads/Inch)';
+                if (p <= 0) {
+                    resBox.textContent = 'Please enter a valid TPI > 0';
+                } else {
+                    const inv = 1 / p;
+                    const tapSize = d - inv;
+                    resBox.textContent = `Tap Drill Size = ${d} − (1/${p}) = ${tapSize.toFixed(4)} inches`;
+                }
+            }
+        }
+
+        // Switch between Study Notes and Quiz Mode
+        function switchTab(mode) {
+            const notesView = document.getElementById('view-notes');
+            const quizView = document.getElementById('view-quiz');
+            const btnNotes = document.getElementById('tab-btn-notes');
+            const btnQuiz = document.getElementById('tab-btn-quiz');
+
+            if (mode === 'notes') {
+                notesView.classList.remove('hidden');
+                quizView.classList.add('hidden');
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-steel-950 shadow-md";
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-steel-200 hover:text-white hover:bg-steel-800/60";
+            } else {
+                notesView.classList.add('hidden');
+                quizView.classList.remove('hidden');
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-amber-500 text-steel-950 shadow-md";
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-steel-200 hover:text-white hover:bg-steel-800/60";
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        // Toggle PDF Page/Line Info Popover
+        function toggleInfoPopover() {
+            const pop = document.getElementById('info-popover');
+            pop.classList.toggle('hidden');
+        }
+
+        // Jump from Quiz Question Info directly to the corresponding Study Notes section
+        function jumpToNotesSection() {
+            const q = questions[currentIdx];
+            document.getElementById('info-popover').classList.add('hidden');
+            switchTab('notes');
+            setTimeout(() => {
+                const el = document.getElementById(q.secId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 80);
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const q = questions[currentIdx];
+            const selected = userAnswers[currentIdx] || null;
+
+            // Update Progress & Score
+            const answeredKeys = Object.keys(userAnswers);
+            let correctCount = 0;
+            answeredKeys.forEach(k => {
+                if (userAnswers[k] === questions[k].correctAnswer) correctCount++;
+            });
+            const pct = answeredKeys.length > 0 ? Math.round((correctCount / answeredKeys.length) * 100) : 0;
+
+            document.getElementById('quiz-progress-label').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+            document.getElementById('quiz-score-label').textContent = `${correctCount} Correct (${pct}%)`;
+            document.getElementById('header-score-pill').textContent = `${correctCount}/${questions.length}`;
+            document.getElementById('sidebar-answered-count').textContent = `${answeredKeys.length}/${questions.length} Answered`;
+
+            // Update Badges & Info Popover
+            document.getElementById('q-chapter-badge').textContent = q.chapter;
+            document.getElementById('q-subtopic-badge').textContent = q.subtopic;
+            document.getElementById('info-chapter').textContent = q.chapter;
+            document.getElementById('info-subtopic').textContent = q.subtopic;
+            document.getElementById('info-location').textContent = `Page ${q.page}, ${q.lines}`;
+
+            // Question Text
+            document.getElementById('q-text').textContent = `${currentIdx + 1}. ${q.question}`;
+
+            // Render Options
+            const optsContainer = document.getElementById('q-options');
+            optsContainer.innerHTML = '';
+
+            q.options.forEach(optText => {
+                const letter = optText.charAt(0);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+
+                let baseClasses = "w-full text-left p-4 rounded-xl border-2 font-semibold text-sm md:text-base transition-all flex items-center justify-between ";
+
+                if (!selected) {
+                    baseClasses += "bg-steel-50/50 border-steel-200 text-steel-950 hover:border-amber-500 hover:bg-amber-50/60";
+                } else {
+                    if (letter === q.correctAnswer) {
+                        baseClasses += "bg-emerald-50 border-emerald-500 text-emerald-950 shadow-sm";
+                    } else if (letter === selected && letter !== q.correctAnswer) {
+                        baseClasses += "bg-rose-50 border-rose-500 text-rose-950";
+                    } else {
+                        baseClasses += "bg-gray-50 border-gray-200 text-gray-400 opacity-70";
+                    }
+                }
+
+                btn.className = baseClasses;
+                btn.disabled = !!selected;
+                btn.onclick = () => selectOption(letter);
+
+                const spanText = document.createElement('span');
+                spanText.textContent = optText;
+                btn.appendChild(spanText);
+
+                if (selected) {
+                    const icon = document.createElement('i');
+                    if (letter === q.correctAnswer) {
+                        icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                    } else if (letter === selected) {
+                        icon.className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+                    }
+                    btn.appendChild(icon);
+                }
+
+                optsContainer.appendChild(btn);
+            });
+
+            // Explanation Box
+            const expBox = document.getElementById('q-explanation-box');
+            if (selected) {
+                const isCorrect = selected === q.correctAnswer;
+                expBox.className = `rounded-xl p-4 mb-6 border-l-4 animate-fade ${isCorrect ? 'bg-emerald-50 border-emerald-600' : 'bg-amber-50 border-amber-600'}`;
+                document.getElementById('q-feedback-title').innerHTML = isCorrect
+                    ? '<i class="fa-solid fa-check-circle text-emerald-600 mr-1.5"></i>Spot On! Correct Answer'
+                    : `<i class="fa-solid fa-triangle-exclamation text-rose-600 mr-1.5"></i>Incorrect — Correct Answer is ${q.correctAnswer}`;
+                document.getElementById('q-explanation-citation').innerHTML = `<i class="fa-regular fa-file-pdf mr-1 text-amber-700"></i>PDF Page ${q.page}, ${q.lines}`;
+                document.getElementById('q-explanation-text').textContent = q.explanation;
+            } else {
+                expBox.className = 'hidden';
+            }
+
+            // Prev / Next button state
+            document.getElementById('btn-prev').disabled = currentIdx === 0;
+            document.getElementById('btn-next').disabled = currentIdx === questions.length - 1;
+        }
+
+        // Handle Option Selection
+        function selectOption(letter) {
+            if (userAnswers[currentIdx]) return;
+            userAnswers[currentIdx] = letter;
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentIdx = index;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            currentIdx = 0;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        // Render Right Sidebar Grouped by Chapter
+        function renderSidebar() {
+            const container = document.getElementById('sidebar-topics-container');
+            container.innerHTML = '';
+
+            // Group questions by Chapter
+            const chaptersMap = {};
+            questions.forEach((q, idx) => {
+                if (!chaptersMap[q.chapter]) {
+                    chaptersMap[q.chapter] = [];
+                }
+                chaptersMap[q.chapter].push({ ...q, idx });
+            });
+
+            Object.keys(chaptersMap).sort().forEach(chapterTitle => {
+                const groupItems = chaptersMap[chapterTitle];
+                const sectionEl = document.createElement('div');
+                sectionEl.className = "bg-white p-3.5 rounded-xl border border-steel-200 shadow-sm";
+
+                // Group Header with question count
+                const headerEl = document.createElement('div');
+                headerEl.className = "flex items-center justify-between border-b border-steel-100 pb-2 mb-2.5";
+                headerEl.innerHTML = `
+                    <span class="font-extrabold text-steel-900 text-xs">${chapterTitle}</span>
+                    <span class="text-[10px] font-bold bg-steel-100 text-steel-700 px-2 py-0.5 rounded-full">${groupItems.length} Qs</span>
+                `;
+                sectionEl.appendChild(headerEl);
+
+                // Grid of question buttons
+                const gridEl = document.createElement('div');
+                gridEl.className = "grid grid-cols-6 gap-1.5";
+
+                groupItems.forEach(item => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    const ans = userAnswers[item.idx];
+                    const isCurrent = item.idx === currentIdx;
+
+                    let cls = "h-8 rounded-lg font-bold text-xs transition-all flex items-center justify-center ";
+                    if (ans) {
+                        if (ans === item.correctAnswer) {
+                            cls += "bg-emerald-600 text-white ";
+                        } else {
+                            cls += "bg-rose-600 text-white ";
+                        }
+                    } else {
+                        cls += "bg-steel-100 text-steel-800 hover:bg-steel-200 ";
+                    }
+
+                    if (isCurrent) {
+                        cls += "ring-2 ring-amber-500 ring-offset-1 font-black scale-105";
+                    }
+
+                    btn.className = cls;
+                    btn.textContent = item.idx + 1;
+                    btn.title = `${item.subtopic} (Page ${item.page}, ${item.lines}): ${item.question}`;
+                    btn.onclick = () => jumpToQuestion(item.idx);
+                    gridEl.appendChild(btn);
+                });
+
+                sectionEl.appendChild(gridEl);
+                container.appendChild(sectionEl);
+            });
+        }
+
+        // Keyboard Shortcuts for Quiz Mode
+        window.addEventListener('keydown', (e) => {
+            const quizVisible = !document.getElementById('view-quiz').classList.contains('hidden');
+            if (!quizVisible) return;
+
+            const key = e.key.toUpperCase();
+            if (['A', 'B', 'C', 'D'].includes(key)) {
+                selectOption(key);
+            } else if (e.key === 'ArrowRight') {
+                nextQuestion();
+            } else if (e.key === 'ArrowLeft') {
+                prevQuestion();
+            }
+        });
+
+        // Initialize Quiz State on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+            renderSidebar();
+        });
+    </script>
+</body>
+</html>
