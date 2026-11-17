@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welding Master — Complete Tutorial Notes & Interactive Quiz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        metal: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        weld: {
+                            400: '#fbbf24', // Amber 400
+                            500: '#f59e0b', // Amber 500
+                            600: '#ea580c', // Orange 600
+                        },
+                        arc: {
+                            300: '#67e8f9', // Cyan 300
+                            400: '#22d3ee', // Cyan 400
+                            500: '#06b6d4', // Cyan 500
+                            600: '#0284c7', // Sky 600
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .metal-pattern {
+            background-color: #0f172a;
+            background-image: radial-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .pdf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            background-color: #fffbeb;
+            color: #b45309;
+            border: 1px solid #fde68a;
+            letter-spacing: 0.02em;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.22s ease-out forwards;
+        }
+        .glow-arc {
+            filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.8));
+        }
+        .glow-weld {
+            filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.7));
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-arc-300 selection:text-metal-950">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="metal-pattern text-white shadow-xl sticky top-0 z-50 border-b-4 border-weld-500">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-weld-500 text-metal-950 flex items-center justify-center shadow-md font-black text-xl">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-white">Welding Master</h1>
+                        <span class="text-xs bg-arc-500/20 border border-arc-400/40 text-arc-300 px-2 py-0.5 rounded-full font-semibold">Sep 2026</span>
+                    </div>
+                    <p class="text-xs text-metal-300">Prepared by Dr. Sumanta Banerjee &bull; Complete Notes &amp; 45-MCQ Bank</p>
+                </div>
+            </div>
+
+            <!-- Main Mode Switcher Tabs -->
+            <div class="flex items-center bg-metal-950/80 p-1.5 rounded-xl border border-metal-700">
+                <button id="tab-btn-notes" onclick="switchTab('notes')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-weld-500 text-metal-950 shadow-md">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Study Notes &amp; Diagrams</span>
+                </button>
+                <button id="tab-btn-quiz" onclick="switchTab('quiz')" class="px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-metal-300 hover:text-white hover:bg-metal-800/60">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Interactive Quiz (45 MCQs)</span>
+                    <span id="header-score-pill" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-metal-800 text-weld-400 border border-metal-600">0/45</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: COMPLETE STUDY NOTES (CUSTOM SVG DIAGRAMS)                     -->
+    <!-- ===================================================================== -->
+    <main id="view-notes" class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- Sticky Quick Section Jumper Bar -->
+        <div class="bg-white/95 backdrop-blur border border-metal-200 rounded-2xl p-3 mb-6 shadow-sm sticky top-[72px] z-30 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+                <span class="text-metal-600 px-2 py-1 uppercase tracking-wider"><i class="fa-solid fa-compass mr-1 text-weld-600"></i>Sections:</span>
+                <a href="#sec-1" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">1. Overview</a>
+                <a href="#sec-2" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">2. MMAW</a>
+                <a href="#sec-3" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">3. Electrodes &amp; Flux</a>
+                <a href="#sec-4" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">4. Equipment</a>
+                <a href="#sec-5" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">5. Joints</a>
+                <a href="#sec-6" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">6. AC vs DC</a>
+                <a href="#sec-7" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">7. Safety</a>
+                <a href="#sec-8" class="px-2.5 py-1.5 rounded-lg bg-metal-100 hover:bg-weld-500 hover:text-metal-950 text-metal-800 transition">8. Double V Joint</a>
+            </div>
+            <button onclick="switchTab('quiz')" class="text-xs font-bold bg-metal-900 hover:bg-metal-950 text-weld-400 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 ml-auto shadow-sm">
+                <span>Quiz Mastery</span>
+                <i class="fa-solid fa-bolt text-arc-400"></i>
+            </button>
+        </div>
+
+        <!-- Document Banner -->
+        <div class="bg-gradient-to-r from-metal-900 via-metal-800 to-metal-900 text-white rounded-2xl p-6 md:p-8 mb-8 shadow-lg border border-metal-700 relative overflow-hidden">
+            <div class="relative z-10 max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-weld-500/20 border border-weld-400/30 text-weld-400 text-xs font-bold mb-3">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>VERBATIM RECREATION WITH TECHNICAL DIAGRAMS &bull; PAGES 1 TO 7</span>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-extrabold font-serif mb-2">Welding Fundamentals: Complete Tutorial</h2>
+                <p class="text-metal-300 text-sm md:text-base leading-relaxed">
+                    Explore the depths of MMAW, from intricate arc plasma dynamics and flux decomposition to joint preparation, AWS classifications, and critical safety protocols. Enhanced with custom high-fidelity SVG schematics.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- SECTION 1: DEFINITION & OVERVIEW                  -->
+        <!-- ================================================= -->
+        <section id="sec-1" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">1</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">1. Definition &amp; Overview of Welding</h3>
+                        <p class="text-xs text-metal-500">Coalescence, Metallurgical Bonds, and Fusion vs. Solid-State</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 1 &bull; Lines 5–22</span>
+            </div>
+
+            <!-- Definition Box -->
+            <div class="bg-metal-50 border-l-4 border-weld-500 p-5 rounded-r-xl mb-6">
+                <p class="text-metal-900 leading-relaxed mb-2 text-sm">
+                    <strong>What is Welding? <span class="text-xs font-semibold text-weld-600">(Page 1, Lines 5–10)</span></strong><br>
+                    Welding is a <strong>permanent materials-joining process</strong> that produces <strong>coalescence (fusion)</strong> of workpieces by heating them to a suitable temperature. It can occur <strong>with or without pressure</strong>, and <strong>with or without filler material</strong>.
+                </p>
+                <p class="text-metal-700 text-sm leading-relaxed">
+                    The fundamental principle involves melting the <strong>faying surfaces</strong> of the base materials so they intermix and, upon cooling, form a strong <strong>metallurgical bond</strong>. This high-temperature melting distinguishes welding from lower-temperature processes like brazing and soldering.
+                </p>
+            </div>
+
+            <!-- Fusion vs Solid-State -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="border border-metal-200 rounded-xl p-5 bg-gradient-to-b from-white to-metal-50">
+                    <h4 class="font-extrabold text-metal-900 text-base mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-weld-500"></i> Fusion Welding
+                    </h4>
+                    <ul class="text-xs text-metal-800 space-y-2 mb-4">
+                        <li><strong>Key Feature:</strong> Melts the base materials without external pressure.</li>
+                        <li><strong>Examples:</strong>
+                            <ul class="ml-4 mt-1 space-y-1 list-disc text-metal-600">
+                                <li>Arc Welding (MMAW, GMAW/MIG, GTAW/TIG, SAW)</li>
+                                <li>Gas Welding (Oxy-Acetylene)</li>
+                                <li>Energy Beam (Laser, Electron Beam)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <svg viewBox="0 0 200 80" class="w-full h-20 bg-metal-900 rounded-lg p-2">
+                        <rect x="20" y="40" width="70" height="20" fill="#334155"/>
+                        <rect x="110" y="40" width="70" height="20" fill="#334155"/>
+                        <ellipse cx="100" cy="50" rx="30" ry="12" fill="#f59e0b" class="glow-weld"/>
+                        <path d="M100,10 L100,45" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" class="glow-arc"/>
+                        <text x="100" y="75" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="bold">Base Metal Melted &amp; Fused</text>
+                    </svg>
+                </div>
+
+                <div class="border border-metal-200 rounded-xl p-5 bg-gradient-to-b from-white to-metal-50">
+                    <h4 class="font-extrabold text-metal-900 text-base mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-compress text-arc-500"></i> Solid-State Welding
+                    </h4>
+                    <ul class="text-xs text-metal-800 space-y-2 mb-4">
+                        <li><strong>Key Feature:</strong> Joining occurs via heat and pressure <strong>without</strong> melting the base material.</li>
+                        <li><strong>Examples:</strong>
+                            <ul class="ml-4 mt-1 space-y-1 list-disc text-metal-600">
+                                <li>Friction Welding</li>
+                                <li>Ultrasonic Welding</li>
+                                <li>Diffusion Bonding</li>
+                                <li>Forge Welding</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <svg viewBox="0 0 200 80" class="w-full h-20 bg-metal-900 rounded-lg p-2">
+                        <rect x="20" y="30" width="70" height="20" fill="#475569"/>
+                        <rect x="110" y="30" width="70" height="20" fill="#475569"/>
+                        <!-- Friction / Pressure arrows -->
+                        <path d="M70,40 L95,40" stroke="#f8fafc" stroke-width="2" marker-end="url(#arrow)"/>
+                        <path d="M130,40 L105,40" stroke="#f8fafc" stroke-width="2" marker-end="url(#arrow)"/>
+                        <circle cx="100" cy="40" r="15" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="2 2" class="glow-weld"/>
+                        <text x="100" y="75" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="bold">Heat + Pressure (No Melting)</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 2: MMAW / SMAW FUNDAMENTALS               -->
+        <!-- ================================================= -->
+        <section id="sec-2" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">2</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">2. Manual Metal Arc Welding (MMAW) Fundamentals</h3>
+                        <p class="text-xs text-metal-500">Cross-sectional anatomy of the shielded metal arc process</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 2 &bull; Lines 1–11</span>
+            </div>
+
+            <p class="text-sm text-metal-700 mb-6">
+                <strong>MMAW (or SMAW)</strong> is a manual arc welding process that uses a consumable electrode coated with flux. The intense heat of the arc (<strong>3,000&deg;C to 4,000&deg;C</strong>) melts both the electrode and the base metal. The coating decomposes to provide a protective gaseous shield and a slag blanket over the hot weld metal.
+            </p>
+
+            <!-- HIGHLY DETAILED LARGE SVG: Arc Welding Cross Section -->
+            <div class="bg-metal-950 rounded-2xl p-5 border border-metal-800 shadow-inner relative overflow-hidden">
+                <div class="text-xs font-bold uppercase tracking-wider text-arc-400 mb-4 text-center z-10 relative">
+                    Technical Schematic: MMAW / SMAW Process Anatomy
+                </div>
+                <svg viewBox="0 0 800 400" class="w-full h-auto z-10 relative">
+                    <defs>
+                        <!-- Arc Glow Gradients -->
+                        <radialGradient id="arcGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="40%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                            <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="poolGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#fef3c7"/>
+                            <stop offset="30%" stop-color="#f59e0b"/>
+                            <stop offset="80%" stop-color="#ea580c" stop-opacity="0.8"/>
+                            <stop offset="100%" stop-color="#7c2d12" stop-opacity="0"/>
+                        </radialGradient>
+                        <linearGradient id="gasShield" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#cbd5e1" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Base Metal -->
+                    <path d="M 50 280 L 750 280 L 750 380 L 50 380 Z" fill="#334155" stroke="#475569" stroke-width="2"/>
+                    <path d="M 50 280 L 400 280 C 400 320, 550 320, 550 280 L 750 280" fill="none" stroke="#1e293b" stroke-width="4"/>
+                    
+                    <!-- Solidified Weld Metal -->
+                    <path d="M 50 270 C 150 260, 250 260, 350 275 C 320 310, 200 310, 50 310 Z" fill="#64748b"/>
+                    
+                    <!-- Solidified Slag Blanket -->
+                    <path d="M 50 260 C 150 250, 250 250, 340 265 L 350 275 C 250 260, 150 260, 50 270 Z" fill="#1e293b"/>
+
+                    <!-- Molten Weld Pool -->
+                    <ellipse cx="450" cy="285" rx="100" ry="30" fill="url(#poolGlow)"/>
+
+                    <!-- Gaseous Shield (Cloud) -->
+                    <path d="M 320 280 C 300 200, 350 120, 480 120 C 600 120, 620 200, 580 280 Z" fill="url(#gasShield)"/>
+
+                    <!-- Consumable Electrode (Angled) -->
+                    <g transform="rotate(30, 450, 240)">
+                        <!-- Flux Coating -->
+                        <rect x="420" y="20" width="60" height="200" fill="#94a3b8" stroke="#cbd5e1" stroke-width="2"/>
+                        <!-- Core Wire -->
+                        <rect x="435" y="0" width="30" height="225" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1"/>
+                        <!-- Flux melting / crater -->
+                        <path d="M420 220 L435 225 L465 225 L480 220 Z" fill="#94a3b8"/>
+                        <path d="M435 225 C450 240, 465 225, 465 225 Z" fill="#e2e8f0"/>
+                    </g>
+
+                    <!-- Electric Arc Plasma -->
+                    <circle cx="450" cy="255" r="40" fill="url(#arcGlow)"/>
+                    <path d="M 425 240 L 450 280 L 470 240 Z" fill="#ffffff" opacity="0.8"/>
+                    
+                    <!-- Metal Droplets transfer -->
+                    <circle cx="445" cy="250" r="4" fill="#fef3c7" class="glow-weld"/>
+                    <circle cx="455" cy="265" r="5" fill="#fef3c7" class="glow-weld"/>
+
+                    <!-- CALLOUTS & LABELS -->
+                    <!-- Core Wire -->
+                    <line x1="330" y1="40" x2="380" y2="40" stroke="#f8fafc" stroke-width="1.5"/>
+                    <line x1="380" y1="40" x2="410" y2="70" stroke="#f8fafc" stroke-width="1.5"/>
+                    <text x="320" y="44" text-anchor="end" fill="#f8fafc" font-size="14" font-weight="bold">Metallic Core Wire</text>
+
+                    <!-- Flux Coating -->
+                    <line x1="280" y1="90" x2="330" y2="90" stroke="#cbd5e1" stroke-width="1.5"/>
+                    <line x1="330" y1="90" x2="380" y2="120" stroke="#cbd5e1" stroke-width="1.5"/>
+                    <text x="270" y="94" text-anchor="end" fill="#cbd5e1" font-size="14" font-weight="bold">Flux Coating</text>
+
+                    <!-- Gaseous Shield -->
+                    <line x1="620" y1="140" x2="670" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+                    <line x1="620" y1="140" x2="570" y2="170" stroke="#94a3b8" stroke-width="1.5"/>
+                    <text x="680" y="144" fill="#94a3b8" font-size="14" font-weight="bold">Gaseous Shield (CO₂, H₂)</text>
+
+                    <!-- Electric Arc -->
+                    <line x1="550" y1="210" x2="600" y2="210" stroke="#22d3ee" stroke-width="1.5"/>
+                    <line x1="550" y1="210" x2="480" y2="250" stroke="#22d3ee" stroke-width="1.5"/>
+                    <text x="610" y="214" fill="#22d3ee" font-size="14" font-weight="bold">Electric Arc (3,000°C - 4,000°C)</text>
+
+                    <!-- Molten Weld Pool -->
+                    <line x1="580" y1="285" x2="630" y2="285" stroke="#f59e0b" stroke-width="1.5"/>
+                    <text x="640" y="289" fill="#f59e0b" font-size="14" font-weight="bold">Molten Weld Pool</text>
+
+                    <!-- Slag Blanket -->
+                    <line x1="180" y1="200" x2="230" y2="200" stroke="#475569" stroke-width="1.5"/>
+                    <line x1="230" y1="200" x2="280" y2="260" stroke="#475569" stroke-width="1.5"/>
+                    <text x="170" y="204" text-anchor="end" fill="#94a3b8" font-size="14" font-weight="bold">Solidified Slag Blanket</text>
+
+                    <!-- Weld Metal & Base Metal -->
+                    <text x="150" y="300" fill="#f8fafc" font-size="14" font-weight="bold">Solidified Weld Metal</text>
+                    <text x="650" y="350" fill="#cbd5e1" font-size="14" font-weight="bold">Base Metal</text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 3: ELECTRODES & FLUX                      -->
+        <!-- ================================================= -->
+        <section id="sec-3" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">3</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">3. Electrode Classification &amp; Functions of Flux</h3>
+                        <p class="text-xs text-metal-500">AWS Codes (E7018) and the 7 critical roles of the flux coating</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 2 (Lines 12–35) &amp; Page 3 (Lines 1–9)</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- AWS Classification -->
+                <div>
+                    <h4 class="font-extrabold text-metal-900 text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-code text-weld-500"></i> AWS Classification Breakdown
+                    </h4>
+                    <div class="bg-metal-900 text-white rounded-xl p-5 border border-metal-800 font-mono shadow-sm">
+                        <div class="flex justify-center mb-6">
+                            <span class="text-4xl font-black text-white">E</span>
+                            <span class="text-4xl font-black text-arc-400">70</span>
+                            <span class="text-4xl font-black text-weld-400">1</span>
+                            <span class="text-4xl font-black text-emerald-400">8</span>
+                        </div>
+                        <ul class="text-xs space-y-3">
+                            <li class="flex items-start gap-2">
+                                <span class="font-black text-white w-6 text-center text-sm">E</span>
+                                <div><strong class="text-metal-300">Electrode:</strong> Indicates a consumable arc welding electrode.</div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-black text-arc-400 w-6 text-center text-sm">70</span>
+                                <div><strong class="text-metal-300">Tensile Strength:</strong> Minimum tensile strength in thousands of psi (e.g., 70,000 psi).</div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-black text-weld-400 w-6 text-center text-sm">1</span>
+                                <div><strong class="text-metal-300">Welding Position:</strong> 1 = All positions. (2 = Flat/Horizontal only).</div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="font-black text-emerald-400 w-6 text-center text-sm">8</span>
+                                <div><strong class="text-metal-300">Coating/Current:</strong> 8 = Low hydrogen, AC/DC+. (0 = High cellulose, DC+).</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Types by Coating -->
+                    <div class="mt-5 space-y-2 text-xs">
+                        <div class="p-3 bg-metal-50 border border-metal-200 rounded-lg"><strong>Cellulosic (EXX10):</strong> Deep penetration, highly gaseous shield.</div>
+                        <div class="p-3 bg-metal-50 border border-metal-200 rounded-lg"><strong>Rutile (EXX20):</strong> Smooth arc, good slag detachability.</div>
+                        <div class="p-3 bg-metal-50 border border-metal-200 rounded-lg"><strong>Basic/Low-Hydrogen (EXX18):</strong> Excellent crack resistance, for high-strength steels.</div>
+                    </div>
+                </div>
+
+                <!-- 7 Functions of Flux -->
+                <div>
+                    <h4 class="font-extrabold text-metal-900 text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-arc-500"></i> 7 Critical Functions of Flux
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">1. Arc Stabilization</strong>
+                            Contains ionizing elements (potassium, sodium) to maintain a steady arc.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">2. Gaseous Shielding</strong>
+                            Produces CO₂/Hydrogen to displace O₂/N₂, preventing porosity.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">3. Slag Formation</strong>
+                            Melts to float on the pool, protecting metal from air.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">4. De-oxidation</strong>
+                            Ferro-manganese/silicon removes dissolved oxygen from molten metal.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">5. Alloying</strong>
+                            Adds Ni, Cr, Mo to improve mechanical properties and hardenability.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm">
+                            <strong class="block text-weld-600 mb-1">6. Bead Shape Control</strong>
+                            Influences fluidity and surface tension for a smooth profile.
+                        </div>
+                        <div class="p-3 bg-white border border-metal-200 rounded-xl shadow-sm sm:col-span-2">
+                            <strong class="block text-weld-600 mb-1">7. Insulation</strong>
+                            Slag slows down cooling, allowing trapped gases to escape and reducing hard zone formation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 4: EQUIPMENT REQUIRED                     -->
+        <!-- ================================================= -->
+        <section id="sec-4" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">4</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">4. Equipment Required for MMAW</h3>
+                        <p class="text-xs text-metal-500">Power sources, hand tools, and essential personal protective equipment (PPE)</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 3 &bull; Lines 10–25</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-car-battery text-3xl text-arc-500 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Power Source</strong>
+                    <span class="text-metal-600">Provides voltage/current (Transformer, Rectifier, Generator).</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-wand-sparkles text-3xl text-weld-500 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Electrode Holder</strong>
+                    <span class="text-metal-600">Spring-loaded clamp for gripping the electrode.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-plug text-3xl text-metal-500 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Earth Clamp</strong>
+                    <span class="text-metal-600">Attaches to workpiece to complete electrical circuit.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-bolt text-3xl text-weld-500 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Welding Cables</strong>
+                    <span class="text-metal-600">Heavy-duty insulated copper to handle high amperage.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-hammer text-3xl text-metal-700 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Chipping Hammer</strong>
+                    <span class="text-metal-600">Removes slag from the weld bead after solidification.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-brush text-3xl text-metal-500 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Wire Brush</strong>
+                    <span class="text-metal-600">Cleans weld surface before and between passes.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-brands fa-mandalorian text-3xl text-metal-900 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Welding Helmet</strong>
+                    <span class="text-metal-600">Filter lens (DIN 9-13) protecting from UV/IR/flash.</span>
+                </div>
+                <div class="border border-metal-200 rounded-xl p-4 flex flex-col items-center text-center bg-metal-50">
+                    <i class="fa-solid fa-mitten text-3xl text-weld-600 mb-2"></i>
+                    <strong class="text-metal-900 mb-1">Tongs &amp; PPE</strong>
+                    <span class="text-metal-600">Tongs for hot stubs. Leather gloves, apron, steel-toe boots.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 5: WELDING JOINTS                         -->
+        <!-- ================================================= -->
+        <section id="sec-5" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">5</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">5. Five Fundamental Types of Welding Joints</h3>
+                        <p class="text-xs text-metal-500">As classified by the American Welding Society (AWS)</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 3 &bull; Lines 26–34 &amp; Page 4 (Lines 1–2)</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <!-- 1. Butt Joint -->
+                <div class="border border-metal-200 rounded-xl p-4 bg-metal-50 flex flex-col items-center">
+                    <span class="font-extrabold text-metal-900 text-sm mb-3">1. Butt Joint</span>
+                    <svg viewBox="0 0 100 60" class="w-full h-16 bg-metal-800 rounded mb-3 p-1">
+                        <rect x="5" y="20" width="40" height="20" fill="#64748b"/>
+                        <rect x="55" y="20" width="40" height="20" fill="#64748b"/>
+                        <path d="M45,20 L55,20 L55,40 L45,40 Z" fill="#f59e0b" class="glow-weld"/>
+                    </svg>
+                    <p class="text-[11px] text-metal-600 text-center leading-tight">Two parts in the same plane joined edge-to-edge.</p>
+                </div>
+                <!-- 2. Lap Joint -->
+                <div class="border border-metal-200 rounded-xl p-4 bg-metal-50 flex flex-col items-center">
+                    <span class="font-extrabold text-metal-900 text-sm mb-3">2. Lap Joint</span>
+                    <svg viewBox="0 0 100 60" class="w-full h-16 bg-metal-800 rounded mb-3 p-1">
+                        <rect x="10" y="30" width="60" height="15" fill="#64748b"/>
+                        <rect x="30" y="15" width="60" height="15" fill="#475569"/>
+                        <!-- Fillet Weld -->
+                        <polygon points="30,30 20,30 30,20" fill="#f59e0b" class="glow-weld"/>
+                        <polygon points="70,30 80,30 70,40" fill="#f59e0b" class="glow-weld"/>
+                    </svg>
+                    <p class="text-[11px] text-metal-600 text-center leading-tight">Two overlapping parts joined on outside surfaces (fillet).</p>
+                </div>
+                <!-- 3. T-Joint -->
+                <div class="border border-metal-200 rounded-xl p-4 bg-metal-50 flex flex-col items-center">
+                    <span class="font-extrabold text-metal-900 text-sm mb-3">3. T-Joint</span>
+                    <svg viewBox="0 0 100 60" class="w-full h-16 bg-metal-800 rounded mb-3 p-1">
+                        <rect x="10" y="40" width="80" height="12" fill="#64748b"/>
+                        <rect x="42" y="8" width="16" height="32" fill="#475569"/>
+                        <polygon points="42,40 34,40 42,32" fill="#f59e0b" class="glow-weld"/>
+                        <polygon points="58,40 66,40 58,32" fill="#f59e0b" class="glow-weld"/>
+                    </svg>
+                    <p class="text-[11px] text-metal-600 text-center leading-tight">One part placed at a 90&deg; right angle to another.</p>
+                </div>
+                <!-- 4. Corner Joint -->
+                <div class="border border-metal-200 rounded-xl p-4 bg-metal-50 flex flex-col items-center">
+                    <span class="font-extrabold text-metal-900 text-sm mb-3">4. Corner Joint</span>
+                    <svg viewBox="0 0 100 60" class="w-full h-16 bg-metal-800 rounded mb-3 p-1">
+                        <rect x="20" y="10" width="15" height="35" fill="#64748b"/>
+                        <rect x="35" y="30" width="45" height="15" fill="#475569"/>
+                        <polygon points="35,10 45,10 45,20 35,20" fill="#f59e0b" class="glow-weld"/>
+                        <polygon points="35,30 35,45 20,45 20,30" fill="#f59e0b" class="glow-weld"/>
+                    </svg>
+                    <p class="text-[11px] text-metal-600 text-center leading-tight">Forms an "L" shape at the edge of both plates.</p>
+                </div>
+                <!-- 5. Edge Joint -->
+                <div class="border border-metal-200 rounded-xl p-4 bg-metal-50 flex flex-col items-center">
+                    <span class="font-extrabold text-metal-900 text-sm mb-3">5. Edge Joint</span>
+                    <svg viewBox="0 0 100 60" class="w-full h-16 bg-metal-800 rounded mb-3 p-1">
+                        <rect x="25" y="20" width="20" height="35" fill="#64748b"/>
+                        <rect x="55" y="20" width="20" height="35" fill="#475569"/>
+                        <path d="M25,20 Q50,5 75,20 Z" fill="#f59e0b" class="glow-weld"/>
+                    </svg>
+                    <p class="text-[11px] text-metal-600 text-center leading-tight">Plates placed side-by-side, welded on the edge surface.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 6: AC VS DC WELDING                       -->
+        <!-- ================================================= -->
+        <section id="sec-6" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">6</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">6. AC Welding vs. DC Welding</h3>
+                        <p class="text-xs text-metal-500">Characteristics based on polarity, arc blow, and applications</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 4 &bull; Lines 4–24</span>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-metal-200 shadow-sm">
+                <table class="min-w-full text-left text-xs md:text-sm">
+                    <thead class="bg-metal-900 text-white uppercase text-xs">
+                        <tr>
+                            <th class="py-3 px-4 w-1/5">Parameter</th>
+                            <th class="py-3 px-4 w-2/5 border-l border-metal-700">AC Welding (Alternating Current)</th>
+                            <th class="py-3 px-4 w-2/5 border-l border-metal-700 text-arc-300">DC Welding (Direct Current)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-metal-200 bg-white">
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-metal-900">Current &amp; Polarity</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200">Alternates direction (50/60 Hz). No designated polarity (continuous change).</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 font-semibold text-metal-800">Flows one way. <strong>DCEN (Straight)</strong> = Electrode Negative. <strong>DCEP (Reverse)</strong> = Electrode Positive.</td>
+                        </tr>
+                        <tr class="bg-metal-50/50">
+                            <td class="py-2.5 px-4 font-bold text-metal-900">Arc Blow</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 text-emerald-700 font-semibold">Minimal to none; not affected by magnetic fields.</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 text-rose-700">Susceptible to arc blow (deflection) at high currents.</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-metal-900">Cost &amp; Stability</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200">Cheaper transformers; high efficiency. Less stable arc; spatter issues; needs high OCV.</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 font-semibold">More expensive (rectifiers). <strong>Very stable, smooth arc</strong>, easier to strike and maintain.</td>
+                        </tr>
+                        <tr class="bg-metal-50/50">
+                            <td class="py-2.5 px-4 font-bold text-metal-900">Penetration</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200">Medium, moderate penetration.</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 text-metal-800"><strong>DCEN:</strong> Deeper penetration.<br><strong>DCEP:</strong> Higher heat on work, shallow penetration (cleaning action).</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-metal-900">Applications</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200">Flat/horizontal positions, large industrial installations. Rutile/basic electrodes.</td>
+                            <td class="py-2.5 px-4 border-l border-metal-200 font-bold text-weld-600">Positional welding (vertical/overhead), thin sheets, critical jobs. Low-hydrogen electrodes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 7: SAFETY PRECAUTIONS                     -->
+        <!-- ================================================= -->
+        <section id="sec-7" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">7</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">7. Safety Precautions in the Welding Shop</h3>
+                        <p class="text-xs text-metal-500">PPE, Environmental, Electrical, Fire, and Gas safety</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 4 (Lines 25–35) &amp; Page 5 (Lines 1–23)</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div class="p-4 rounded-xl border border-metal-200 bg-metal-50">
+                    <h4 class="font-extrabold text-metal-900 mb-2 uppercase flex items-center gap-2"><i class="fa-solid fa-mask text-arc-500"></i> A. PPE</h4>
+                    <ul class="space-y-1.5 text-metal-700 list-disc ml-4">
+                        <li>Helmet shade lens <strong>(minimum #10)</strong>.</li>
+                        <li>Leather gloves, aprons, sleeves.</li>
+                        <li>High-top, steel-toe safety boots.</li>
+                        <li><strong>No synthetic fabrics</strong>; use 100% cotton/wool.</li>
+                    </ul>
+                </div>
+                <div class="p-4 rounded-xl border border-metal-200 bg-metal-50">
+                    <h4 class="font-extrabold text-metal-900 mb-2 uppercase flex items-center gap-2"><i class="fa-solid fa-wind text-arc-500"></i> B. Environmental</h4>
+                    <ul class="space-y-1.5 text-metal-700 list-disc ml-4">
+                        <li>Mechanical fume extraction for toxic gases (ozone).</li>
+                        <li><strong>P3 masks</strong> for galvanized/stainless steel.</li>
+                        <li>Clear combustibles within a <strong>35-foot (10m) radius</strong>.</li>
+                    </ul>
+                </div>
+                <div class="p-4 rounded-xl border border-rose-200 bg-rose-50">
+                    <h4 class="font-extrabold text-rose-900 mb-2 uppercase flex items-center gap-2"><i class="fa-solid fa-bolt text-rose-500"></i> C. Electrical</h4>
+                    <ul class="space-y-1.5 text-rose-800 list-disc ml-4">
+                        <li>Inspect cables daily for worn insulation.</li>
+                        <li><strong>Never use wet gloves or stand on wet floors.</strong></li>
+                        <li>Properly ground power source.</li>
+                        <li>Switch off when changing electrodes.</li>
+                    </ul>
+                </div>
+                <div class="p-4 rounded-xl border border-weld-200 bg-amber-50">
+                    <h4 class="font-extrabold text-weld-900 mb-2 uppercase flex items-center gap-2"><i class="fa-solid fa-fire-extinguisher text-weld-500"></i> D. Fire &amp; Gas</h4>
+                    <ul class="space-y-1.5 text-weld-800 list-disc ml-4">
+                        <li>CO₂/dry chemical extinguisher accessible.</li>
+                        <li>Stubs in designated <strong>metal containers</strong>.</li>
+                        <li>Mark workpiece "HOT"; <strong>30 min fire watch</strong>.</li>
+                        <li>Store cylinders upright, chained. Keep oil/grease away from oxygen.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 8: DOUBLE V BUTT JOINT PROCEDURE          -->
+        <!-- ================================================= -->
+        <section id="sec-8" class="bg-white rounded-2xl shadow-sm border border-metal-200 p-6 md:p-8 mb-8 scroll-mt-36">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-metal-200 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-metal-900 text-arc-400 flex items-center justify-center font-black text-lg">8</span>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-metal-900">8. Procedure: Making a Double V Butt Joint</h3>
+                        <p class="text-xs text-metal-500">Step-by-step for thick plates (>16mm): Edge Prep, Root Pass, and Back Gouging</p>
+                    </div>
+                </div>
+                <span class="pdf-badge"><i class="fa-regular fa-file-lines"></i> PDF Page 5 (Lines 24–28) &amp; Pages 6-7</span>
+            </div>
+
+            <!-- The 3 Step SVGs -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+                <!-- SVG 1: Edge Prep -->
+                <div class="border border-metal-200 bg-metal-950 rounded-xl p-4 flex flex-col items-center shadow-inner">
+                    <span class="text-xs font-bold text-arc-400 mb-2 uppercase tracking-wide">1. Edge Preparation</span>
+                    <svg viewBox="0 0 160 120" class="w-full h-24">
+                        <!-- Left Plate -->
+                        <polygon points="10,20 65,20 75,55 75,65 65,100 10,100" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Right Plate -->
+                        <polygon points="150,20 95,20 85,55 85,65 95,100 150,100" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Dimensions -->
+                        <path d="M65,20 A40,40 0 0,1 75,55" fill="none" stroke="#facc15" stroke-dasharray="2 2"/>
+                        <text x="50" y="45" fill="#fde047" font-size="8">30-35&deg;</text>
+                        <!-- Root Gap & Land -->
+                        <line x1="75" y1="60" x2="85" y2="60" stroke="#38bdf8" stroke-width="1"/>
+                        <text x="80" y="55" text-anchor="middle" fill="#bae6fd" font-size="7">2-3mm Gap</text>
+                        <text x="80" y="73" text-anchor="middle" fill="#bae6fd" font-size="7">1.5-2mm Land</text>
+                    </svg>
+                    <p class="text-[10px] text-metal-300 text-center mt-2 leading-tight">60&deg;-70&deg; included angle. Tacked every 150-200mm.</p>
+                </div>
+
+                <!-- SVG 2: Root Pass -->
+                <div class="border border-metal-200 bg-metal-950 rounded-xl p-4 flex flex-col items-center shadow-inner">
+                    <span class="text-xs font-bold text-arc-400 mb-2 uppercase tracking-wide">2. Root Pass (Side A)</span>
+                    <svg viewBox="0 0 160 120" class="w-full h-24">
+                        <!-- Plates -->
+                        <polygon points="10,20 65,20 75,55 75,65 65,100 10,100" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <polygon points="150,20 95,20 85,55 85,65 95,100 150,100" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Weld -->
+                        <path d="M72,50 C80,48 80,48 88,50 L86,68 C80,72 80,72 74,68 Z" fill="#f59e0b" class="glow-weld"/>
+                        <path d="M80,15 L80,45" stroke="#22d3ee" stroke-width="2" class="glow-arc"/>
+                        <text x="80" y="85" text-anchor="middle" fill="#fde68a" font-size="7">Slight reinforcement on Side B</text>
+                    </svg>
+                    <p class="text-[10px] text-metal-300 text-center mt-2 leading-tight">E6010/E7018. Weaving/stringer technique for full penetration.</p>
+                </div>
+
+                <!-- SVG 3: Back Gouging -->
+                <div class="border border-metal-200 bg-metal-950 rounded-xl p-4 flex flex-col items-center shadow-inner">
+                    <span class="text-xs font-bold text-rose-400 mb-2 uppercase tracking-wide">3. Back Gouging (Side B)</span>
+                    <svg viewBox="0 0 160 120" class="w-full h-24">
+                        <!-- Rotated Plates (Side B is UP) -->
+                        <!-- Left Plate -->
+                        <polygon points="10,100 65,100 75,65 75,55 65,20 10,20" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Right Plate -->
+                        <polygon points="150,100 95,100 85,65 85,55 95,20 150,20" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+                        <!-- Weld on Side A (now bottom) -->
+                        <path d="M68,90 C80,85 80,85 92,90 L95,100 L65,100 Z" fill="#64748b"/>
+                        <!-- U-Shape Gouge -->
+                        <path d="M65,20 C75,50 85,50 95,20" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3 2"/>
+                        <text x="80" y="55" text-anchor="middle" fill="#fda4af" font-size="7">U-shaped groove</text>
+                    </svg>
+                    <p class="text-[10px] text-metal-300 text-center mt-2 leading-tight">Crucial: Remove initial root pass to sound metal to avoid defects.</p>
+                </div>
+            </div>
+
+            <!-- Steps Details -->
+            <div class="bg-metal-50 p-5 rounded-xl border border-metal-200 text-xs text-metal-800 space-y-2">
+                <p><strong>Step 4: Filling &amp; Capping (Side A):</strong> Remove slag. Deposit filler passes (overlapping 50%). Final capping pass needs 1-2mm reinforcement, ripple-free.</p>
+                <p><strong>Step 6: Welding Side B:</strong> Clean the gouged U-groove. Deposit new root pass to fuse with Side A. Fill and cap identically.</p>
+                <p><strong>Step 7: Interpass Cleaning &amp; Temp:</strong> Wire-brush every 2-3 passes. Maintain interpass temperature (e.g., &lt;250&deg;C for low-alloy steels) to avoid hydrogen cracking.</p>
+                <p><strong>Step 8: Inspection:</strong> Cool slowly. Perform <strong>NDT (Radiography/UT)</strong>. Perfect joint = complete fusion, symmetrical reinforcement, <strong>no undercut</strong>.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: INTERACTIVE QUIZ & SUB-TOPIC SIDEBAR                           -->
+    <!-- ===================================================================== -->
+    <main id="view-quiz" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- LEFT COLUMN (8 Cols): Active Question -->
+            <div class="lg:col-span-8 flex flex-col gap-4">
+                
+                <!-- Stats Bar -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-metal-200 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-metal-500">Current Progress</div>
+                            <div id="quiz-progress-label" class="text-lg font-extrabold text-metal-900">Question 1 of 45</div>
+                        </div>
+                        <div class="h-8 w-px bg-metal-200"></div>
+                        <div>
+                            <div class="text-[11px] font-bold uppercase text-metal-500">Score</div>
+                            <div id="quiz-score-label" class="text-lg font-extrabold text-emerald-600">0 Correct (0%)</div>
+                        </div>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-3 py-1.5 rounded-lg border border-metal-300 bg-metal-50 hover:bg-metal-100 text-metal-800 text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Quiz
+                    </button>
+                </div>
+
+                <!-- Main Card -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-8 border-metal-800 border-x border-b border-metal-200 p-6 md:p-8 relative">
+                    
+                    <!-- Badges -->
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-5">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span id="q-chapter-badge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-metal-900 text-arc-400">
+                                1. Overview
+                            </span>
+                        </div>
+                        <!-- Info Popover -->
+                        <div class="relative">
+                            <button onclick="toggleInfoPopover()" class="px-3 py-1.5 rounded-xl bg-weld-50 hover:bg-weld-100 text-weld-900 border border-weld-300 text-xs font-bold flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-circle-info text-weld-600"></i> PDF Citation
+                            </button>
+                            <div id="info-popover" class="hidden absolute right-0 mt-2 w-72 bg-metal-950 text-white rounded-xl shadow-2xl p-4 z-30 border border-arc-500/40 animate-fade">
+                                <div class="flex justify-between border-b border-metal-800 pb-2 mb-2">
+                                    <span class="text-xs font-bold text-arc-400"><i class="fa-solid fa-file-pdf"></i> Reference</span>
+                                    <button onclick="toggleInfoPopover()" class="text-metal-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                                <div class="text-xs space-y-1">
+                                    <div class="text-metal-300">Section: <span id="info-chapter" class="font-bold text-white"></span></div>
+                                    <div class="text-metal-300">PDF Location: <span id="info-location" class="font-bold text-weld-400"></span></div>
+                                    <button onclick="jumpToNotesSection()" class="w-full mt-3 py-1.5 bg-metal-800 hover:bg-metal-700 text-arc-300 rounded font-bold transition">Open Notes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question -->
+                    <h2 id="q-text" class="text-xl md:text-2xl font-extrabold text-metal-950 leading-snug mb-6">
+                        Loading...
+                    </h2>
+                    <!-- Options -->
+                    <div id="q-options" class="space-y-3 mb-6"></div>
+                    <!-- Explanation -->
+                    <div id="q-explanation-box" class="hidden rounded-xl p-4 mb-6 border-l-4 animate-fade">
+                        <div class="flex justify-between gap-2 mb-1">
+                            <h4 id="q-feedback-title" class="font-extrabold text-sm"></h4>
+                        </div>
+                        <p id="q-explanation-text" class="text-sm leading-relaxed"></p>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex justify-between pt-4 border-t border-metal-100">
+                        <button id="btn-prev" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl font-bold text-sm border border-metal-300 text-metal-800 hover:bg-metal-100 disabled:opacity-40">
+                            <i class="fa-solid fa-arrow-left"></i> Previous
+                        </button>
+                        <span class="text-xs text-metal-400 hidden sm:inline self-center">Keys: <kbd>A-D</kbd>, <kbd>&larr;/&rarr;</kbd></span>
+                        <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl font-bold text-sm bg-metal-900 hover:bg-metal-950 text-arc-400 shadow-md disabled:opacity-40">
+                            Next <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR (4 Cols) -->
+            <aside class="lg:col-span-4 bg-white rounded-2xl shadow-md border border-metal-200 overflow-hidden sticky top-[76px]">
+                <div class="bg-metal-900 text-white p-4 border-b-2 border-weld-500 flex justify-between items-center">
+                    <h3 class="font-extrabold text-sm uppercase tracking-wider"><i class="fa-solid fa-table-cells text-arc-400 mr-2"></i>Questions</h3>
+                    <span id="sidebar-answered-count" class="text-xs font-bold text-arc-300">0/45</span>
+                </div>
+                <div id="sidebar-topics-container" class="p-4 max-h-[68vh] overflow-y-auto custom-scroll space-y-4 bg-metal-50">
+                    <!-- Dynamic Grid -->
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT APP LOGIC                                                  -->
+    <!-- ===================================================================== -->
+    <script>
+        // High-Yield 45 Questions (Categorized from Anki Data)
+        const questions = [
+            // Chapter 1: Overview
+            { id: 1, chapter: "1. Definition & Overview", secId: "sec-1", page: 1, lines: "5-10", question: "What type of process is welding defined as?", options: ["A) Temporary fastening", "B) Permanent materials-joining", "C) Semi-permanent adhesive", "D) Reversible bonding"], correctAnswer: "B", explanation: "Welding is defined as a permanent materials-joining process." },
+            { id: 2, chapter: "1. Definition & Overview", secId: "sec-1", page: 1, lines: "5-10", question: "What is the technical term for the fusion or joining of workpieces in welding?", options: ["A) Coalescence", "B) Coagulation", "C) Condensation", "D) Conduction"], correctAnswer: "A", explanation: "Welding produces coalescence (fusion) of workpieces." },
+            { id: 3, chapter: "1. Definition & Overview", secId: "sec-1", page: 1, lines: "5-10", question: "What type of bond is formed when the intermixed molten surfaces cool in welding?", options: ["A) Mechanical bond", "B) Chemical bond", "C) Metallurgical bond", "D) Adhesive bond"], correctAnswer: "C", explanation: "Upon cooling, they form a strong metallurgical bond." },
+            { id: 4, chapter: "1. Definition & Overview", secId: "sec-1", page: 1, lines: "11-22", question: "What is the key feature of Fusion Welding?", options: ["A) Joining via extreme pressure only", "B) Melting base materials without external pressure", "C) Using adhesives", "D) Using ultrasonic waves"], correctAnswer: "B", explanation: "The key feature is melting the base materials without external pressure." },
+            { id: 5, chapter: "1. Definition & Overview", secId: "sec-1", page: 1, lines: "11-22", question: "Which of the following is an example of a Solid-State Welding process?", options: ["A) Gas Metal Arc Welding", "B) Submerged Arc Welding", "C) Friction Welding", "D) Laser Beam Welding"], correctAnswer: "C", explanation: "Friction Welding is listed under Solid-State Welding, meaning no base metal is melted." },
+            
+            // Chapter 2: MMAW Fundamentals
+            { id: 6, chapter: "2. MMAW Fundamentals", secId: "sec-2", page: 2, lines: "1-11", question: "To which broad category does Manual Metal Arc Welding (MMAW) belong?", options: ["A) Solid-State Welding", "B) Fusion Welding", "C) Brazing", "D) Soldering"], correctAnswer: "B", explanation: "MMAW is a subset of Arc Welding under the Fusion category." },
+            { id: 7, chapter: "2. MMAW Fundamentals", secId: "sec-2", page: 2, lines: "1-11", question: "Approximately what temperature is reached by the electric arc in MMAW?", options: ["A) 1,000°C to 2,000°C", "B) 3,000°C to 4,000°C", "C) 5,000°C to 6,000°C", "D) 10,000°C to 12,000°C"], correctAnswer: "B", explanation: "The intense heat of the arc is approximately 3,000°C to 4,000°C." },
+            { id: 8, chapter: "2. MMAW Fundamentals", secId: "sec-2", page: 2, lines: "1-11", question: "What happens to the flux coating on the electrode during MMAW?", options: ["A) It remains solid", "B) It dissolves into the base metal", "C) It decomposes to provide a gaseous shield and slag", "D) It evaporates completely without residue"], correctAnswer: "C", explanation: "The coating decomposes to provide a protective gaseous shield and slag blanket." },
+            
+            // Chapter 3: Electrodes & Flux
+            { id: 9, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "12-25", question: "In the AWS electrode classification E7018, what does the 'E' stand for?", options: ["A) Extra", "B) Electricity", "C) Electrode", "D) Energy"], correctAnswer: "C", explanation: "'E' stands for Electrode." },
+            { id: 10, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "12-25", question: "In the AWS classification E6010, what do the first two digits '60' represent?", options: ["A) Length in mm", "B) Weight in grams", "C) Tensile strength in thousands of psi", "D) Coating thickness"], correctAnswer: "C", explanation: "The first two digits indicate Tensile strength (e.g., 60 = 60,000 psi)." },
+            { id: 11, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "12-25", question: "What does a third digit of '1' indicate in an AWS electrode code?", options: ["A) Flat/Horizontal only", "B) Vertical only", "C) All positions", "D) Overhead only"], correctAnswer: "C", explanation: "1 = All positions. (2 would mean Flat/Horizontal only)." },
+            { id: 12, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "12-25", question: "Which electrode type is noted for excellent crack resistance and used for high-strength steels?", options: ["A) Cellulosic", "B) Basic/Low-Hydrogen (EXX18)", "C) Rutile", "D) Oxidizing"], correctAnswer: "B", explanation: "Basic/Low-Hydrogen (EXX18) has excellent crack resistance for high-strength steels." },
+            { id: 13, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "12-25", question: "Which electrode type provides a smooth arc and good slag detachability?", options: ["A) Cellulosic", "B) Rutile (EXX20)", "C) Low-Hydrogen", "D) Tungsten"], correctAnswer: "B", explanation: "Rutile (EXX20) provides a smooth arc and good slag detachability." },
+            { id: 14, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "26-35", question: "Which elements are included in the flux to help maintain a steady, stable arc?", options: ["A) Nickel and Chromium", "B) Ionizing elements like potassium and sodium", "C) Argon and Helium", "D) Carbon and Iron"], correctAnswer: "B", explanation: "Flux contains ionizing elements (e.g., potassium, sodium) to maintain a steady, stable arc." },
+            { id: 15, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 2, lines: "26-35", question: "How does the gaseous shield from the flux protect the weld pool?", options: ["A) By cooling it rapidly", "B) By displacing atmospheric oxygen and nitrogen", "C) By adding carbon to the steel", "D) By making the arc brighter"], correctAnswer: "B", explanation: "It displaces atmospheric oxygen and nitrogen, preventing oxidation and porosity." },
+            { id: 16, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 3, lines: "1-9", question: "Why is it beneficial that the slag layer slows down the cooling rate of the weld?", options: ["A) It increases hardness", "B) It allows trapped gases to escape and reduces hard zone formation", "C) It speeds up the welding process", "D) It saves electricity"], correctAnswer: "B", explanation: "The slag layer acts as insulation, slowing down cooling, allowing trapped gases to escape and reducing hard zone formation." },
+            { id: 17, chapter: "3. Electrodes & Flux", secId: "sec-3", page: 3, lines: "1-9", question: "What is the specific function of ferro-manganese and ferro-silicon in the flux?", options: ["A) Alloying", "B) Arc stabilization", "C) De-oxidation (removing dissolved oxygen)", "D) Slag detachment"], correctAnswer: "C", explanation: "They act as de-oxidizers to remove dissolved oxygen from the molten metal." },
+
+            // Chapter 4: Equipment
+            { id: 18, chapter: "4. Equipment & Joints", secId: "sec-4", page: 3, lines: "10-25", question: "Which piece of equipment is a spring-loaded clamp that securely grips the electrode?", options: ["A) Work Clamp", "B) Tongs", "C) Electrode Holder", "D) Chipping Hammer"], correctAnswer: "C", explanation: "The Electrode Holder is a spring-loaded clamp that securely grips the electrode." },
+            { id: 19, chapter: "4. Equipment & Joints", secId: "sec-4", page: 3, lines: "10-25", question: "What is the primary use of a steel wire brush in MMAW?", options: ["A) Painting the workpiece", "B) Removing heavy slag chunks", "C) Cleaning the weld surface and base metal before and between passes", "D) Sweeping the floor"], correctAnswer: "C", explanation: "It is used to clean the weld surface and base metal before and between passes." },
+            { id: 20, chapter: "4. Equipment & Joints", secId: "sec-4", page: 3, lines: "10-25", question: "What shade range of filter lens is standard for a protective welding helmet in MMAW?", options: ["A) DIN 1-3", "B) DIN 4-8", "C) DIN 9-13", "D) DIN 14-20"], correctAnswer: "C", explanation: "Protective Shield/Helmet uses a filter lens (DIN 9-13)." },
+
+            // Chapter 5: Joints
+            { id: 21, chapter: "4. Equipment & Joints", secId: "sec-5", page: 3, lines: "26-34", question: "In which type of joint do two parts lie in the same plane and join edge-to-edge?", options: ["A) Lap Joint", "B) T-Joint", "C) Butt Joint", "D) Edge Joint"], correctAnswer: "C", explanation: "Butt Joint: Two parts lie in the same plane and are joined edge-to-edge." },
+            { id: 22, chapter: "4. Equipment & Joints", secId: "sec-5", page: 3, lines: "26-34", question: "In which joint are two overlapping parts joined on their outside surfaces?", options: ["A) Butt Joint", "B) Edge Joint", "C) Corner Joint", "D) Lap Joint"], correctAnswer: "D", explanation: "Lap Joint: Two overlapping parts are joined on the outside surfaces." },
+            { id: 23, chapter: "4. Equipment & Joints", secId: "sec-5", page: 4, lines: "1-2", question: "How are plates arranged in an Edge Joint?", options: ["A) Overlapping each other", "B) Perpendicular to each other", "C) Side-by-side with their edges parallel", "D) End-to-end in the same plane"], correctAnswer: "C", explanation: "Two plates are placed side-by-side with their edges parallel." },
+
+            // Chapter 6: AC vs DC
+            { id: 24, chapter: "5. AC/DC & Safety", secId: "sec-6", page: 4, lines: "4-24", question: "What does DCEP stand for in DC welding?", options: ["A) Direct Current Electrode Parallel", "B) Direct Current Electrode Positive (Reverse)", "C) Direct Current Electrode Penetration", "D) Direct Current Earth Positive"], correctAnswer: "B", explanation: "DCEP = Direct Current Electrode Positive (Reverse)." },
+            { id: 25, chapter: "5. AC/DC & Safety", secId: "sec-6", page: 4, lines: "4-24", question: "Which type of welding is susceptible to 'arc blow' (deflection) at high currents?", options: ["A) AC Welding", "B) DC Welding", "C) Both equally", "D) Neither"], correctAnswer: "B", explanation: "DC Welding is susceptible to arc blow due to magnetic fields." },
+            { id: 26, chapter: "5. AC/DC & Safety", secId: "sec-6", page: 4, lines: "4-24", question: "Which polarity in DC welding provides deeper penetration?", options: ["A) DCEP", "B) DCEN", "C) Both provide equal penetration", "D) AC"], correctAnswer: "B", explanation: "DCEN (Straight polarity) provides deeper penetration." },
+            { id: 27, chapter: "5. AC/DC & Safety", secId: "sec-6", page: 4, lines: "4-24", question: "Which current type is preferred for low-hydrogen and cellulose electrodes?", options: ["A) AC", "B) DC", "C) Both are preferred equally", "D) Neither"], correctAnswer: "B", explanation: "DC is preferred for low-hydrogen, cellulose, and most alloy electrodes." },
+            { id: 28, chapter: "5. AC/DC & Safety", secId: "sec-6", page: 4, lines: "4-24", question: "Which current is preferred for positional (vertical/overhead) welding?", options: ["A) AC", "B) DC", "C) Neither", "D) Alternating"], correctAnswer: "B", explanation: "DC is preferred for positional welding, thin sheets, and critical jobs." },
+
+            // Chapter 7: Safety
+            { id: 29, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 4, lines: "25-35", question: "What type of fabric is strictly prohibited for welding clothing?", options: ["A) Leather", "B) 100% Cotton", "C) Wool", "D) Synthetic fabrics"], correctAnswer: "D", explanation: "Do not wear synthetic fabrics; use 100% cotton or wool." },
+            { id: 30, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 5, lines: "1-23", question: "When welding galvanized or stainless steels, what specific respiratory protection is recommended?", options: ["A) A simple cloth mask", "B) Holding one's breath", "C) P3 masks or supplied-air respirators", "D) No protection is needed"], correctAnswer: "C", explanation: "Use P3 masks or supplied-air respirators when welding galvanized or stainless steels to prevent toxic fume inhalation." },
+            { id: 31, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 5, lines: "1-23", question: "Combustible materials must be kept clear within what radius of the welding workplace?", options: ["A) 10 feet (3 meters)", "B) 20 feet (6 meters)", "C) 35 feet (10 meters)", "D) 50 feet (15 meters)"], correctAnswer: "C", explanation: "Keep workplace free of combustible materials within a 35-foot (10-meter) radius." },
+            { id: 32, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 5, lines: "1-23", question: "Why is it dangerous to use wet gloves or stand on wet floors while welding?", options: ["A) It ruins the gloves", "B) It cools the weld too fast", "C) It causes a severe electrical shock hazard", "D) It makes striking the arc too loud"], correctAnswer: "C", explanation: "Never use wet gloves or stand on wet floors due to severe electrical safety hazards." },
+            { id: 33, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 5, lines: "1-23", question: "What should be done immediately with hot electrode stubs?", options: ["A) Drop them on the floor to cool", "B) Put them in a pocket", "C) Place them in designated metal containers", "D) Quench them in a bucket of oil"], correctAnswer: "C", explanation: "Place hot electrodes/stubs in designated metal containers to prevent fires." },
+            { id: 34, chapter: "5. AC/DC & Safety", secId: "sec-7", page: 5, lines: "1-23", question: "How long must a fire watch be implemented after welding operations cease?", options: ["A) 5 minutes", "B) 15 minutes", "C) At least 30 minutes", "D) 1 hour"], correctAnswer: "C", explanation: "Mark the workpiece 'HOT' and implement a fire watch for at least 30 minutes." },
+
+            // Chapter 8: Double V Joint
+            { id: 35, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 5, lines: "24-28", question: "For what plate thickness is a Double V Butt Joint typically recommended?", options: ["A) < 5 mm", "B) 5 to 10 mm", "C) 10 to 15 mm", "D) > 16 mm"], correctAnswer: "D", explanation: "Typically used for thicker plates (> 16 mm)." },
+            { id: 36, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 5, lines: "24-28", question: "What is one primary reason for using a Double V joint on thick plates instead of a Single V?", options: ["A) It looks better", "B) To increase distortion", "C) To conserve filler metal and reduce distortion", "D) It requires less skill"], correctAnswer: "C", explanation: "Used to reduce distortion, conserve filler metal, and ensure uniform strength." },
+            { id: 37, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "1-7", question: "If both plates have a 30° to 35° bevel, what is the resulting included angle of the V-groove?", options: ["A) 30° to 35°", "B) 45° to 50°", "C) 60° to 70°", "D) 90° to 100°"], correctAnswer: "C", explanation: "Resulting in a 60° to 70° included angle." },
+            { id: 38, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "1-7", question: "What is the purpose of maintaining a Root Face (Land) of 1.5 mm to 2 mm at the bottom of the bevel?", options: ["A) To make the weld look shiny", "B) To prevent burn-through", "C) To increase the root gap", "D) To make the plate thicker"], correctAnswer: "B", explanation: "Keep a flat section to prevent burn-through during the root pass." },
+            { id: 39, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "1-7", question: "What is the recommended size for a root gap between the two plates?", options: ["A) 0 mm (touching)", "B) 2 mm to 3 mm", "C) 5 mm to 7 mm", "D) 10 mm"], correctAnswer: "B", explanation: "Maintain a 2 mm to 3 mm gap between the two plates." },
+            { id: 40, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "8-13", question: "Why should tack welds be kept small (approx. 10-15 mm)?", options: ["A) To save electricity", "B) Because they are not structural", "C) To allow easy back-gouging later", "D) So they break easily"], correctAnswer: "C", explanation: "Tack size should be small to allow easy back-gouging later." },
+            { id: 41, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "21-26", question: "When depositing filler passes, by how much should each stringer bead overlap the previous one?", options: ["A) 10%", "B) 25%", "C) 50%", "D) 100%"], correctAnswer: "C", explanation: "Overlap each bead by 50% to fill the V-groove completely." },
+            { id: 42, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "27-33", question: "What is the most crucial step performed on Side B before welding it?", options: ["A) Painting it", "B) Back Gouging", "C) Tacking it again", "D) Quenching in water"], correctAnswer: "B", explanation: "Back Gouging is the crucial step to remove the root of the first-side weld down to sound metal." },
+            { id: 43, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 6, lines: "27-33", question: "What shape should the groove be after proper back-gouging?", options: ["A) V-shaped", "B) Square", "C) U-shaped", "D) W-shaped"], correctAnswer: "C", explanation: "The resulting groove should be U-shaped." },
+            { id: 44, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 7, lines: "6-10", question: "Why is interpass temperature maintained (e.g., below 250°C for low-alloy steels)?", options: ["A) To keep the welder comfortable", "B) To speed up the process", "C) To avoid hydrogen cracking", "D) To increase distortion"], correctAnswer: "C", explanation: "Maintain interpass temperature to avoid hydrogen cracking." },
+            { id: 45, chapter: "6. Double V Joint Procedure", secId: "sec-8", page: 7, lines: "11-20", question: "What defect should absolutely NOT be present at the edges of the capping passes in a perfect joint?", options: ["A) Reinforcement", "B) Ripples", "C) Undercut", "D) Complete fusion"], correctAnswer: "C", explanation: "There should be no undercut at the edges of the capping passes." }
+        ];
+
+        let currentIdx = 0;
+        let userAnswers = {};
+
+        function switchTab(mode) {
+            const notes = document.getElementById('view-notes');
+            const quiz = document.getElementById('view-quiz');
+            const btnNotes = document.getElementById('tab-btn-notes');
+            const btnQuiz = document.getElementById('tab-btn-quiz');
+
+            if (mode === 'notes') {
+                notes.classList.remove('hidden');
+                quiz.classList.add('hidden');
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-weld-500 text-metal-950 shadow-md";
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-metal-300 hover:text-white hover:bg-metal-800/60";
+            } else {
+                notes.classList.add('hidden');
+                quiz.classList.remove('hidden');
+                btnQuiz.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 bg-weld-500 text-metal-950 shadow-md";
+                btnNotes.className = "px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 text-metal-300 hover:text-white hover:bg-metal-800/60";
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function toggleInfoPopover() {
+            document.getElementById('info-popover').classList.toggle('hidden');
+        }
+
+        function jumpToNotesSection() {
+            const q = questions[currentIdx];
+            document.getElementById('info-popover').classList.add('hidden');
+            switchTab('notes');
+            setTimeout(() => {
+                const el = document.getElementById(q.secId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIdx];
+            const selected = userAnswers[currentIdx];
+
+            // Progress
+            const ansKeys = Object.keys(userAnswers);
+            let correct = 0;
+            ansKeys.forEach(k => { if(userAnswers[k] === questions[k].correctAnswer) correct++; });
+            const pct = ansKeys.length ? Math.round((correct / ansKeys.length) * 100) : 0;
+
+            document.getElementById('quiz-progress-label').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+            document.getElementById('quiz-score-label').textContent = `${correct} Correct (${pct}%)`;
+            document.getElementById('header-score-pill').textContent = `${correct}/${questions.length}`;
+            document.getElementById('sidebar-answered-count').textContent = `${ansKeys.length}/${questions.length}`;
+
+            // Badges
+            document.getElementById('q-chapter-badge').textContent = q.chapter;
+            document.getElementById('info-chapter').textContent = q.chapter;
+            document.getElementById('info-location').textContent = `Page ${q.page}, Lines ${q.lines}`;
+
+            // Question
+            document.getElementById('q-text').textContent = `${currentIdx + 1}. ${q.question}`;
+
+            // Options
+            const container = document.getElementById('q-options');
+            container.innerHTML = '';
+            q.options.forEach(opt => {
+                const letter = opt.charAt(0);
+                const btn = document.createElement('button');
+                
+                let base = "w-full text-left p-4 rounded-xl border-2 font-semibold text-sm transition-all flex justify-between items-center ";
+                if (!selected) {
+                    base += "bg-metal-50 border-metal-200 text-metal-900 hover:border-weld-500 hover:bg-weld-50";
+                } else {
+                    if (letter === q.correctAnswer) {
+                        base += "bg-emerald-50 border-emerald-500 text-emerald-900";
+                    } else if (letter === selected) {
+                        base += "bg-rose-50 border-rose-500 text-rose-900";
+                    } else {
+                        base += "bg-metal-50 border-metal-200 text-metal-400 opacity-60";
+                    }
+                }
+                
+                btn.className = base;
+                btn.disabled = !!selected;
+                btn.onclick = () => selectOption(letter);
+                
+                const span = document.createElement('span');
+                span.textContent = opt;
+                btn.appendChild(span);
+
+                if (selected) {
+                    const i = document.createElement('i');
+                    if (letter === q.correctAnswer) i.className = "fa-solid fa-circle-check text-emerald-600 text-lg";
+                    else if (letter === selected) i.className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
+                    btn.appendChild(i);
+                }
+                container.appendChild(btn);
+            });
+
+            // Explanation
+            const exp = document.getElementById('q-explanation-box');
+            if (selected) {
+                const isC = selected === q.correctAnswer;
+                exp.className = `rounded-xl p-4 mb-6 border-l-4 animate-fade ${isC ? 'bg-emerald-50 border-emerald-500 text-emerald-900' : 'bg-weld-50 border-weld-500 text-weld-900'}`;
+                document.getElementById('q-feedback-title').innerHTML = isC 
+                    ? '<i class="fa-solid fa-check-circle text-emerald-600"></i> Correct'
+                    : `<i class="fa-solid fa-triangle-exclamation text-weld-600"></i> Incorrect — Answer is ${q.correctAnswer}`;
+                document.getElementById('q-explanation-text').textContent = q.explanation;
+            } else {
+                exp.className = 'hidden';
+            }
+
+            document.getElementById('btn-prev').disabled = currentIdx === 0;
+            document.getElementById('btn-next').disabled = currentIdx === questions.length - 1;
+        }
+
+        function selectOption(l) {
+            if (userAnswers[currentIdx]) return;
+            userAnswers[currentIdx] = l;
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                document.getElementById('info-popover').classList.add('hidden');
+                renderQuestion();
+                renderSidebar();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            currentIdx = idx;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            currentIdx = 0;
+            document.getElementById('info-popover').classList.add('hidden');
+            renderQuestion();
+            renderSidebar();
+        }
+
+        function renderSidebar() {
+            const container = document.getElementById('sidebar-topics-container');
+            container.innerHTML = '';
+
+            const maps = {};
+            questions.forEach((q, i) => {
+                if(!maps[q.chapter]) maps[q.chapter] = [];
+                maps[q.chapter].push({ ...q, idx: i });
+            });
+
+            Object.keys(maps).forEach(ch => {
+                const sec = document.createElement('div');
+                sec.className = "bg-white p-3 rounded-xl border border-metal-200 shadow-sm";
+                
+                const head = document.createElement('div');
+                head.className = "flex justify-between items-center border-b border-metal-100 pb-2 mb-2";
+                head.innerHTML = `<span class="font-extrabold text-metal-900 text-xs">${ch}</span>
+                                  <span class="text-[10px] font-bold bg-metal-100 text-metal-600 px-2 py-0.5 rounded-full">${maps[ch].length} Qs</span>`;
+                sec.appendChild(head);
+
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-6 gap-1.5";
+                
+                maps[ch].forEach(q => {
+                    const btn = document.createElement('button');
+                    const ans = userAnswers[q.idx];
+                    const isCur = q.idx === currentIdx;
+                    
+                    let cls = "h-7 rounded-lg font-bold text-xs transition-all flex items-center justify-center ";
+                    if (ans) {
+                        cls += (ans === q.correctAnswer) ? "bg-emerald-500 text-white " : "bg-rose-500 text-white ";
+                    } else {
+                        cls += "bg-metal-100 text-metal-700 hover:bg-metal-200 ";
+                    }
+                    if (isCur) cls += "ring-2 ring-arc-400 ring-offset-1 scale-110 ";
+
+                    btn.className = cls;
+                    btn.textContent = q.idx + 1;
+                    btn.onclick = () => jumpToQuestion(q.idx);
+                    grid.appendChild(btn);
+                });
+
+                sec.appendChild(grid);
+                container.appendChild(sec);
+            });
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (!document.getElementById('view-quiz').classList.contains('hidden')) {
+                const k = e.key.toUpperCase();
+                if (['A','B','C','D'].includes(k)) selectOption(k);
+                else if (e.key === 'ArrowRight') nextQuestion();
+                else if (e.key === 'ArrowLeft') prevQuestion();
+            }
+        });
+
+        window.onload = () => {
+            renderQuestion();
+            renderSidebar();
+        };
+    </script>
+</body>
+</html>
