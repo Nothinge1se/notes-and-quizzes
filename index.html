@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Workshop Mastery — azureblu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        azure: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc; /* slate-50 */
+            color: #0f172a; /* slate-900 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+        .blueprint-pattern {
+            background-color: #0c4a6e;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        
+        /* Catalogue Hover Effects - Desktop Only */
+        @media (hover: hover) and (pointer: fine) {
+            .catalogue-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .catalogue-card:hover .catalogue-cover-icon {
+                transform: scale(1.15) rotate(-8deg);
+                opacity: 0.25;
+            }
+            .catalogue-card:hover .cta-button {
+                padding-right: 1.25rem;
+            }
+            .catalogue-card:hover .cta-arrow {
+                transform: translateX(4px);
+                opacity: 1;
+            }
+        }
+
+        /* Smooth Icon Transition */
+        .catalogue-cover-icon {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-button, .cta-arrow {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-azure-300 selection:text-azure-950 overflow-x-hidden">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="blueprint-pattern text-white shadow-xl sticky top-0 z-50 border-b-4 border-azure-500">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3 md:gap-4 overflow-hidden">
+                <div class="shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-azure-500 text-white flex items-center justify-center shadow-md font-black text-lg md:text-xl">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-base sm:text-lg md:text-2xl font-extrabold tracking-tight text-azure-50 truncate leading-tight">Workshop Helper</h1>
+                    <p class="text-[10px] sm:text-xs text-azure-200 truncate">A Portal by <strong class="text-white">azureblu</strong></p>
+                </div>
+            </div>
+
+            <!-- Header Navigation -->
+            <div class="shrink-0">
+                <a href="#modules" class="px-4 py-2 md:px-6 md:py-2.5 rounded-lg text-xs md:text-sm font-bold transition-all flex items-center gap-2 bg-azure-500 text-white shadow-md active:scale-95">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span class="hidden sm:inline">Catalogue</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 md:py-12">
+        
+        <!-- Hero Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-azure-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 md:p-14 mb-10 md:mb-14 shadow-2xl border border-slate-800 relative overflow-hidden animate-fade">
+            <div class="relative z-10 w-full lg:max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-azure-500/20 border border-azure-400/30 text-azure-300 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4 md:mb-5">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Course Catalogue 2026</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-black font-sans tracking-tight mb-4 md:mb-5 leading-tight">
+                    Master Your <br class="hidden sm:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-azure-300 to-blue-400">Workshop Practices.</span>
+                </h2>
+                <p class="text-azure-100/90 text-sm md:text-lg leading-relaxed mb-6 md:mb-8 font-medium">
+                    Welcome to the central hub for your manufacturing and workshop curriculum. Browse the catalogue below to access verbatim tutorial notes, technical schematics, and interactive high-yield MCQ banks.
+                </p>
+                <a href="#modules" class="w-full sm:w-auto inline-flex justify-center items-center gap-3 bg-white hover:bg-azure-50 text-slate-950 font-bold px-6 py-3.5 md:px-7 md:py-4 rounded-full transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] active:scale-95">
+                    Browse Catalogue <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
+            <!-- Decorative Background Element -->
+            <i class="fa-solid fa-compass-drafting absolute -right-16 -bottom-16 md:-right-10 md:-bottom-10 text-[160px] md:text-[240px] opacity-10 text-azure-200 rotate-12"></i>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- CATALOGUE LISTINGS                                -->
+        <!-- ================================================= -->
+        <section id="modules" class="mb-16 md:mb-20 scroll-mt-24">
+            <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-10">
+                <h3 class="text-2xl md:text-3xl font-black text-slate-900 uppercase tracking-tight">Catalogue</h3>
+                <div class="h-1 bg-slate-200 flex-1 rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col gap-6 md:gap-8">
+                
+                <!-- Vol 1. Fitting Shop -->
+                <a href="fitting.html" target="_blank" class="catalogue-card group flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden border border-slate-200 opacity-0 animate-fade delay-100 transition-transform">
+                    <!-- Catalogue Cover (Header on mobile, Sidebar on desktop) -->
+                    <div class="w-full md:w-2/5 lg:w-1/3 relative p-6 md:p-8 min-h-[140px] md:min-h-full flex flex-col justify-between overflow-hidden bg-gradient-to-br from-slate-800 to-slate-950 md:border-r border-b md:border-b-0 border-slate-200">
+                        <div class="relative z-10 flex justify-between items-start mb-4 md:mb-0">
+                            <span class="px-2.5 py-0.5 md:px-3 md:py-1 bg-white/10 backdrop-blur text-white text-[10px] md:text-xs font-black tracking-widest uppercase rounded border border-white/20">Vol. 01</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span>
+                        </div>
+                        <div class="relative z-10 mt-auto md:mt-24">
+                            <h4 class="text-2xl md:text-3xl font-black text-white mb-1">Fitting Shop</h4>
+                            <p class="text-azure-300 font-semibold text-xs md:text-sm">Manual Assembly &amp; Precision</p>
+                        </div>
+                        <!-- Big Watermark Icon -->
+                        <i class="fa-solid fa-wrench absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[100px] md:text-[160px] text-white opacity-10 catalogue-cover-icon"></i>
+                    </div>
+                    <!-- Catalogue Details -->
+                    <div class="w-full md:w-3/5 lg:w-2/3 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
+                        <p class="text-slate-600 leading-relaxed mb-5 md:mb-6 text-sm md:text-base">
+                            Dive into the core of mechanical assembly. This module covers the essential hand tools and operations required to manually shape, measure, and join metal components with exact tolerances.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6 md:mb-8">
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-azure-500 mr-1"></i> Measuring & Marking</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-azure-500 mr-1"></i> Tapping & Dieing</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-azure-500 mr-1"></i> Drilling Operations</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-azure-500 mr-1"></i> Screw Threads</span>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="cta-button w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 text-white font-bold text-sm px-6 py-3.5 rounded-full active:scale-95">
+                                Open Module <i class="fa-solid fa-arrow-right opacity-50 cta-arrow"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Vol 2. Carpentry -->
+                <a href="carpentry.html" target="_blank" class="catalogue-card group flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden border border-slate-200 opacity-0 animate-fade delay-200 transition-transform">
+                    <!-- Catalogue Cover -->
+                    <div class="w-full md:w-2/5 lg:w-1/3 relative p-6 md:p-8 min-h-[140px] md:min-h-full flex flex-col justify-between overflow-hidden bg-gradient-to-br from-amber-900 to-slate-950 md:border-r border-b md:border-b-0 border-slate-200">
+                        <div class="relative z-10 flex justify-between items-start mb-4 md:mb-0">
+                            <span class="px-2.5 py-0.5 md:px-3 md:py-1 bg-white/10 backdrop-blur text-white text-[10px] md:text-xs font-black tracking-widest uppercase rounded border border-white/20">Vol. 02</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span>
+                        </div>
+                        <div class="relative z-10 mt-auto md:mt-24">
+                            <h4 class="text-2xl md:text-3xl font-black text-white mb-1">Carpentry</h4>
+                            <p class="text-amber-300 font-semibold text-xs md:text-sm">Timber &amp; Structural Framing</p>
+                        </div>
+                        <!-- Big Watermark Icon -->
+                        <i class="fa-solid fa-hammer absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[100px] md:text-[160px] text-white opacity-10 catalogue-cover-icon"></i>
+                    </div>
+                    <!-- Catalogue Details -->
+                    <div class="w-full md:w-3/5 lg:w-2/3 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
+                        <p class="text-slate-600 leading-relaxed mb-5 md:mb-6 text-sm md:text-base">
+                            Explore the structural backbone of construction. This comprehensive guide details timber properties, wood seasoning methods, and includes visual schematics for every traditional woodworking joint.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6 md:mb-8">
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-amber-500 mr-1"></i> Market Forms of Timber</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-amber-500 mr-1"></i> Hardwood vs Softwood</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-amber-500 mr-1"></i> Kiln & Air Seasoning</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-amber-500 mr-1"></i> 9 Classic Joints</span>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="cta-button w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 text-white font-bold text-sm px-6 py-3.5 rounded-full active:scale-95">
+                                Open Module <i class="fa-solid fa-arrow-right opacity-50 cta-arrow"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Vol 3. Foundry -->
+                <a href="foundry.html" target="_blank" class="catalogue-card group flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden border border-slate-200 opacity-0 animate-fade delay-300 transition-transform">
+                    <!-- Catalogue Cover -->
+                    <div class="w-full md:w-2/5 lg:w-1/3 relative p-6 md:p-8 min-h-[140px] md:min-h-full flex flex-col justify-between overflow-hidden bg-gradient-to-br from-orange-800 to-slate-950 md:border-r border-b md:border-b-0 border-slate-200">
+                        <div class="relative z-10 flex justify-between items-start mb-4 md:mb-0">
+                            <span class="px-2.5 py-0.5 md:px-3 md:py-1 bg-white/10 backdrop-blur text-white text-[10px] md:text-xs font-black tracking-widest uppercase rounded border border-white/20">Vol. 03</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span>
+                        </div>
+                        <div class="relative z-10 mt-auto md:mt-24">
+                            <h4 class="text-2xl md:text-3xl font-black text-white mb-1">Foundry Shop</h4>
+                            <p class="text-orange-300 font-semibold text-xs md:text-sm">Casting &amp; Process Control</p>
+                        </div>
+                        <!-- Big Watermark Icon -->
+                        <i class="fa-solid fa-fire-flame-curved absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[100px] md:text-[160px] text-white opacity-10 catalogue-cover-icon"></i>
+                    </div>
+                    <!-- Catalogue Details -->
+                    <div class="w-full md:w-3/5 lg:w-2/3 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
+                        <p class="text-slate-600 leading-relaxed mb-5 md:mb-6 text-sm md:text-base">
+                            Master the art of liquid metal. Learn how to design accurate patterns, prepare refractory sand moulds, operate muffle furnaces, and identify/remedy critical casting defects.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6 md:mb-8">
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-orange-500 mr-1"></i> Pattern Allowances</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-orange-500 mr-1"></i> Moulding Sand Types</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-orange-500 mr-1"></i> Furnace Operations</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-orange-500 mr-1"></i> Defect Analysis</span>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="cta-button w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 text-white font-bold text-sm px-6 py-3.5 rounded-full active:scale-95">
+                                Open Module <i class="fa-solid fa-arrow-right opacity-50 cta-arrow"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Vol 4. Welding -->
+                <a href="welding.html" target="_blank" class="catalogue-card group flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden border border-slate-200 opacity-0 animate-fade delay-400 transition-transform">
+                    <!-- Catalogue Cover -->
+                    <div class="w-full md:w-2/5 lg:w-1/3 relative p-6 md:p-8 min-h-[140px] md:min-h-full flex flex-col justify-between overflow-hidden bg-gradient-to-br from-indigo-900 to-slate-950 md:border-r border-b md:border-b-0 border-slate-200">
+                        <div class="relative z-10 flex justify-between items-start mb-4 md:mb-0">
+                            <span class="px-2.5 py-0.5 md:px-3 md:py-1 bg-white/10 backdrop-blur text-white text-[10px] md:text-xs font-black tracking-widest uppercase rounded border border-white/20">Vol. 04</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></span>
+                        </div>
+                        <div class="relative z-10 mt-auto md:mt-24">
+                            <h4 class="text-2xl md:text-3xl font-black text-white mb-1">Welding</h4>
+                            <p class="text-indigo-300 font-semibold text-xs md:text-sm">Fusion &amp; Solid-State Bonding</p>
+                        </div>
+                        <!-- Big Watermark Icon -->
+                        <i class="fa-solid fa-mask-face absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[100px] md:text-[160px] text-white opacity-10 catalogue-cover-icon"></i>
+                    </div>
+                    <!-- Catalogue Details -->
+                    <div class="w-full md:w-3/5 lg:w-2/3 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
+                        <p class="text-slate-600 leading-relaxed mb-5 md:mb-6 text-sm md:text-base">
+                            The definitive guide to permanent materials-joining. Uncover the chemistry of electrode fluxes, AC/DC polarity mechanics, and the step-by-step masterclass on preparing Double V Butt joints.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6 md:mb-8">
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-indigo-500 mr-1"></i> MMAW / SMAW</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-indigo-500 mr-1"></i> AWS Electrode Codes</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-indigo-500 mr-1"></i> Double V Joint Prep</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold rounded-full border border-slate-200"><i class="fa-solid fa-check text-indigo-500 mr-1"></i> NDT Inspections</span>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="cta-button w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-900 text-white font-bold text-sm px-6 py-3.5 rounded-full active:scale-95">
+                                Open Module <i class="fa-solid fa-arrow-right opacity-50 cta-arrow"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Vol 5. Coming Soon -->
+                <div class="flex flex-col md:flex-row bg-slate-50 rounded-3xl overflow-hidden border-2 border-dashed border-slate-300 opacity-80 cursor-not-allowed">
+                    <!-- Catalogue Cover -->
+                    <div class="w-full md:w-2/5 lg:w-1/3 relative p-6 md:p-8 min-h-[140px] md:min-h-full flex flex-col justify-between overflow-hidden bg-slate-200 border-b md:border-b-0 md:border-r border-slate-300 grayscale">
+                        <div class="relative z-10 flex justify-between items-start mb-4 md:mb-0">
+                            <span class="px-2.5 py-0.5 md:px-3 md:py-1 bg-slate-300 text-slate-600 text-[10px] md:text-xs font-black tracking-widest uppercase rounded border border-slate-400">Vol. 05</span>
+                            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                        </div>
+                        <div class="relative z-10 mt-auto md:mt-24">
+                            <h4 class="text-2xl md:text-3xl font-black text-slate-500 mb-1">Coming Soon</h4>
+                            <p class="text-slate-400 font-semibold text-xs md:text-sm">Advanced Manufacturing</p>
+                        </div>
+                        <!-- Big Watermark Icon -->
+                        <i class="fa-solid fa-hourglass-half absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[100px] md:text-[160px] text-slate-300 opacity-40"></i>
+                    </div>
+                    <!-- Catalogue Details -->
+                    <div class="w-full md:w-3/5 lg:w-2/3 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
+                        <p class="text-slate-500 leading-relaxed mb-6 text-sm md:text-base">
+                            Future modules including Machine Shop operations, Sheet Metal working techniques, and Advanced CNC Machining processes are currently being drafted and will be added to the catalogue soon.
+                        </p>
+                        <div class="mt-auto">
+                            <span class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-slate-200 text-slate-500 font-bold text-sm px-6 py-3.5 rounded-full">
+                                <i class="fa-solid fa-lock"></i> Currently Unavailable
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- ABOUT ME SECTION                                  -->
+        <!-- ================================================= -->
+        <section id="about" class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-8 md:p-14 scroll-mt-24 relative overflow-hidden">
+            <!-- Background accent -->
+            <div class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-azure-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
+                
+                <!-- Avatar / Logo -->
+                <div class="shrink-0 flex flex-col items-center">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-azure-400 to-azure-900 p-1 shadow-2xl relative">
+                        <div class="absolute inset-0 bg-azure-400 rounded-full blur-md opacity-30 animate-pulse"></div>
+                        <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white text-4xl sm:text-5xl md:text-6xl font-black border-4 border-white relative z-10">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 md:mt-5 px-4 py-1.5 bg-slate-900 border border-slate-800 rounded-full text-[10px] md:text-xs font-black text-white uppercase tracking-widest shadow-md">
+                        Creator
+                    </div>
+                </div>
+
+                <!-- Bio & Links -->
+                <div class="flex-1 text-center md:text-left z-10 w-full">
+                    <h3 class="text-3xl sm:text-4xl font-black text-slate-900 mb-2">azureblu</h3>
+                    <p class="text-[10px] sm:text-xs md:text-sm font-bold text-azure-600 mb-4 md:mb-5 tracking-widest uppercase bg-azure-50 inline-block px-3 py-1 rounded-md">An initiative by a 1st yr IT HITK student</p>
+                    
+                    <p class="text-slate-600 leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 text-sm sm:text-base md:text-lg">
+                        Hey there! I built this interactive portal to streamline learning for complex manufacturing and workshop practices. By translating traditional lecture notes into highly visual, responsive, and test-driven web modules, I hope to make studying less of a chore and more of an interactive experience.
+                    </p>
+
+                    <!-- Social Links (with Joke) -->
+                    <div class="flex flex-col gap-3">
+                        <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center md:justify-start gap-3 md:gap-4 opacity-50">
+                            <button disabled class="line-through w-full sm:w-auto px-6 py-3.5 rounded-full bg-slate-900 text-white text-sm font-bold flex justify-center items-center gap-2 cursor-not-allowed">
+                                <i class="fa-brands fa-github text-lg"></i>
+                                <span>GitHub</span>
+                            </button>
+                            <button disabled class="line-through w-full sm:w-auto px-6 py-3.5 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-sm font-bold flex justify-center items-center gap-2 cursor-not-allowed">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                                <span>Instagram</span>
+                            </button>
+                            <button disabled class="line-through w-full sm:w-auto px-6 py-3.5 rounded-full border-2 border-slate-300 bg-slate-50 text-slate-500 text-sm font-bold flex justify-center items-center gap-2 cursor-not-allowed">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                                <span>Contact Me</span>
+                            </button>
+                        </div>
+                        <div class="text-center md:text-left mt-2">
+                            <span class="text-[11px] sm:text-xs md:text-sm font-bold text-rose-500 bg-rose-50 px-3 py-1.5 rounded-md inline-flex justify-center items-center gap-1.5 w-full sm:w-auto">
+                                <i class="fa-solid fa-face-laugh-squint"></i> ...forgot to actually add these lol!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 py-6 md:py-8 border-t-4 border-azure-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs sm:text-sm font-medium flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+            <p>&copy; 2026 Mechanical Workshop Mastery. Built by <span class="text-white">azureblu</span>.</p>
+            <p>Designed for <span class="text-azure-400">HITK Class of 2030</span> (1st Year '26).</p>
+        </div>
+    </footer>
+
+</body>
+</html>
