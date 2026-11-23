@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Humanities Notes: Modules 1 and 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mu:#6b6b6b;--cd:#f5f5f5;--bd:#d9d9d9;--hl:#e2e2e2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121212;--fg:#ececec;--mu:#9a9a9a;--cd:#1b1b1b;--bd:#333;--hl:#3b3b3b}}
+:root[data-theme=dark]{--bg:#121212;--fg:#ececec;--mu:#9a9a9a;--cd:#1b1b1b;--bd:#333;--hl:#3b3b3b}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:18px/1.8 "Source Serif 4",Georgia,"Times New Roman",serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+main{max-width:88rem;margin:0 auto;padding:0 2.5rem 5rem 18.5rem}
+main>*{max-width:62rem}
+h1,h2,h3,h4,.by,.sub,nav,.sc,.opt,.rs,table,.ft,.ed b,.tri b,.tri i{font-family:Inter,system-ui,sans-serif}
+nav{position:fixed;left:0;top:0;bottom:0;width:16rem;max-width:none;margin:0;padding:calc(env(safe-area-inset-top,0px) + 2rem) 1.3rem 1.5rem;border-right:1px solid var(--bd);background:var(--bg);overflow:auto}
+nav .nh{display:block;font-size:.8rem;color:var(--mu);margin-bottom:.4rem}
+nav .ng{display:block;font:600 .72rem Inter,system-ui,sans-serif;color:var(--mu);margin:1.1rem 0 .2rem;font-style:normal}
+nav a{display:block;color:var(--mu);text-decoration:none;font:500 .9rem Inter,system-ui,sans-serif;padding:.38rem 0;border-bottom:1px solid var(--bd)}
+nav a:hover{color:var(--fg)}
+.by{font-size:.95rem;color:var(--mu);margin:3.5rem 0 0}
+h1{font:700 clamp(2.6rem,6vw,4.4rem)/1.05 Inter,system-ui,sans-serif;letter-spacing:-.03em;margin:.2em 0 .15em}
+.sub{font-size:1.1rem;color:var(--mu);margin-bottom:1.2rem}
+.key{padding-bottom:2.2rem;border-bottom:1px solid var(--fg);font-size:.95rem;color:var(--mu)}
+h2{font:700 1.9rem/1.2 Inter,system-ui,sans-serif;letter-spacing:-.02em;border-top:1px solid var(--bd);padding-top:1.6rem;margin:4rem 0 .7rem}
+h3{font:700 1.25rem Inter,system-ui,sans-serif;margin:2.2em 0 .4em}
+h4{margin:0;font-size:1.05rem}
+p{margin:.65em 0}
+mark{background:var(--hl);color:inherit;font-weight:600;padding:.02em .25em;border-radius:3px}
+.mu{color:var(--mu);font-size:.95rem}
+.vb{border-top:1px solid var(--bd);padding:.9rem 0 .3rem}
+.vb p{margin:.3em 0}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1rem 0}
+.tri>div{border:1px solid var(--bd);background:var(--cd);border-radius:10px;padding:.8rem 1rem}
+.tri b{display:block;font-size:1.05rem}
+.tri i{font-style:normal;font-size:.8rem;color:var(--mu)}
+.tri span{color:var(--mu);font-size:.92rem;display:block}
+.bx{border:1px solid var(--bd);background:var(--cd);border-radius:8px;padding:.8rem 1.2rem;margin:1rem 0}
+.bx h4{margin-bottom:.3rem}
+.ed{border:1px dashed var(--mu);border-radius:8px;padding:.6rem 1rem;margin:1rem 0;font-size:.95rem}
+.d{display:block;margin:1rem 0;max-width:100%;height:auto;fill:none;stroke:currentColor;stroke-width:1.5}
+.d text{fill:currentColor;stroke:none;font:14px Inter,system-ui,sans-serif}
+.d .t path{fill:var(--cd)}
+.tw{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.55}
+th,td{border:1px solid var(--bd);padding:.55rem .75rem;text-align:left;vertical-align:top}
+th{background:var(--cd)}
+ul.s{padding-left:1.2rem;margin:.4rem 0}
+ul.s li{margin:.35rem 0}
+.sc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-bottom:1px solid var(--bd);padding:.7rem 0;font-weight:600;font-size:.95rem}
+.rs{font-size:.9rem;background:var(--fg);color:var(--bg);border:0;border-radius:6px;padding:.4rem .9rem;cursor:pointer}
+.mq{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:.8rem 1.2rem 1rem;margin:1.1rem 0}
+.opt{display:block;width:100%;text-align:left;font:500 .95rem Inter,system-ui,sans-serif;background:var(--bg);color:var(--fg);border:1px solid var(--bd);padding:.65rem .9rem;margin:.45rem 0;border-radius:6px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--fg)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.opt.no{text-decoration:line-through;opacity:.6}
+.ex{border-left:3px solid var(--fg);padding-left:.8rem;font-size:.95rem}
+.ft{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--fg);font-weight:600}
+@media(max-width:62rem){main{padding:0 1.1rem 4rem}nav{position:static;width:auto;border:0;padding:1rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}nav .nh,nav .ng{width:100%;margin:.4rem 0 0}nav a{border:1px solid var(--bd);border-radius:2rem;padding:.25rem .8rem}}
+@media(max-width:40rem){.tri{grid-template-columns:1fr}}
+</style></head><body><main>
+<nav><b class="nh">Contents</b>
+<i class="ng">Module 1</i><a href="#s-body">Self and the body</a><a href="#s-values">Values that frame the self</a><a href="#s-maslow">Maslow’s hierarchy</a><a href="#s-cooley">Cooley and Mead</a>
+<i class="ng">Module 3</i><a href="#s-ethics">Ethics and ethical values</a><a href="#s-conseq">Consequentialism</a><a href="#s-deon">Deontological ethics</a><a href="#s-canons">Canons of ethics</a><a href="#s-codes">Code of ethics</a><a href="#s-tech">Technology ethics</a>
+<i class="ng">Study</i><a href="#oneshot">One-shot summary</a><a href="#quiz-sec">Test yourself</a><a href="#edits">Changes from the original</a></nav>
+
+<p class="by">Notes by Rijul Roychowdhury. Built by azureblu</p>
+<h1>Humanities</h1>
+<p class="sub">Module 1: Interaction with Human Values. Module 3: Connection of I with the Workplace and Implication of Holistic Understanding. Typed from the handwritten notes.</p>
+<p class="key">Words with a <mark>grey highlight</mark> are the important terms.</p>
+
+<h2 id="m1">Module 1: Interaction with Human Values</h2>
+<h3 id="s-body">Harmony between Self and the Body</h3>
+<p>Any human existence we think of as comprised of two separate constructs: the <mark>self</mark> and the <mark>body</mark>. The body is the <mark>shell</mark> or the <mark>receptacle</mark> that houses the self. The body carries the <mark>soul</mark> and the <mark>spirit</mark> within the soul, and it is this soul and spirit that carries <mark>consciousness</mark>, and it is this consciousness that leads to the framing of the shell. So, on one hand soul and body are two <mark>distinct constructs</mark> and on the other they <mark>overlap</mark>.</p>
+<aside class="ed"><b>Edit note.</b> Original: <i>“Any human existence we think of comprised of two separate constructs”</i> (no “as”), and <i>“the spirit within / the soul and it is this soul and spirit…”</i> across a line break, which is hard to read. Shown with “as” added and the second part read as written.</aside>
+<p>Going by the parameter of being distinct, it can be said that the needs of the self are <mark>qualitative</mark> in nature. As the self embodies <mark>paraphernalia of basic human aspirations</mark>, which desires to be in continuous happiness and prosperities, the needs of the body on the other hand are <mark>physical facilities</mark> and are <mark>quantitative</mark> in nature. All these qualitative and quantitative needs taken together help in creating a <mark>sync between body and the self</mark>.</p>
+<p>It is the self that gets instilled with the values that are taught right from our homes. The values that help in framing the self along with the body help the humans to be in <mark>harmony with the self first and then with the society</mark>. The values that got instilled in us in forming the self are:</p>
+
+<h3 id="s-values">Values that Frame the Self</h3>
+<div class="vb"><p><b>1. <mark>Human values</mark>:</b> The values that are inculcated from home within us right from the time when we start developing our conscience are considered to be the basic human values which we carry forward all through our life in order to comply with the laws and precepts set by institutions.</p></div>
+<div class="vb"><p><b>2. <mark>Social values</mark>:</b> The values that we as human beings integrate as a part of the society are social values. These values vary according to context and situations depending on the feedback and judgement of others.</p></div>
+<div class="vb"><p><b>3. <mark>Spiritual values</mark>:</b> Spiritual values are the ones that cannot be mixed with religious values because spirit is something that is supposed to be <mark>internalized</mark> by an individual and that can be something within or maybe external forces beyond god, which can include even something like the nature.</p></div>
+<div class="vb"><p><b>4. <mark>Religious values</mark>:</b> Religious values are the ones that are initiated from home or family in majority of the cases. These values are <mark>dogmatic</mark> in nature and thus different from spiritual values.</p></div>
+<div class="vb"><p><b>5. <mark>Ethical values</mark>:</b> Ethical values differ from person to person working as <mark>catalyst</mark> in supporting a person putting his or her full potential in a situation which demands utmost display of <mark>Ethicality</mark>.</p></div>
+<div class="vb"><p><b>6. <mark>Environmental values</mark>:</b> Environmental values though are not as such initiated from home but we get sensitized about it as we grow older, by seeing the hazards the planet is facing because of hurling harm upon the environment.</p></div>
+<p>Having spoken about the values, it is important to mention that the self, besides possessing the aforesaid values, also houses three very important <mark>modes of desire, thought and expectations</mark>.</p>
+<aside class="ed"><b>Edit note.</b> Original: <i>“three very imp. todes of desire”</i> with an earlier word struck out. The word is hard to read; shown as “modes”. “imp.” is written out as “important”.</aside>
+
+<h3 id="s-maslow">Maslow’s Hierarchy of Needs</h3>
+<p class="mu">Maslow’s hierarchy of needs theory explained through the pyramid.</p>
+<svg class="d" viewBox="0 0 720 332" width="720" role="img" aria-label="Maslow’s pyramid, eight tiers from Physiological needs at the bottom to Transcendence at the top"><g class="t"><path d="M355 14H525L546.9 52H333.1Z"/><path d="M333.1 52H546.9L568.75 90H311.25Z"/><path d="M311.25 90H568.75L590.6 128H289.4Z"/><path d="M289.4 128H590.6L612.5 166H267.5Z"/><path d="M267.5 166H612.5L634.4 204H245.6Z"/><path d="M245.6 204H634.4L656.25 242H223.75Z"/><path d="M223.75 242H656.25L678.1 280H201.9Z"/><path d="M201.9 280H678.1L700 318H180Z"/></g><g text-anchor="middle"><text x="440" y="38">Transcendence</text><text x="440" y="76">Self Actualization</text><text x="440" y="114">Cognitive needs</text><text x="440" y="152">Aesthetic needs</text><text x="440" y="190">Esteem needs</text><text x="440" y="228">Love &amp; Belongingness needs</text><text x="440" y="266">Safety needs</text><text x="440" y="304">Physiological needs</text><text transform="translate(38 133) rotate(-90)">Growth Needs</text><text transform="translate(140 280) rotate(-90)">Deficiency Need</text></g><path d="M64 236V30M57 40l7-10 7 10M170 244H160V316H170"/></svg>
+<p><mark>Abraham Maslow</mark> is an American psychologist who proposed the <mark>hierarchy of needs</mark> theory in a paper called “<mark>Theory of Human Motivation</mark>” in the year 1945. He explained the theory with the aid of a <mark>pyramid</mark> in which he has put the human needs in several <mark>tiers</mark>, with the physiological needs occupying the lowest rung of the ladder and transcendence at the top. With the help of the pyramid he tries to explain how human beings evolve in real life passing through the different levels of needs.</p>
+<aside class="ed"><b>Edit note.</b> Original: the year is smudged and reads <i>“1945”</i>; kept as written (see the double-check table below). In the sketch, the “Deficiency Need” bracket is drawn beside the two bottom tiers only (Safety and Physiological), and “Growth Needs” is an upward arrow on the left. Drawn here the same way.</aside>
+<h3>For Any Case Study</h3>
+<ul class="s"><li><mark>Heading</mark>: Background of the problem</li><li><mark>Analysis</mark> of the problem</li><li><mark>Conclusion</mark> of the problem</li><li><mark>Recommendation</mark> of solution</li></ul>
+<aside class="ed"><b>Edit note.</b> Original: <i>“• hearing: Background of the problem:”</i>. The first word is unclear and is probably “heading”, so the first item is shown as “Heading: Background of the problem”.</aside>
+
+<h3 id="s-cooley">Cooley’s Looking Glass Self Theory</h3>
+<p><mark>Looking glass self</mark> theory, proposed by <mark>Charles Horton Cooley</mark>, the American sociologist-psychologist, in the year 1930 in a book called “<mark>Human Nature &amp; Social Order</mark>”, tried to explain that human behaviour conforms to the assessment done by the society after getting to experience human attitude through different actions. Based on this Cooley proposed <mark>3 stages</mark> of social development in human being:</p>
+<div class="tri"><div><i>(i)</i><b>Imagination appearance</b></div><div><i>(ii)</i><b>Imagination judgement</b></div><div><i>(iii)</i><b>Self feeling acting upon the judgements</b></div></div>
+<aside class="ed"><b>Edit note.</b> Original: the year looks like <i>“1930”</i> (hard to read); kept as written. The sentence reads <i>“conforms to the <s>human behavior</s>. assessment done by the Society…”</i> with the struck words and a full stop in the middle, so it is joined into one sentence. Stage (ii) is written as a ditto mark under “Imagination” followed by <i>“Judgement <s>and self-feeling</s>”</i>, shown here as “Imagination judgement”.</aside>
+
+<h3 id="s-mead">Mead’s Theory of Social Development</h3>
+<p><mark>George Herbert Mead</mark> identifies <mark>3 entities</mark> within an individual:</p>
+<div class="tri"><div><i>(i)</i><b>I</b><span>instinctive</span></div><div><i>(ii)</i><b>Me</b><span>conscious, socialized</span></div><div><i>(iii)</i><b>Self</b><span>balances b/w I and Me</span></div></div>
+<p>Mead proposes <mark>3 phases</mark> to display oneself as a part of the society, which is an important aspect of social development:</p>
+<div class="tri"><div><i>1)</i><b>Preparatory Stage</b><span>[unclear] child, (0–2) years</span></div><div><i>(ii)</i><b>Play Stage</b><span>(2–6) years</span></div><div><i>(iii)</i><b>Imitation Stage</b><span>6 years and beyond</span></div></div>
+<aside class="ed"><b>Edit note.</b> Original: <i>“Preparatory Stage ( mo child (0-2) years)”</i>. The word before “child” is hard to read (looks like “no” or “mo”), so it is shown as [unclear]. “3 <s>stages</s> phases” is shown as “3 phases”.</aside>
+
+<h2 id="m3">Module 3: Connection of I with the Workplace and Implication of Holistic Understanding</h2>
+<h3 id="s-ethics">Ethics and Ethical Values</h3>
+<div class="tw"><table><tr><th></th><th>Ethics</th><th>Ethical Values</th></tr>
+<tr><td>1</td><td>Refers to a <mark>system of moral principle</mark>.</td><td>Associated with the <mark>thought process of a person</mark>, a person’s sense of what is right or wrong.</td></tr>
+<tr><td>2</td><td>Align with the <mark>professional set up</mark>.</td><td>Associated with <mark>personal aspects</mark> of individual.</td></tr>
+<tr><td>3</td><td>Broadly studied under the headings of <mark>meta Ethics</mark>, <mark>normative Ethics</mark>, and <mark>applied Ethics</mark>.</td><td>Studied under the headlines of <mark>human values</mark>, <mark>social values</mark>, <mark>spiritual values</mark>, <mark>environmental values</mark>.</td></tr>
+<tr><td>4</td><td>Generally <mark>determined or set by an institution or organization</mark>.</td><td>Generally <mark>instilled from families or homes</mark>.</td></tr>
+<tr><td>5</td><td>Ethics of one profession <mark>differs largely</mark> from the ethics of another profession.</td><td><mark>Differ from person to person</mark>.</td></tr>
+<tr><td>6</td><td>One <mark>lacuna</mark> in ethics is if a person commits a mistake in a system which is grave or serious, then one cannot be punished going beyond the rule of law or Ethics governing system.</td><td>Serve as a <mark>catalyst</mark> in any system expediting a work of any sort if one has strong ethical values.</td></tr></table></div>
+<aside class="ed"><b>Edit note.</b> Original: six numbered points, each with one sentence on Ethics followed by “Ethical values on the other hand…”. They are laid side by side in two columns here, with the words “on the other hand” dropped. The wording is otherwise the same.</aside>
+
+<h3 id="s-conseq">Consequentialism</h3>
+<p><mark>Consequentialism</mark> along with <mark>eudaimonism</mark> comes under the umbrella of <mark>teleological ethics</mark>, a group of views which claims that the intrinsic value of any act lies in its capacity to produce things of greater value. Consequentialism is a theory that associates itself with teleological ethics claiming that it is the <mark>consequence of any action</mark> that decides whether the action has been right or wrong. This is a theory that was proposed by <mark>John Stuart Mill</mark> and <mark>Jeremy Bentham</mark> in the 18th century. Countering this rationale, another school of thoughts emerged which threw light on the fact that it is the action which is morally or immorally guided, the consequence is not the determiner of the action. This theory was proposed by <mark>Immanuel Kant</mark>.</p>
+<p>Consequentialism for a long time showcased its predominance as one of the social action theories and was studied under the heads of <mark>utilitarianism</mark> and <mark>hedonism</mark>. Utilitarianism is about understanding about a consequence which decided whether the action has done <mark>greater good to a greater number of people</mark> or not. Hedonism on the other hand is about understanding whether the consequence fetched <mark>pleasure or pain</mark> to a particular class or people of society.</p>
+
+<h3 id="s-deon">Deontological Ethics (Non-Consequentialism)</h3>
+<p>Refuting the theory of consequentialism proposed by John Stuart Mill and Jeremy Bentham, <mark>Immanuel Kant</mark>, another great philosopher of 18th century, proposed the concept of <mark>non-consequentialism</mark> which is also known as <mark>deontological ethics</mark>. The word deontology is derived from the root word ‘<mark>deon</mark>’. The word ‘deon’ means <mark>duty</mark> and the theory states that it is the <mark>action which is most important</mark> and the action is either morally or immorally guided. The consequence, in the deontological context, is guided by the action. Deontological ethics is the kind that is followed by all and sundry in general. The <mark>workplace ethics</mark> that we talk about or are concerned here with is what rests on deontological ethics. It is the <mark>duty ethics</mark> that has led to the brewing of <mark>canons of ethics</mark> and <mark>codes of ethics</mark>.</p>
+<aside class="ed"><b>Edit note.</b> Original: this paragraph has no heading of its own (it follows “Consequentialism”), and the first line is cut off at the top edge of the scan: <i>“Refuting the theory of consequentialism p…”</i>. The word “proposed” is read from the context.</aside>
+
+<h3 id="s-canons">Canons of Ethics</h3>
+<p><mark>Canons</mark> are the rules that are generally set by an organization, expected to be followed by the employees working under a particular umbrella. The broad heads of the canons are:</p>
+<div class="vb"><h4>1) <mark>Confidentiality</mark></h4><p>Any organization we talk about adopt certain business strategies in order to move ahead and carry on with the business keeping the good will intact. In such cases the organization should maintain keeping the strategy <mark>sacrosanct</mark>. Not only higher business strategies but also smaller decisions which are supposed to be kept confined within a few should not be divulged.</p></div>
+<div class="vb"><h4>2) <mark>Diligence</mark></h4><p>All the stake holders in any organization should put in utmost effort to keep the business going in the right direction. Putting in either intelligence smart work or hard work. The business is the primary concern and working diligently to achieve good business should be the objective of the employees.</p></div>
+<div class="vb"><h4>3) <mark>Integrity</mark></h4><p>Integrity is the attribute of integrating <mark>honesty</mark>, <mark>hard work</mark> and several other traits which are pre-requisites for conducting a business in a right way, spearheading the business to become a profit driven, value based organization.</p></div>
+<div class="vb"><h4>4) <mark>Fairness</mark></h4><p>Fairness is another pre-requisite for motivating the employees in an organization to work for it in the most infallible fashion. Unless there is fairness with regard to <mark>salary and promotion</mark> in particular. The employees will not be motivated to work in a diligent manner.</p></div>
+<div class="vb"><h4>5) <mark>Legality</mark></h4><p>Any organization that we think about is bound by rules and laws and so are the employees. If the organization at its own level and even if the employees fail to adhere to the laws and the precepts, both the organization and the employees are supposed to be taken to task with <mark>punitive actions</mark>.</p></div>
+<div class="vb"><h4>6) <mark>Loyalty</mark></h4><p>Any organization and its employees are supposed to comply with the <mark>value-based</mark> and <mark>compliance-based</mark> code of ethics, thereby, remaining loyal to the system and to the clients as well.</p></div>
+<div class="vb"><h4>7) <mark>Non-discrimination</mark></h4><p>Organizations are supposed to be non-discriminatory with regard to hiring, motivating and retaining employees. Many employees complain about discriminatory approaches of employers, particularly, with regard to <mark>gender discrimination</mark> and discrimination arising out of <mark>nepotism</mark>. Any organization should do away with these kind of vices because these serve as impediments in the growth of the business.</p></div>
+<p>Apart from the canons an organization should also be relying on following the <mark>compliance-based code of ethics</mark> and <mark>value-based code of ethics</mark>.</p>
+
+<h3 id="s-codes">Code of Ethics</h3>
+<p class="mu">Dated 22.9.26 in the notes.</p>
+<p><mark>Codes of Ethics</mark> are certain principles that govern the right way of conducting a business. Code of Ethics is principally of two types. One is <mark>compliance-based code of ethics</mark>, other is <mark>value based code of ethics</mark>.</p>
+<div class="bx"><h4>Compliance-based code of ethics</h4><p>Compliance based code of ethics are <mark>laws and policies</mark> to ensure hiring, safety and security of employees and policies for dismissing or firing people from job. Compliance based code of ethics are designed or set keeping in mind the <mark>labour laws</mark>, particularly when it is concerned about the hiring and safety security of the employees. With regard to maintaining a strong <mark>good will</mark> in the market and a strong clientele as well, a robust business system with experienced employees is a basic necessity.</p></div>
+<div class="bx"><h4>Value based code of ethics</h4><p>For any business to be run smoothly it is important to comply with the value-based code of ethics, because <mark>value forms the backbone of a strong good will</mark>. Sometimes the organizations consider a particular product a <mark>cash cow</mark> of minting money and they off and on adopt a wrong means of escalating the scale of product so that the business turnover remains impressive no matter what harm it hurls upon the buyers or clients. This unfair way of conducting a business soon takes a toll on the trajectory of the organization.</p></div>
+<aside class="ed"><b>Edit note.</b> Original: <i>“Code of Ethics is principally of two times”</i> shown as “two types”. <i>“the business buyer over remains impressive”</i> shown as “business turnover” (probably “turn over”). <i>“are laws ^policies to ensure”</i> (word inserted above the line) shown as “laws and policies”. <i>“takes a toll on the trajectory on the organization”</i> shown with “of”. <i>“a basic essecity”</i> shown as “necessity”. The last line of the page may continue elsewhere; nothing follows it in the scan.</aside>
+
+<h3 id="s-tech">Technology Ethics</h3>
+<p>Ethics governing <mark>technology</mark> is something that all techno facts should adhere to at a personal level or as employees of an organization so that the ultimate objective of <mark>serving the humanity</mark> in the best possible way doesn’t get jeopardised. Some of the basic tenets of technology ethics are:</p>
+<div class="tri"><div><i>(i)</i><b>Accountability</b></div><div><i>(ii)</i><b>Integrity</b></div><div><i>(iii)</i><b>Data-privacy</b></div><div><i>(iv)</i><b>Honesty and fairness</b></div></div>
+<aside class="ed"><b>Edit note.</b> Original: <i>“all techno facts”</i>, kept as written. It may be “technocrats”. <i>“tenans”</i> is shown as “tenets”. Faint writing bleeding through from the back of this page was ignored.</aside>
+
+<h2 id="oneshot">One-Shot Summary</h2>
+<p>Everything above in bullet points, for a quick revision.</p>
+<h3>Module 1: Interaction with Human Values</h3>
+<ul class="s">
+<li>Human existence = <mark>self + body</mark>. Body is the shell that houses the self (soul, spirit, consciousness). Distinct but overlapping.</li>
+<li>Needs of the self are <mark>qualitative</mark> (happiness, prosperity). Needs of the body are <mark>quantitative</mark> (physical facilities). Together they create a sync between body and self.</li>
+<li>Values taught from home frame the self, so we can be in harmony with the self first, then the society.</li>
+<li><b>Six values:</b> <mark>Human</mark> (inculcated from home, basic) · <mark>Social</mark> (vary with context, depend on others’ judgement) · <mark>Spiritual</mark> (internalized, not religious, can include nature) · <mark>Religious</mark> (from home or family, dogmatic) · <mark>Ethical</mark> (person to person, a catalyst) · <mark>Environmental</mark> (we get sensitized as we grow older).</li>
+<li>The self also houses three modes: <mark>desire, thought, expectations</mark>.</li>
+<li><b>Maslow</b> (“Theory of Human Motivation”), bottom to top: Physiological, Safety, Love &amp; Belongingness, Esteem, Aesthetic, Cognitive, Self Actualization, Transcendence.</li>
+<li><b>Case study heads:</b> Background, Analysis, Conclusion, Recommendation of solution.</li>
+<li><b>Cooley</b> (Looking glass self, “Human Nature &amp; Social Order”): Imagination appearance → Imagination judgement → Self feeling acting upon the judgements.</li>
+<li><b>Mead:</b> <mark>I</mark> (instinctive), <mark>Me</mark> (conscious, socialized), <mark>Self</mark> (balances I and Me). Stages: Preparatory (0–2), Play (2–6), Imitation (6 and beyond).</li></ul>
+<h3>Module 3: Workplace and Ethics</h3>
+<ul class="s">
+<li><b>Ethics</b> = system of moral principle, professional set up, set by institutions, differs between professions. <b>Ethical values</b> = personal, instilled from families or homes, differ from person to person.</li>
+<li>Ethics is studied as meta, normative and applied. Ethical values as human, social, spiritual and environmental.</li>
+<li><b>Lacuna of ethics:</b> a grave mistake cannot be punished beyond the rule of law or ethics. <b>Ethical values</b> act as a catalyst that speeds up work.</li>
+<li><b>Consequentialism</b> (teleological, with eudaimonism): the consequence decides right or wrong. Mill and Bentham. Studied as <mark>utilitarianism</mark> (greater good for a greater number) and <mark>hedonism</mark> (pleasure or pain).</li>
+<li><b>Deontological ethics</b> (non-consequentialism): Kant. ‘Deon’ = duty. The action matters most. Workplace ethics rests on it and led to canons and codes.</li>
+<li><b>Seven canons:</b> <mark>Confidentiality</mark> (keep strategies sacrosanct) · <mark>Diligence</mark> (utmost effort) · <mark>Integrity</mark> (honesty, hard work) · <mark>Fairness</mark> (salary, promotion) · <mark>Legality</mark> (punitive action for breaking laws) · <mark>Loyalty</mark> (to system and clients) · <mark>Non-discrimination</mark> (gender, nepotism).</li>
+<li><b>Code of ethics:</b> <mark>compliance-based</mark> (laws and policies on hiring, safety, security, dismissal, labour laws) vs <mark>value-based</mark> (value is the backbone of good will; unfair means hurt the organization).</li>
+<li><b>Technology ethics tenets:</b> Accountability, Integrity, Data-privacy, Honesty and fairness.</li></ul>
+
+<h2 id="quiz-sec">Test Yourself</h2>
+<p>28 multiple-choice questions built from these notes. Pick an option to see the right answer and the reason.</p>
+<div class="sc"><span id="score"></span><button class="rs" id="rs">Restart</button></div>
+<div id="quiz"></div>
+
+<h2 id="edits">Changes from the Handwritten Original</h2>
+<p>Every place where the typed text differs from the handwriting, with the original.</p>
+<div class="tw"><table><tr><th>Where</th><th>Original</th><th>Shown here</th></tr>
+<tr><td>Page order</td><td>Pages are mixed: Module 3 (ethics), Module 1, Module 3, Module 1</td><td>Arranged by module: Module 1, then Module 3</td></tr>
+<tr><td>Headings</td><td>No heading above the Kant paragraph; “Harmony b/w self and the body”</td><td>“Deontological Ethics (Non-Consequentialism)” and “Values that Frame the Self” added for navigation; “b/w” written out as “between” in headings</td></tr>
+<tr><td>Self and body</td><td>“we think of comprised of two separate constructs”</td><td>“we think of as comprised of …”</td></tr>
+<tr><td>Self and body</td><td>“spirit within / the soul and it is…”, hard to read</td><td>Read as written</td></tr>
+<tr><td>End of values</td><td>“three very imp. todes of desire”</td><td>“three very important modes of desire”</td></tr>
+<tr><td>Maslow</td><td>Year smudged, reads 1945; bracket beside two bottom tiers</td><td>Kept as written</td></tr>
+<tr><td>Case study</td><td>“• hearing: Background of the problem:”</td><td>“Heading: Background of the problem”</td></tr>
+<tr><td>Cooley</td><td>Year reads 1930; sentence broken by struck-out words; ditto mark for stage (ii)</td><td>Year kept; one sentence; “Imagination judgement”</td></tr>
+<tr><td>Mead</td><td>“Preparatory Stage ( mo child (0-2) years)”</td><td>“[unclear] child, (0–2) years”</td></tr>
+<tr><td>Ethics vs values</td><td>Six numbered points, each with “on the other hand”</td><td>Two-column table, “on the other hand” dropped</td></tr>
+<tr><td>Consequentialism</td><td>“decidedes”, “the consequence is no the determiner”, “conseq.”</td><td>“decides”, “is not the determiner”, “consequence”</td></tr>
+<tr><td>Kant paragraph</td><td>First line cut off at the top: “Refuting the theory of consequentialism p…”</td><td>“proposed” read from context</td></tr>
+<tr><td>Code of ethics</td><td>“two times”, “buyer over”, “laws ^policies”, “trajectory on the organization”, “essecity”</td><td>“two types”, “turnover”, “laws and policies”, “trajectory of the organization”, “necessity”</td></tr>
+<tr><td>Technology ethics</td><td>“all techno facts”, “tenans”</td><td>“techno facts” kept; “tenets”</td></tr>
+<tr><td>Spelling</td><td>existance, conciousness, qualitively, quantitive, buisness, Loyality, impedements, hardwork</td><td>existence, consciousness, qualitative, quantitative, business, Loyalty, impediments, hard work</td></tr>
+<tr><td>Struck-out words</td><td>For example “links” replaced by “leads”, “through” by “threw”</td><td>Only the corrected word is shown</td></tr>
+<tr><td>Highlights, summary, quiz</td><td>Not in the notes</td><td>Added for study</td></tr></table></div>
+
+<h3>Worth double-checking against your textbook</h3>
+<p>These are shown as written in your notes, but they differ from what textbooks usually say.</p>
+<div class="tw"><table><tr><th>In your notes</th><th>Usually given as</th></tr>
+<tr><td>Maslow’s paper: year 1945</td><td>1943</td></tr>
+<tr><td>Cooley’s “Human Nature &amp; Social Order”: year 1930</td><td>1902</td></tr>
+<tr><td>Mill and Bentham: “18th century”</td><td>Bentham spans the 18th and 19th centuries; Mill is 19th century</td></tr>
+<tr><td>Mead: third stage called “Imitation Stage”, 6 years and beyond</td><td>Usually the preparatory stage is the imitation stage and the third stage is called the game stage</td></tr>
+<tr><td>Maslow: “Deficiency Need” covers the bottom two tiers</td><td>Usually also includes love and belonging and esteem needs</td></tr></table></div>
+
+<p class="ft">Notes by Rijul Roychowdhury. Built by azureblu</p>
+<script>
+const Q=[
+["According to the notes, the needs of the self are ___ in nature, while the needs of the body are ___.",["quantitative; qualitative","qualitative; quantitative","qualitative; qualitative","quantitative; quantitative"],1,"The self embodies basic human aspirations such as continuous happiness and prosperity (qualitative). The body needs physical facilities (quantitative)."],
+["The body is described as…",["the shell or receptacle that houses the self","another name for the self","a value instilled at home","a mode of desire"],0,"The body is the shell that houses the self. The body and the soul are two distinct constructs but they also overlap."],
+["Values inculcated from home as we start developing our conscience are…",["Religious values","Environmental values","Human values","Spiritual values"],2,"These are the basic human values, carried forward through life to comply with the laws and precepts set by institutions."],
+["Which values are dogmatic in nature?",["Spiritual values","Religious values","Social values","Ethical values"],1,"Religious values are mostly initiated from home or family and are dogmatic, so they differ from spiritual values."],
+["Spiritual values must not be mixed with religious values because…",["spirit is internalized by an individual and can include forces beyond god, even nature","spirit is taught only by institutions","they depend on others’ judgement","they are set by laws"],0,"Spirit is something internalized by an individual. It can be within, or external forces beyond god, even something like nature."],
+["Social values vary according to context and situations depending on…",["the feedback and judgement of others","a person’s family alone","a company’s code","laws only"],0,"Social values are the values we integrate as part of society, and they depend on the feedback and judgement of others."],
+["Environmental values are developed mainly…",["right from home in childhood","as we grow older, by seeing the hazards the planet is facing","through religious teaching","through institutional rules"],1,"They are not initiated from home. We get sensitized as we grow older, seeing the harm done to the environment."],
+["Besides the values, the self also houses three modes of…",["desire, thought and expectations","body, soul and spirit","I, Me and Self","need, want and demand"],0,"The notes say the self houses three very important modes: desire, thought and expectations."],
+["The lowest tier of Maslow’s pyramid is…",["Safety needs","Esteem needs","Physiological needs","Love & Belongingness needs"],2,"Physiological needs occupy the lowest rung of the ladder."],
+["The top tier of the pyramid in the notes is…",["Self Actualization","Cognitive needs","Aesthetic needs","Transcendence"],3,"Transcendence is at the top, above Self Actualization."],
+["Maslow proposed the hierarchy of needs in a paper called…",["Human Nature & Social Order","Hierarchy of Values","Theory of Human Motivation","Looking Glass Self"],2,"The paper is “Theory of Human Motivation”."],
+["Which is NOT one of the four heads for a case study in the notes?",["Background of the problem","Analysis of the problem","Conclusion of the problem","Biography of the author"],3,"The heads are Background, Analysis, Conclusion and Recommendation of solution."],
+["Cooley’s third stage of social development is…",["Imagination appearance","Imagination judgement","Self feeling acting upon the judgements","Play stage"],2,"Cooley’s stages: imagination appearance, imagination judgement, then self feeling acting upon the judgements."],
+["Mead identifies which three entities within an individual?",["I, Me and Self","Desire, thought and expectations","Body, soul and spirit","Preparatory, play and imitation"],0,"Mead’s entities are I (instinctive), Me (conscious, socialized) and Self (balances I and Me)."],
+["In Mead’s theory, ‘Me’ is…",["instinctive","balancing between I and Me","conscious and socialized","dogmatic"],2,"I is instinctive, Me is conscious and socialized, and Self balances the two."],
+["In the notes, Mead’s play stage covers the ages…",["0–2 years","2–6 years","6 years and beyond","12–18 years"],1,"Preparatory is 0–2, play is 2–6, imitation is 6 years and beyond."],
+["Ethics is generally determined or set by…",["families or homes","an institution or organization","each individual","nature"],1,"Ethics is set by an institution or organization. Ethical values come from families or homes."],
+["Ethical values are generally instilled from…",["institutions","organizations","families or homes","law courts"],2,"Ethical values are instilled from families or homes and differ from person to person."],
+["Ethical values serve as a ___ in any system, expediting work.",["barrier","catalyst","penalty","contract"],1,"With strong ethical values, work of any sort moves faster, so values act as a catalyst."],
+["Consequentialism comes under the umbrella of…",["deontological ethics","teleological ethics","meta ethics","technology ethics"],1,"Consequentialism, along with eudaimonism, comes under teleological ethics."],
+["Consequentialism (the consequence decides right or wrong) was proposed by…",["Immanuel Kant","John Stuart Mill and Jeremy Bentham","Abraham Maslow","Charles Horton Cooley"],1,"Mill and Bentham proposed it. Kant countered it with non-consequentialism."],
+["In ‘deontology’, the root word ‘deon’ means…",["pleasure","consequence","duty","value"],2,"Deon means duty, which is why deontological ethics is also called duty ethics."],
+["According to Kant’s deontological ethics…",["the consequence decides whether an action is right","the action is what is morally or immorally guided","the greater good for a greater number matters most","pleasure is the aim"],1,"The action is most important. The consequence is guided by the action."],
+["Hedonism is about understanding whether a consequence fetched…",["greater good to a greater number","pleasure or pain to a particular class or people of society","duty to the organization","confidentiality"],1,"Utilitarianism is about the greater good for a greater number. Hedonism is about pleasure or pain."],
+["Keeping strategies, and even smaller decisions, confined within a few is the canon of…",["Diligence","Confidentiality","Legality","Loyalty"],1,"Confidentiality means keeping strategies sacrosanct and not divulging smaller decisions meant for a few."],
+["Taking the organization and employees to task with punitive actions for breaking laws relates to…",["Fairness","Integrity","Legality","Loyalty"],2,"Under Legality, both the organization and its employees are bound by rules and laws."],
+["Compliance-based codes of ethics are mainly concerned with…",["hiring, safety and security of employees, keeping labour laws in mind","escalating the sales of a cash cow product","technology tenets","personal religious values"],0,"Compliance-based codes are laws and policies on hiring, safety, security and dismissal, designed with labour laws in mind."],
+["Which is NOT a basic tenet of technology ethics in the notes?",["Accountability","Integrity","Data-privacy","Profit maximisation"],3,"The tenets are accountability, integrity, data-privacy, and honesty and fairness."]
+];
+const R=document.getElementById("quiz"),S=document.getElementById("score");let sc=0,an=0;
+function up(){S.textContent=sc+" of "+Q.length+" correct, "+an+" answered"}
+function build(){sc=0;an=0;R.innerHTML=Q.map((x,i)=>'<div class="mq" data-i="'+i+'"><p><b>'+(i+1)+'.</b> '+x[0]+'</p>'+x[1].map((o,j)=>'<button class="opt" data-j="'+j+'">'+"ABCD"[j]+". "+o+'</button>').join("")+'<p class="ex" hidden><b>Answer: '+"ABCD"[x[2]]+'.</b> '+x[3]+'</p></div>').join("");up()}
+R.addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b)return;const m=b.parentNode;if(m.dataset.done)return;m.dataset.done=1;const x=Q[m.dataset.i],j=+b.dataset.j;an++;if(j===x[2])sc++;m.querySelectorAll(".opt").forEach((n,k)=>{if(k===x[2])n.classList.add("ok");else if(n===b)n.classList.add("no");n.disabled=true});m.querySelector(".ex").hidden=false;up()});
+document.getElementById("rs").onclick=build;build();
+</script>
+</main></body></html>
