@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0b0e14" media="(prefers-color-scheme: dark)">
-<title>Humanities Notes: Modules 1 and 3</title>
+<meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)">
+<title>Quantum Mechanics Notes – Part 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
@@ -19,8 +19,10 @@
   --accent: #2563eb;
   --accent-soft: #eff6ff;
   --border: #e2e8f0;
-  --mark-bg: #fef08a;
-  --mark-fg: #713f12;
+  --key-bg: #fefce8;
+  --key-border: #eab308;
+  --prob-bg: #fef2f2;
+  --prob-border: #ef4444;
   --ok-bg: #16a34a;
   --no-bg: #dc2626;
   --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
@@ -38,8 +40,10 @@
     --accent: #60a5fa;
     --accent-soft: #172554;
     --border: #262f40;
-    --mark-bg: rgba(250, 204, 21, 0.22);
-    --mark-fg: #fde047;
+    --key-bg: #27220d;
+    --key-border: #ca8a04;
+    --prob-bg: #2a1215;
+    --prob-border: #f87171;
     --shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
   }
 }
@@ -53,8 +57,10 @@
   --accent: #60a5fa;
   --accent-soft: #172554;
   --border: #262f40;
-  --mark-bg: rgba(250, 204, 21, 0.22);
-  --mark-fg: #fde047;
+  --key-bg: #27220d;
+  --key-border: #ca8a04;
+  --prob-bg: #2a1215;
+  --prob-border: #f87171;
   --shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
 }
 
@@ -91,7 +97,7 @@ body {
   transition: width 0.1s linear;
 }
 
-/* Sticky Top Bar */
+/* Top Mobile/Desktop Utility Bar */
 .topbar {
   position: sticky;
   top: var(--safe-top);
@@ -134,7 +140,7 @@ body {
   transform: scale(0.96);
 }
 
-/* Layout Grid */
+/* Main Layout */
 main {
   max-width: 78rem;
   margin: 0 auto;
@@ -146,6 +152,7 @@ main {
   margin: 0 auto;
 }
 
+/* Desktop Sidebar TOC */
 @media (min-width: 68rem) {
   main {
     display: grid;
@@ -164,10 +171,8 @@ main {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 1.15rem;
+    padding: 1.25rem;
     box-shadow: var(--shadow);
-    max-height: calc(100vh - 6rem);
-    overflow-y: auto;
   }
   .desktop-nav .nh {
     display: block;
@@ -175,32 +180,24 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--fg-muted);
-    margin-bottom: 0.5rem;
-  }
-  .desktop-nav .ng {
-    display: block;
-    font: 700 0.72rem Inter, system-ui, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin: 0.9rem 0 0.25rem;
+    margin-bottom: 0.75rem;
   }
   .desktop-nav a {
     display: block;
-    padding: 0.38rem 0.6rem;
-    margin: 0.1rem 0;
+    padding: 0.45rem 0.6rem;
+    margin: 0.15rem 0;
     border-radius: 8px;
     text-decoration: none;
     color: var(--fg-muted);
-    font: 500 0.86rem Inter, system-ui, sans-serif;
+    font: 500 0.88rem Inter, system-ui, sans-serif;
     transition: all 0.15s ease;
   }
-  .desktop-nav a:hover {
+  .desktop-nav a:hover, .desktop-nav a.active {
     background: var(--accent-soft);
     color: var(--accent);
     font-weight: 600;
   }
-  .mobile-fab, .mobile-drawer, .drawer-backdrop {
+  .mobile-fab, .mobile-drawer {
     display: none !important;
   }
 }
@@ -212,7 +209,7 @@ main {
 }
 
 /* Typography */
-h1, h2, h3, h4, .by, .sub, .key, .sc, .opt, .rs, table, .ft, .ed b, .tri b, .tri i {
+h1, h2, h3, .by, .sub, .sc, .opt, .rs, table, .ft, .ed b {
   font-family: Inter, system-ui, sans-serif;
 }
 
@@ -224,9 +221,9 @@ h1, h2, h3, h4, .by, .sub, .key, .sc, .opt, .rs, table, .ft, .ed b, .tri b, .tri
 }
 
 h1 {
-  font-size: clamp(2.2rem, 7vw, 3.5rem);
+  font-size: clamp(2.1rem, 7vw, 3.4rem);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   margin: 0.25em 0 0.3em;
 }
@@ -235,14 +232,8 @@ h1 {
   font-size: 1.05rem;
   line-height: 1.5;
   color: var(--fg-muted);
-  margin: 0 0 1rem;
-}
-
-.key {
-  font-size: 0.9rem;
-  color: var(--fg-muted);
-  padding-bottom: 1.6rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
+  padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -258,94 +249,69 @@ h2 {
 }
 
 h3 {
-  font-size: 1.18rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  margin: 2rem 0 0.6rem;
+  margin: 1.8rem 0 0.6rem;
   color: var(--fg);
-}
-
-h4 {
-  margin: 0 0 0.35rem;
-  font-size: 1.02rem;
-  font-weight: 700;
 }
 
 p {
   margin: 0.75em 0;
 }
 
-.mu {
-  color: var(--fg-muted);
-  font-size: 0.92rem;
-  font-family: Inter, system-ui, sans-serif;
-}
-
-/* Highlighted Key Terms */
-mark {
-  background: var(--mark-bg);
-  color: var(--mark-fg);
-  font-weight: 600;
-  padding: 0.05em 0.3em;
-  border-radius: 4px;
-}
-
-/* Cards & Callouts */
-.vb {
+/* Equation Boxes & Callouts */
+.bx {
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  margin: 1.1rem 0;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bx small {
+  display: block;
+  color: var(--fg-muted);
+  text-align: right;
+  font: 500 0.8rem Inter, system-ui, sans-serif;
+  padding-bottom: 0.35rem;
+}
+
+.nt {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  padding: 0.75rem 1.1rem;
+  margin: 1.2rem 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.98rem;
+}
+
+.ky {
+  background: var(--key-bg);
+  border-left: 4px solid var(--key-border);
+  padding: 0.85rem 1.15rem;
+  margin: 1.4rem 0;
+  border-radius: 0 10px 10px 0;
+}
+
+.pb {
+  background: var(--prob-bg);
+  border: 1px solid color-mix(in srgb, var(--prob-border) 35%, transparent);
+  border-left: 4px solid var(--prob-border);
   border-radius: 10px;
   padding: 0.85rem 1.15rem;
-  margin: 0.85rem 0;
-  box-shadow: var(--shadow);
+  margin: 1.75rem 0 1rem;
 }
 
-.vb p {
-  margin: 0.25em 0;
-}
-
-.tri {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0.8rem;
-  margin: 1.1rem 0;
-}
-
-.tri > div {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 12px;
-  padding: 0.9rem 1.05rem;
-  box-shadow: var(--shadow);
-}
-
-.tri b {
-  display: block;
-  font-size: 1.02rem;
-  margin: 0.15rem 0;
-}
-
-.tri i {
-  font-style: normal;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.tri span {
-  color: var(--fg-muted);
-  font-size: 0.9rem;
-  display: block;
-}
-
-.bx {
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  background: var(--surface);
-  border-radius: 10px;
-  padding: 0.95rem 1.2rem;
-  margin: 1.1rem 0;
-  box-shadow: var(--shadow);
+.pb h3 {
+  color: var(--prob-border);
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .ed {
@@ -358,19 +324,31 @@ mark {
   color: var(--fg-muted);
 }
 
-/* Responsive SVG Container */
+/* MathJax Mobile Overflow Handling */
+mjx-container[display="true"] {
+  margin: 0.65em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.2rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive SVG Diagrams */
 .svg-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 0.85rem;
+  padding: 0.75rem;
   margin: 1.2rem 0;
-  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
 }
 
 .d {
   display: block;
   width: 100%;
+  max-width: 420px;
   height: auto;
   fill: none;
   stroke: currentColor;
@@ -380,60 +358,26 @@ mark {
 .d text {
   fill: currentColor;
   stroke: none;
-  font: 600 13.5px Inter, system-ui, sans-serif;
+  font: 600 13px Inter, system-ui, sans-serif;
 }
 
-.d .t path {
-  fill: var(--accent-soft);
+.d .c {
   stroke: var(--accent);
+  stroke-width: 2.5;
 }
 
-/* Lists */
-ul.s {
-  padding-left: 1.25rem;
-  margin: 0.6rem 0;
+.d .f {
+  fill: var(--accent);
+  fill-opacity: 0.22;
+  stroke: none;
 }
 
-ul.s li {
-  margin: 0.45rem 0;
+.d .t {
+  stroke-dasharray: 4 3;
+  opacity: 0.55;
 }
 
-/* Responsive Tables */
-.tw {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 1.1rem 0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 500px;
-  font-size: 0.9rem;
-  line-height: 1.55;
-}
-
-th, td {
-  border-bottom: 1px solid var(--border);
-  padding: 0.7rem 0.85rem;
-  text-align: left;
-  vertical-align: top;
-}
-
-th {
-  background: var(--surface-alt);
-  font-weight: 700;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* Quiz Styling (Android 48dp Touch Targets) */
+/* Quiz Styling (Android 48dp Touch Friendly) */
 .sc {
   position: sticky;
   top: calc(var(--safe-top) + 3.1rem);
@@ -528,6 +472,38 @@ tr:last-child td {
   font-size: 0.92rem;
 }
 
+/* Responsive Table */
+.tw {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 0.88rem;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface-alt);
+  font-weight: 700;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
 .ft {
   margin-top: 3.5rem;
   padding-top: 1.5rem;
@@ -537,7 +513,7 @@ tr:last-child td {
   text-align: center;
 }
 
-/* Android Floating Action Button & Bottom Sheet Drawer */
+/* Android Bottom Floating Button & Bottom Sheet Drawer */
 .mobile-fab {
   position: fixed;
   right: 1.15rem;
@@ -587,7 +563,7 @@ tr:last-child td {
   padding: 0.75rem 1.25rem calc(var(--safe-bottom) + 1.5rem);
   transform: translateY(100%);
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  max-height: 78vh;
+  max-height: 75vh;
   overflow-y: auto;
 }
 
@@ -609,23 +585,14 @@ tr:last-child td {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--fg-muted);
-  margin-bottom: 0.4rem;
-}
-
-.mobile-drawer .ng {
-  display: block;
-  font: 700 0.72rem Inter, system-ui, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  margin: 0.9rem 0 0.2rem;
+  margin-bottom: 0.6rem;
 }
 
 .mobile-drawer a {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  padding: 0.45rem 0.75rem;
+  min-height: 46px;
+  padding: 0.5rem 0.75rem;
   border-radius: 10px;
   text-decoration: none;
   color: var(--fg);
@@ -642,210 +609,358 @@ tr:last-child td {
   color: var(--accent);
 }
 </style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
 </head>
 <body>
 
 <div id="progress"></div>
 
 <header class="topbar">
-  <span class="topbar-title">Humanities · Modules 1 &amp; 3</span>
+  <span class="topbar-title">Quantum Mechanics · Part 1</span>
   <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">Theme</button>
 </header>
 
 <main>
   <aside class="desktop-nav" aria-label="Table of contents">
     <span class="nh">Contents</span>
-    <span class="ng">Module 1</span>
-    <a href="#s-body">Self and the body</a>
-    <a href="#s-values">Values that frame the self</a>
-    <a href="#s-maslow">Maslow’s hierarchy</a>
-    <a href="#s-cooley">Cooley’s theory</a>
-    <a href="#s-mead">Mead’s theory</a>
-    <span class="ng">Module 3</span>
-    <a href="#s-ethics">Ethics and ethical values</a>
-    <a href="#s-conseq">Consequentialism</a>
-    <a href="#s-deon">Deontological ethics</a>
-    <a href="#s-canons">Canons of ethics</a>
-    <a href="#s-codes">Code of ethics</a>
-    <a href="#s-tech">Technology ethics</a>
-    <span class="ng">Study</span>
-    <a href="#oneshot">One-shot summary</a>
+    <a href="#s14">1.4 Schrödinger equation</a>
+    <a href="#s15">1.5 Classical mechanics</a>
+    <a href="#s16">1.6 Quantum mechanics</a>
+    <a href="#s17">1.7 Significance of ψ</a>
+    <a href="#s18">1.8 Properties of ψ</a>
+    <a href="#s19">1.9 Two properties</a>
+    <a href="#pr">Problems 2–4</a>
     <a href="#quiz-sec">Test yourself</a>
     <a href="#edits">Changes from original</a>
   </aside>
 
   <div class="content-col">
     <p class="by">Notes by Rijul Roychowdhury · Built by azureblu</p>
-    <h1>Humanities</h1>
-    <p class="sub">Module 1: Interaction with Human Values. Module 3: Connection of I with the Workplace and Implication of Holistic Understanding. Typed from the handwritten notes.</p>
-    <p class="key">Words with a <mark>highlighted tag</mark> are the important terms.</p>
+    <h1>Quantum Mechanics</h1>
+    <p class="sub">Part 1. Typed from the handwritten notes: Sections 1.4 to 1.9 and Problems 1 to 4.</p>
 
-    <h2 id="m1">Module 1: Interaction with Human Values</h2>
-    <h3 id="s-body">Harmony between Self and the Body</h3>
-    <p>Any human existence we think of as comprised of two separate constructs: the <mark>self</mark> and the <mark>body</mark>. The body is the <mark>shell</mark> or the <mark>receptacle</mark> that houses the self. The body carries the <mark>soul</mark> and the <mark>spirit</mark> within the soul, and it is this soul and spirit that carries <mark>consciousness</mark>, and it is this consciousness that leads to the framing of the shell. So, on one hand soul and body are two <mark>distinct constructs</mark> and on the other they <mark>overlap</mark>.</p>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“Any human existence we think of comprised of two separate constructs”</i> (no “as”), and <i>“the spirit within / the soul and it is this soul and spirit…”</i> across a line break, which is hard to read. Shown with “as” added and the second part read as written.</aside>
-    <p>Going by the parameter of being distinct, it can be said that the needs of the self are <mark>qualitative</mark> in nature. As the self embodies <mark>paraphernalia of basic human aspirations</mark>, which desires to be in continuous happiness and prosperities, the needs of the body on the other hand are <mark>physical facilities</mark> and are <mark>quantitative</mark> in nature. All these qualitative and quantitative needs taken together help in creating a <mark>sync between body and the self</mark>.</p>
-    <p>It is the self that gets instilled with the values that are taught right from our homes. The values that help in framing the self along with the body help the humans to be in <mark>harmony with the self first and then with the society</mark>. The values that got instilled in us in forming the self are:</p>
+    <h2 id="s14">1.4 Schrödinger Equation: Differential Equation for Matter Wave</h2>
+    <p>A classical wave is represented by a partial differential equation:</p>
+    <div class="bx">$$\frac{\partial^2y}{\partial t^2}=v^2\frac{\partial^2y}{\partial x^2}\tag{1.4(i)}$$<small>1‑Dimensional</small></div>
+    <div class="bx">$$\frac{\partial^2y}{\partial t^2}=v^2\nabla^2y\tag{1.4(ii)}$$<small>3‑Dimensional</small></div>
+    <p>In the above 2 equations: $y$ represents the disturbance of the wave. $v$ represents the velocity of the wave.</p>
+    <p>Similarly the matter wave as suggested by De‑Broglie should also be represented by a differential equation. This differential equation was suggested by Erwin Schrödinger in the year 1925. This equation is the starting point of quantum mechanics. It may also be noted that this equation is the most basic equation of Quantum Mechanics and it cannot be derived from anything else. However Schrödinger arrived at this equation by taking various inputs from De‑Broglie hypothesis and Planck’s Quantized Energy. Let us try to see the motivation and logical arguments behind writing down the Schrödinger equation.</p>
 
-    <h3 id="s-values">Values that Frame the Self</h3>
-    <div class="vb"><p><b>1. <mark>Human values</mark>:</b> The values that are inculcated from home within us right from the time when we start developing our conscience are considered to be the basic human values which we carry forward all through our life in order to comply with the laws and precepts set by institutions.</p></div>
-    <div class="vb"><p><b>2. <mark>Social values</mark>:</b> The values that we as human beings integrate as a part of the society are social values. These values vary according to context and situations depending on the feedback and judgement of others.</p></div>
-    <div class="vb"><p><b>3. <mark>Spiritual values</mark>:</b> Spiritual values are the ones that cannot be mixed with religious values because spirit is something that is supposed to be <mark>internalized</mark> by an individual and that can be something within or maybe external forces beyond god, which can include even something like the nature.</p></div>
-    <div class="vb"><p><b>4. <mark>Religious values</mark>:</b> Religious values are the ones that are initiated from home or family in majority of the cases. These values are <mark>dogmatic</mark> in nature and thus different from spiritual values.</p></div>
-    <div class="vb"><p><b>5. <mark>Ethical values</mark>:</b> Ethical values differ from person to person working as <mark>catalyst</mark> in supporting a person putting his or her full potential in a situation which demands utmost display of <mark>Ethicality</mark>.</p></div>
-    <div class="vb"><p><b>6. <mark>Environmental values</mark>:</b> Environmental values though are not as such initiated from home but we get sensitized about it as we grow older, by seeing the hazards the planet is facing because of hurling harm upon the environment.</p></div>
-    <p>Having spoken about the values, it is important to mention that the self, besides possessing the aforesaid values, also houses three very important <mark>modes of desire, thought and expectations</mark>.</p>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“three very imp. todes of desire”</i> with an earlier word struck out. The word is hard to read; shown as “modes”. “imp.” is written out as “important”.</aside>
+    <p><b>(i)</b> 1‑d Harmonic Progressive wave propagating along x‑axis can be written as:</p>
+    <div class="bx">$$\psi=Ae^{i(Kx-\omega t)}\tag{1.4(iii)}$$</div>
+    <p>$\psi$ represents the disturbance. $A$ → Amplitude; $K$ → Wave Number, $K=\dfrac{2\pi}{\lambda}$; $\omega$ → Angular Frequency.</p>
 
-    <h3 id="s-maslow">Maslow’s Hierarchy of Needs</h3>
-    <p class="mu">Maslow’s hierarchy of needs theory explained through the pyramid.</p>
+    <p><b>(ii)</b> De‑Broglie Hypothesis: $\lambda=\dfrac hP$. ∴ $K=\dfrac{2\pi}{\lambda}=2\pi\times\dfrac Ph\Rightarrow$</p>
+    <div class="bx">$$K=\frac P\hbar\tag{1.4(iv)}$$</div>
+    <p>where $\hbar=\dfrac{h}{2\pi}$ → This is called Reduced Planck constant.</p>
+
+    <p><b>(iii)</b> Energy of the particle is quantised just like photons: $E=h\nu$. Here $\nu$ is the frequency of the wave associated with the particle. ∴ Angular Frequency is given by: $\omega=2\pi\nu=2\pi\times\dfrac Eh\Rightarrow$</p>
+    <div class="bx">$$\omega=\frac E\hbar\tag{1.4(v)}$$</div>
+
+    <p><b>(iv)</b> Substituting Eqns 1.4(iv) &amp; 1.4(v) into eqn. 1.4(iii).</p>
+    <div class="bx">$$\psi=Ae^{\frac i\hbar(Px-Et)}\tag{1.4(vi)}$$</div>
+    <p>Eqn. 1.4(vi) represents equation of a matter wave of a particle having momentum $P$ and energy $E$.</p>
+
+    <p><b>(v)</b> $\dfrac{\partial\psi}{\partial t}=Ae^{\frac i\hbar(Px-Et)}\times\Big(-\dfrac{iE}{\hbar}\Big)=-\dfrac{iE}{\hbar}\psi\ \Rightarrow\ i\hbar\dfrac{\partial\psi}{\partial t}=-\dfrac{iE}{\hbar}\psi\times i\hbar\ \Rightarrow$</p>
+    <div class="bx">$$i\hbar\frac{\partial\psi}{\partial t}=E\psi\tag{1.4(vii)}$$</div>
+    <p style="text-align:center;margin:0.2rem 0">⇓</p>
+    <div class="bx">$$i\hbar\frac{\partial}{\partial t}\equiv E\tag{1.4(viii)}$$<small>Energy operator</small></div>
+    <p>This implies that the operation $i\hbar\dfrac{\partial}{\partial t}$ on the wavefunction $\psi$ is equivalent to multiplying it with $E$. Thus the operator $i\hbar\dfrac{\partial}{\partial t}$ is called the Energy operator.</p>
+
+    <p><b>(vi)</b> $\dfrac{\partial\psi}{\partial x}=\dfrac{iP}{\hbar}Ae^{\frac i\hbar(Px-Et)}$ or $\dfrac{\partial^2\psi}{\partial x^2}=\dfrac{i^2P^2}{\hbar^2}Ae^{\frac i\hbar(Px-Et)}$</p>
+    <p>Now; $-i\hbar\dfrac{\partial\psi}{\partial x}=-i\hbar\times\dfrac{iP}{\hbar}Ae^{\frac i\hbar(Px-Et)}=-i^2P\psi=P\psi$ ∴</p>
+    <div class="bx">$$-i\hbar\frac{\partial}{\partial x}\equiv P_x\tag{1.4(ix)}$$<small>Momentum operator</small></div>
+
+    <p><b>(vii)</b> For a Non‑Relativistic particle in a potential $V(x)$ the total mechanical energy can be written as:</p>
+    <div class="bx">$$E=\frac{P^2}{2m}+V(x)$$<small>1‑Dimensional</small></div>
+    <p>In general this equation is valid for both conservative &amp; Non‑conservative system. For a conservative system $E$ = conserved. For a Non‑conservative system $E$ is not conserved. Now multiply this energy equation with $\psi$ on both side.</p>
+    <p>∴ $E\psi=\dfrac{P^2\psi}{2m}+V(x)\psi$</p>
+
+    <p><b>(viii)</b> Now if we replace the Energy &amp; Momentum with its corresponding operator then we arrive at the Schrödinger Equation.</p>
+    <div class="bx">$$i\hbar\frac{\partial\psi}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V(x)\psi\tag{1.4(x)}$$</div>
+    <p>Eqn. 1.4(x) is the 1‑Dimensional Schrödinger Equation (Time Dependent). This equation is called Time dependent Schrödinger equation as because in the equation $\psi$ is a function of both $x$ &amp; $t$. $\psi(x,t)$: Wavefunction of the Particle under potential $V(x)$.</p>
+
+    <div class="nt"><b>Note:</b> In general potential may depend on time. But for most of the cases we will consider time independent potential. Thus $V$ will be a function of $x$ only.</div>
+    <div class="nt"><b>Note:</b> The steps we used to arrive at the Schrödinger equation is not at all a rigorous derivation. It is just an establishment from logical arguments.</div>
+    <div class="nt"><b>Note:</b> The Time Dependent Schrödinger Equation is a partial differential equation &amp; by solving it for various potentials we can get $\psi(x,t)$. The form of $\psi(x,t)$ we assumed for arriving at the Schrödinger equation is not the only solution. Eqn. 1.4(iii) is indeed a solution of the Schrödinger equation but that is only for a free particle i.e when $V(x)=0$.</div>
+    <div class="nt"><b>Note:</b> Two points that proves the Non‑Rigorousness of the Derivation of the Time Dependent Schrödinger Equation:
+      <p><b>1.</b> We assume a solution $\psi(x,t)=Ae^{i(Kx-\omega t)}$ and from there we try to arrive at the differential equation. This is not mathematically sound.</p>
+      <p><b>2.</b> Replacing the $E$ &amp; $P$ by its corresponding operator is not at all allowed in Classical Mechanics.</p>
+      Thus Schrödinger Equation is one of the basic postulates of Quantum Mechanics and cannot be derived from anything else.
+    </div>
+
+    <h2 id="s15">1.5 Basic Aim of Classical Mechanics</h2>
+    <p><b>1.</b> Let us assume a particle of mass $m$ moving in 1‑dimension.</p>
+    <p><b>2.</b> First thing that we need to know are the Forces acting on the particle. Let the forces be $\{F_1(x,t);\,F_2(x,t);\,F_3(x,t)\}$.</p>
+    <p><b>3.</b> Once we know the Forces we can write down the differential equation of the particle using Newton’s 2nd Law of motion:</p>
+    <div class="bx">$$m\frac{d^2x}{dt^2}=F_1(x,t)+F_2(x,t)+F_3(x,t)\tag{1.5(i)}$$</div>
+    <p><b>4.</b> Next we want to solve this differential equation and calculate the position of the particle as a function of time. $\{x(t)\}$</p>
+    <p><b>5.</b> The solution $x(t)$ may contain some arbitrary integration constants. These constants are estimated from given initial conditions. Eg: Let at $t=0\Rightarrow x(0)=x_0$ &amp; $v(0)=v_0$.</p>
+    <p><b>6.</b> Thus the Newtonian Classical mechanics tells us that if we are given the initial position and velocity of the particle at $t=0$; then we can determine the position of the particle &amp; hence velocity at any later time $t$ using N2L.</p>
+    <p>Given $\begin{cases}x(0)=x_0\\v(0)=v_0\end{cases}\Rightarrow(\text{N2L})\Rightarrow x(t)=\dots,\ v(t)=\dfrac{dx}{dt}=\dots$</p>
+    <p><b>6.</b> Once we get $x(t)$ we can estimate any other dynamical variable like:</p>
+    <p><b>(i)</b> Velocity: $v(t)=\dfrac{dx}{dt}$</p>
+    <p><b>(ii)</b> Acceleration: $a(t)=\dfrac{d^2x}{dt^2}$</p>
+    <p><b>(iii)</b> Momentum: $P(t)=m\Big(\dfrac{dx}{dt}\Big)$ etc.</p>
+
+    <h3>Eg 1: A particle executing Simple Harmonic Motion (S.H.M): Conservative system</h3>
+    <p><b>Step 1:</b> From Definition of S.H.M the only force acting on a particle executing SHM is the restoring force. ∴</p>
+    <div class="bx">$$F_R=-kx\tag{1.5(ii)}$$<small>$x$ → Displacement of the particle</small></div>
+    <p><b>Step 2:</b> Write Down the Differential Equation of motion using Newton’s 2nd law of motion:</p>
+    <div class="bx">$$m\frac{d^2x}{dt^2}=-kx\tag{1.5(iii)}$$</div>
+    <p><b>Step 3:</b> Solve this Differential equation and calculate displacement as a function of time:</p>
+    <div class="bx">$$x(t)=R\cos(\omega_0t-\Phi)\tag{1.5(iv)}$$</div>
+    <p>Here $R$ → Amplitude; $\omega_0$ → Angular frequency &amp; $\Phi$ → Epoch for oscillation (Initial phase).</p>
+    <p><b>Step 4:</b> In the above solution $R$ &amp; $\Phi$ are arbitrary constants which has to be determined from initial conditions. Eg: If at $t=0\Rightarrow x(0)=0$ &amp; $v(0)=v_0$. Then</p>
+    <div class="bx">$$\Phi=\frac{(2n+1)\pi}{2}\quad\&\quad R=\frac{v_0}{(-1)^n\omega_0}\tag{1.5(v)}$$</div>
+    <p>By substituting these constants we can write down the full solution:</p>
+    <div class="bx">$$x(t)=\frac{v_0}{\omega_0}\sin(\omega_0t)\tag{1.5(vi)}$$</div>
+    <p>Thus from this equation 1.5(vi) we can tell the position of the particle at any point of time.</p>
+    <div class="nt">The velocity can also be estimated at any point of time by differentiating eqn. 1.5(vi).</div>
+
+    <h2 id="s16">1.6 Basic Aim of Quantum Mechanics</h2>
+    <p><b>1. Applicability of Quantum Mechanics:</b></p>
+    <p><b>(i)</b> Consider an electron $e^-$ of $v=100$ m/s. $m_e=9.1\times10^{-31}$ kg.</p>
+    <p>De‑Broglie Wavelength:</p>
+    <div class="bx">$$\lambda=\frac{h}{m_ev}$$</div>
+    <p>∴ $P=(9.1\times10^{-31}\times100)$</p>
+    <div class="bx">$$P=9.1\times10^{-29}\ \mathrm{kg\,m/s}$$<small>Momentum of the Electron</small></div>
+    <p>∴ $\lambda_e=\dfrac{6.626\times10^{-34}}{9.1\times10^{-29}}\Rightarrow\lambda_e=0.7281\times10^{-5}\ \mathrm{m}\Rightarrow$</p>
+    <div class="bx">$$\lambda_e=7.281\ \mu\mathrm{m}$$</div>
+    <p>This wavelength lies in the infra‑red spectrum and this wavelength is very well in the detectable range.</p>
+
+    <p><b>(ii)</b> Consider a cricket ball moving with velocity $v=100$ m/s &amp; having mass $m=0.15$ kg. Momentum of the ball $=(0.15\times100)=15$ kg m/s.</p>
+    <p>De‑Broglie Wavelength: $\lambda=\dfrac{6.626\times10^{-34}}{15}\Rightarrow$</p>
+    <div class="bx">$$\lambda=4.42\times10^{-35}\ \mathrm{m}$$</div>
+    <p>Size of nucleus is of the order of $10^{-15}$ m. Thus the de‑Broglie wavelength of a cricket ball is $10^{20}$ times smaller than the Nucleus. Such small wavelengths cannot be detected with the instruments that we have. Thus observing quantum mechanical effects for such small De‑Broglie wavelength is very difficult.</p>
+    <p>Quantum Mechanical effects are significant when size of the particles becomes comparable to the De‑Broglie wavelength of the particle.</p>
+    <div class="bx">$$\lambda\approx d$$<small>$d$ → size of the Particle; $\lambda$ → De‑Broglie Wavelength</small></div>
+
+    <p><b>2.</b> Let us consider a particle of mass $m$ moving in 1‑Dimension subjected to a potential $V(x)$.</p>
+    <p><b>3.</b> In Quantum Mechanics our first aim is to write down the time dependent Schrödinger equation for this particle.</p>
+    <div class="bx">$$i\hbar\Big(\frac{\partial\psi}{\partial t}\Big)=-\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial x^2}+V(x)\psi$$</div>
+    <p>where $\hbar=\dfrac{h}{2\pi}$ &amp; $i=\sqrt{-1}$. The wavefunction $\psi$ is in general a function of $x$ &amp; $t$. ∴ $\psi(x,t)$: Wavefunction of a particle.</p>
+    <p><b>4.</b> Next we solve this Schrödinger Equation and estimate the wavefunction of the particle $\psi(x,t)$.</p>
+    <p><b>5.</b> Then the arbitrary constants are estimated from initial conditions: $\psi(x,0)=$ Given</p>
+    <p><b>6.</b> Thus if $\psi(x,0)=$ Given; then $\psi(x,t)$ i.e the wavefunction at a later time $t$ can be determined by solving Schrödinger Equation.</p>
+    <div class="nt">Thus Schrödinger equation plays exactly the same role in quantum mechanics that N2L plays in Classical Newtonian mechanics.</div>
+
+    <h2 id="s17">1.7 What is the Physical Significance of the Wavefunction ψ(x,t) of a Particle?</h2>
+    <p><b>(i)</b> $\psi(x,t)$ does not have any physical significance BUT, $|\psi(x,t)|^2$ has got physical significance.</p>
+    <p>$|\psi(x,t)|^2$ → Probability Density → Probability of finding the particle at point $x$, at a time $t$.</p>
+    <p><b>(ii)</b> To be more precise:</p>
+    <div class="bx">$$|\psi(x,t)|^2dx=\psi^*(x,t)\,\psi(x,t)\,dx\tag{1.7(i)}$$</div>
+    <p>= Probability of finding the particle between point $x$ &amp; $(x+dx)$.</p>
+    <p><b>Note:</b> We are assuming a particle moving in 1‑Dimension i.e the particle is moving in a line.</p>
     <div class="svg-wrap">
-      <svg class="d" viewBox="0 0 720 332" role="img" aria-label="Maslow’s pyramid, eight tiers from Physiological needs at the bottom to Transcendence at the top">
-        <g class="t">
-          <path d="M355 14H525L546.9 52H333.1Z"/>
-          <path d="M333.1 52H546.9L568.75 90H311.25Z"/>
-          <path d="M311.25 90H568.75L590.6 128H289.4Z"/>
-          <path d="M289.4 128H590.6L612.5 166H267.5Z"/>
-          <path d="M267.5 166H612.5L634.4 204H245.6Z"/>
-          <path d="M245.6 204H634.4L656.25 242H223.75Z"/>
-          <path d="M223.75 242H656.25L678.1 280H201.9Z"/>
-          <path d="M201.9 280H678.1L700 318H180Z"/>
-        </g>
-        <g text-anchor="middle">
-          <text x="440" y="38">Transcendence</text>
-          <text x="440" y="76">Self Actualization</text>
-          <text x="440" y="114">Cognitive needs</text>
-          <text x="440" y="152">Aesthetic needs</text>
-          <text x="440" y="190">Esteem needs</text>
-          <text x="440" y="228">Love &amp; Belongingness needs</text>
-          <text x="440" y="266">Safety needs</text>
-          <text x="440" y="304">Physiological needs</text>
-          <text transform="translate(38 133) rotate(-90)">Growth Needs</text>
-          <text transform="translate(140 280) rotate(-90)">Deficiency Need</text>
-        </g>
-        <path d="M64 236V30M57 40l7-10 7 10M170 244H160V316H170"/>
-      </svg>
+      <svg class="d" viewBox="0 0 360 85" role="img" aria-label="A line with points O, A, C, D, B"><path d="M10 40H340M334 36l6 4-6 4M40 32v16M120 32v16M200 32v16M224 32v16M290 32v16"/><path class="f" d="M200 32h24v16h-24z"/><text x="36" y="24">O</text><text x="116" y="24">A</text><text x="196" y="24">C</text><text x="220" y="24">D</text><text x="286" y="24">B</text><text x="344" y="32">X</text><text x="110" y="66">x₁</text><text x="193" y="66">x</text><text x="206" y="80">(x+dx)</text><text x="284" y="66">x₂</text></svg>
     </div>
-    <p><mark>Abraham Maslow</mark> is an American psychologist who proposed the <mark>hierarchy of needs</mark> theory in a paper called “<mark>Theory of Human Motivation</mark>” in the year 1945. He explained the theory with the aid of a <mark>pyramid</mark> in which he has put the human needs in several <mark>tiers</mark>, with the physiological needs occupying the lowest rung of the ladder and transcendence at the top. With the help of the pyramid he tries to explain how human beings evolve in real life passing through the different levels of needs.</p>
-    <aside class="ed"><b>Edit note.</b> Original: the year is smudged and reads <i>“1945”</i>; kept as written (see the double-check table below). In the sketch, the “Deficiency Need” bracket is drawn beside the two bottom tiers only (Safety and Physiological), and “Growth Needs” is an upward arrow on the left. Drawn here the same way.</aside>
+    <p>Eqn. 1.7(i) represents the Probability of finding the particle in the shaded region of the figure (Between C &amp; D).</p>
 
-    <h3>For Any Case Study</h3>
-    <ul class="s">
-      <li><mark>Heading</mark>: Background of the problem</li>
-      <li><mark>Analysis</mark> of the problem</li>
-      <li><mark>Conclusion</mark> of the problem</li>
-      <li><mark>Recommendation</mark> of solution</li>
-    </ul>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“• hearing: Background of the problem:”</i>. The first word is unclear and is probably “heading”, so the first item is shown as “Heading: Background of the problem”.</aside>
+    <p><b>(iii)</b> Probability of finding the particle between A &amp; B will be given by</p>
+    <div class="bx">$$\int_{x_1}^{x_2}\psi^*(x,t)\,\psi(x,t)\,dx$$</div>
 
-    <h3 id="s-cooley">Cooley’s Looking Glass Self Theory</h3>
-    <p><mark>Looking glass self</mark> theory, proposed by <mark>Charles Horton Cooley</mark>, the American sociologist-psychologist, in the year 1930 in a book called “<mark>Human Nature &amp; Social Order</mark>”, tried to explain that human behaviour conforms to the assessment done by the society after getting to experience human attitude through different actions. Based on this Cooley proposed <mark>3 stages</mark> of social development in human being:</p>
-    <div class="tri">
-      <div><i>Stage (i)</i><b>Imagination appearance</b></div>
-      <div><i>Stage (ii)</i><b>Imagination judgement</b></div>
-      <div><i>Stage (iii)</i><b>Self feeling acting upon the judgements</b></div>
+    <p><b>(iv)</b> Analogical Example: Linear charge distribution:</p>
+    <p>If we have a non‑uniform linear charge distribution $\lambda(x)$ then we can calculate the total charge between O &amp; L by integrating.</p>
+    <div class="svg-wrap">
+      <svg class="d" viewBox="0 0 360 85" role="img" aria-label="A line from O to L with points P and Q"><path d="M10 40H340M334 36l6 4-6 4M40 24v32M290 24v32M150 32v16M172 32v16"/><path class="f" d="M150 32h22v16h-22z"/><text x="36" y="18">O</text><text x="146" y="24">P</text><text x="168" y="24">Q</text><text x="286" y="18">L</text><text x="344" y="32">X</text><text x="144" y="66">x</text><text x="155" y="80">(x+dx)</text></svg>
     </div>
-    <aside class="ed"><b>Edit note.</b> Original: the year looks like <i>“1930”</i> (hard to read); kept as written. The sentence reads <i>“conforms to the <s>human behavior</s>. assessment done by the Society…”</i> with the struck words and a full stop in the middle, so it is joined into one sentence. Stage (ii) is written as a ditto mark under “Imagination” followed by <i>“Judgement <s>and self-feeling</s>”</i>, shown here as “Imagination judgement”.</aside>
+    <div class="nt">Charge between P &amp; Q $=\lambda(x)\,dx$</div>
+    <div class="nt">Total charge between O to L $=\displaystyle\int_0^L\lambda(x)\,dx$</div>
+    <div class="nt">Similarly to calculate the Probability of finding the particle between two points we have to integrate the Probability density from one point to the other.</div>
 
-    <h3 id="s-mead">Mead’s Theory of Social Development</h3>
-    <p><mark>George Herbert Mead</mark> identifies <mark>3 entities</mark> within an individual:</p>
-    <div class="tri">
-      <div><i>Entity (i)</i><b>I</b><span>Instinctive</span></div>
-      <div><i>Entity (ii)</i><b>Me</b><span>Conscious, socialized</span></div>
-      <div><i>Entity (iii)</i><b>Self</b><span>Balances b/w I and Me</span></div>
+    <p><b>(v)</b> Suppose we solve the Schrödinger Eqn. for a particle and we get a wavefunction $\psi(x,t)$. Then we plot $|\psi(x,t)|^2$ as a function of $x$ and get something like the figure shown below:</p>
+    <div class="svg-wrap">
+      <svg class="d" viewBox="0 0 480 215" role="img" aria-label="Probability density with three peaks, zero at E, shaded area between B and C"><path d="M10 170H475M469 166l6 4-6 4M150 190V10M146 16l4-6 4 6"/><path class="f" d="M213 170V111L218 100C227 80 236 60 247 46V170Z"/><path class="c" d="M20 166C42 166 50 96 72 96C96 96 106 150 150 150C190 150 200 140 218 100C236 60 255 22 288 22C320 22 332 110 345 150C352 170 358 170 366 170C378 170 384 122 408 122C432 122 436 166 462 166"/><path class="t" d="M72 170V96M213 170V111M247 170V46M288 170V22M366 170V160M408 170V122"/><text x="62" y="186">x₁</text><text x="68" y="204">A</text><text x="203" y="186">x₂</text><text x="209" y="204">B</text><text x="238" y="186">x₃</text><text x="244" y="204">C</text><text x="278" y="186">x₄</text><text x="284" y="204">D</text><text x="356" y="186">x₅</text><text x="362" y="204">E</text><text x="398" y="186">x₆</text><text x="404" y="204">F</text></svg>
     </div>
-    <p>Mead proposes <mark>3 phases</mark> to display oneself as a part of the society, which is an important aspect of social development:</p>
-    <div class="tri">
-      <div><i>Phase 1)</i><b>Preparatory Stage</b><span>[unclear] child, (0–2) years</span></div>
-      <div><i>Phase (ii)</i><b>Play Stage</b><span>(2–6) years</span></div>
-      <div><i>Phase (iii)</i><b>Imitation Stage</b><span>6 years and beyond</span></div>
+    <p>From this figure we can conclude that:</p>
+    <p><b>(a)</b> Probability of finding the particle at point D is highest.</p>
+    <p><b>(b)</b> Probability of finding the particle at point E is zero.</p>
+    <p><b>(c)</b> Probability of finding the particle at point A is greater than that of point F.</p>
+    <p><b>(d)</b> Area of the shaded region represents the Probability of finding the particle between points B &amp; C $=\displaystyle\int_{x_2}^{x_3}|\psi|^2dx$.</p>
+
+    <p><b>(vi)</b> In general $\psi(x,t)$ may be complex. $\psi^*$ → complex conjugate of $\psi$.</p>
+    <p>∴ If $\psi=a+ib$ then $\psi^*=a-ib$; $\psi^*\psi=(a^2+b^2)$</p>
+    <p>If $\psi=Re^{i\theta}$ then $\psi^*=Re^{-i\theta}$; $\psi^*\psi=R^2$</p>
+    <p>If $\psi=A$ (Real) then $\psi^*=A$ (same as $\psi$); $\psi^*\psi=A^2$</p>
+    <p>Thus $\psi$ may be complex BUT; $(\psi^*\psi)$ is always real quantity.</p>
+
+    <div class="ky"><b>VERY IMPORTANT NOTE:</b> In Quantum Mechanics the state of a particle or system is completely determined by the wavefunction of the particle $\psi(x,t)$. Thus once we estimate $\psi(x,t)$; any other dynamical variable of the particle can be determined from this wavefunction.</div>
+    <aside class="ed"><b>Edit note.</b> Original: this note runs across two pages. The first page ends with <i>“Thus once we estimate” P.T.O</i> and the next page starts with <i>“ψ(x,t); any other dynamical variable of the particle can be determined from this wavefunction.”</i> They are joined into one sentence here.</aside>
+
+    <h2 id="s18">1.8 Basic Properties of Wavefunction</h2>
+    <p><b>1. Normalization:</b> If Physically $|\psi(x,t)|^2$ has to represent Probability density then the total probability has to be 1.</p>
+    <div class="bx">$$\int_{-\infty}^{+\infty}\psi^*\psi\,dx=1\tag{1.8(i)}$$</div>
+    <div class="svg-wrap">
+      <svg class="d" style="max-width:260px" viewBox="0 0 220 50" role="img" aria-label="Number line from −x to +x through 0"><path d="M10 30H210M16 26l-6 4 6 4M204 26l6 4-6 4M110 24v12"/><text x="106" y="18">0</text><text x="36" y="46">−x</text><text x="164" y="46">+x</text></svg>
     </div>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“Preparatory Stage ( mo child (0-2) years)”</i>. The word before “child” is hard to read (looks like “no” or “mo”), so it is shown as [unclear]. “3 <s>stages</s> phases” is shown as “3 phases”.</aside>
+    <p>This condition is called Normalization condition.</p>
+    <p>* How to Normalize a wavefunction?</p>
+    <p>→ <b>Important Property of Schrödinger Equation:</b> If $\psi$ is a solution of Schrödinger Equation then $(A\psi)$ is also a solution of Schrödinger Eqn. where $A$ is a constant. Thus multiplying the wavefunction with a constant do not affect it.</p>
+    <p><b>Proof:</b> Given $\psi$ is a soln of Schrödinger Eqn.</p>
+    <p>∴ $i\hbar\dfrac{\partial\psi}{\partial t}=-\dfrac{\hbar^2}{2m}\dfrac{\partial^2\psi}{\partial x^2}+V(x)\psi$ : Given</p>
+    <p>We have to Prove that:</p>
+    <div class="bx">$$\underbrace{i\hbar\frac{\partial}{\partial t}\{A\psi\}}_{\text{L.H.S}}=\underbrace{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\{A\psi\}+V(x)(A\psi)}_{\text{R.H.S}}$$</div>
+    <div class="bx">$$\begin{aligned}\text{L.H.S}&amp;=i\hbar\frac{\partial}{\partial t}\{A\psi\}=A\,i\hbar\frac{\partial\psi}{\partial t}\\&amp;=A\Big\{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}(\psi)+V(x)\psi\Big\}=\underbrace{-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\{A\psi\}+V(x)A\psi}_{\text{RHS}}\end{aligned}$$</div>
+    <p>Thus L.H.S = RHS is Proved.</p>
+    <div class="nt">Using this property we can Normalize a wavefunction by multiplying it with an appropriate constant.</div>
+    <p>Let for Eg: $\displaystyle\int_{-\infty}^{+\infty}\psi^*\psi\,dx=N$ (A finite $\neq1$ Number). Thus $\psi$ is not normalized. Then we define a new wavefunction:</p>
+    <div class="bx">$$\psi_{new}=\frac{\psi}{\sqrt N}\ ;\qquad\int_{-\infty}^{+\infty}\psi_{new}^*\,\psi_{new}\,dx=1$$</div>
+    <p>Thus $\psi_{new}$ is Normalized which we get by multiplying $\psi$ with a constant $\dfrac{1}{\sqrt N}$.</p>
 
-    <h2 id="m3">Module 3: Connection of I with the Workplace and Implication of Holistic Understanding</h2>
-    <h3 id="s-ethics">Ethics and Ethical Values</h3>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr><th>#</th><th>Ethics</th><th>Ethical Values</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Refers to a <mark>system of moral principle</mark>.</td><td>Associated with the <mark>thought process of a person</mark>, a person’s sense of what is right or wrong.</td></tr>
-          <tr><td>2</td><td>Align with the <mark>professional set up</mark>.</td><td>Associated with <mark>personal aspects</mark> of individual.</td></tr>
-          <tr><td>3</td><td>Broadly studied under the headings of <mark>meta Ethics</mark>, <mark>normative Ethics</mark>, and <mark>applied Ethics</mark>.</td><td>Studied under the headlines of <mark>human values</mark>, <mark>social values</mark>, <mark>spiritual values</mark>, <mark>environmental values</mark>.</td></tr>
-          <tr><td>4</td><td>Generally <mark>determined or set by an institution or organization</mark>.</td><td>Generally <mark>instilled from families or homes</mark>.</td></tr>
-          <tr><td>5</td><td>Ethics of one profession <mark>differs largely</mark> from the ethics of another profession.</td><td><mark>Differ from person to person</mark>.</td></tr>
-          <tr><td>6</td><td>One <mark>lacuna</mark> in ethics is if a person commits a mistake in a system which is grave or serious, then one cannot be punished going beyond the rule of law or Ethics governing system.</td><td>Serve as a <mark>catalyst</mark> in any system expediting a work of any sort if one has strong ethical values.</td></tr>
-        </tbody>
-      </table>
+    <p><b>Q)</b> When can we normalize a wavefunction and when we cannot?</p>
+    <p><b>ANS:</b> If $\displaystyle\int_{-\infty}^{+\infty}\psi^*\psi\,dx$ = Finite then $\psi$ is Normalizable and $\psi$ is also called <u>square integrable</u>. BUT If $\displaystyle\int_{-\infty}^{+\infty}\psi^*\psi\,dx=\infty$ (undefined) then $\psi$ is neither Normalizable nor square integrable. Thus we can say that if $\psi$ is square integrable then it is also Normalizable.</p>
+
+    <p><b>Q)</b> What is a <u>square integrable</u> function?</p>
+    <p><b>ANS:</b> A function $f(x)$ is said to be</p>
+    <p><b>(i)</b> Integrable if $\displaystyle\int_{-\infty}^{+\infty}f(x)\,dx$ = Finite</p>
+    <p><b>(ii)</b> square integrable if $\displaystyle\int_{-\infty}^{+\infty}|f(x)|^2dx$ = Finite</p>
+    <div class="nt">Thus from this definition we can conclude that for $|\psi|^2$ to represent Probability density: $\psi(x,t)$ may not be <u>integrable</u> BUT, it has to be <u>square integrable</u>.</div>
+
+    <h3>1.8 Basic Properties of Wavefunction (continued)</h3>
+    <p><b>2.</b> The wavefunction of a particle must be <u>finite</u>, <u>single valued</u> and <u>continuous</u> at all points in space.</p>
+    <p><b>3.</b> The first order derivative of $\psi$ w.r.t $x$ i.e $\Big(\dfrac{d\psi}{dx}\Big)$ must either be <u>continuous</u> or <u>piece wise continuous</u>.</p>
+    <div class="nt">A function is said to be <u>piecewise continuous</u> if it has a finite number of finite discontinuity.</div>
+    <p>Eg:</p>
+    <div class="svg-wrap">
+      <svg class="d" viewBox="0 0 360 175" role="img" aria-label="Piecewise continuous function with discontinuities at x1, x2, 0, x3, x4"><path d="M10 150H345M339 146l6 4-6 4M190 168V12M186 18l4-6 4 6"/><path class="t" d="M70 150V40M130 150V40M250 150V40M310 150V40"/><path class="c" d="M25 50C45 62 60 66 70 66M70 96C90 104 110 104 130 100M130 118C150 126 170 118 190 112M190 60C215 60 235 50 250 38M250 90C270 100 290 85 310 52"/><text x="200" y="14">f(x)</text><text x="62" y="166">x₁</text><text x="122" y="166">x₂</text><text x="172" y="166">0</text><text x="242" y="166">x₃</text><text x="302" y="166">x₄</text></svg>
     </div>
-    <aside class="ed"><b>Edit note.</b> Original: six numbered points, each with one sentence on Ethics followed by “Ethical values on the other hand…”. They are laid side by side in two columns here, with the words “on the other hand” dropped. The wording is otherwise the same.</aside>
+    <p>$f(x)$ is piecewise continuous.</p>
+    <div class="nt">As we can see $f(x)$ has got 5 discontinuities and the amount of discontinuities are also finite.</div>
+    <div class="nt">Points of Discontinuities $\{x_1,x_2,0,x_3,x_4\}$.</div>
 
-    <h3 id="s-conseq">Consequentialism</h3>
-    <p><mark>Consequentialism</mark> along with <mark>eudaimonism</mark> comes under the umbrella of <mark>teleological ethics</mark>, a group of views which claims that the intrinsic value of any act lies in its capacity to produce things of greater value. Consequentialism is a theory that associates itself with teleological ethics claiming that it is the <mark>consequence of any action</mark> that decides whether the action has been right or wrong. This is a theory that was proposed by <mark>John Stuart Mill</mark> and <mark>Jeremy Bentham</mark> in the 18th century. Countering this rationale, another school of thoughts emerged which threw light on the fact that it is the action which is morally or immorally guided, the consequence is not the determiner of the action. This theory was proposed by <mark>Immanuel Kant</mark>.</p>
-    <p>Consequentialism for a long time showcased its predominance as one of the social action theories and was studied under the heads of <mark>utilitarianism</mark> and <mark>hedonism</mark>. Utilitarianism is about understanding about a consequence which decided whether the action has done <mark>greater good to a greater number of people</mark> or not. Hedonism on the other hand is about understanding whether the consequence fetched <mark>pleasure or pain</mark> to a particular class or people of society.</p>
+    <h3>Important Points to be Noted regarding 2nd &amp; 3rd properties of wavefunction</h3>
+    <p><b>(i)</b> The continuity of $\psi(x,t)$ at all points and piecewise continuity of $\Big(\dfrac{d\psi}{dx}\Big)$ at all points can be proved from the Schrödinger Equation itself.</p>
+    <p><b>(ii)</b> The finiteness of $\psi(x,t)$ at all points in space indicates that the probability of finding the particle at any point must have a finite value. It may be noted that the wavefunction has to be finite even at infinity i.e at $x=\infty$ also $\psi(x,t)$ = Finite.</p>
+    <p><b>(iii)</b> The single valuedness of $\psi(x,t)$ comes from the fact that the probability of finding the particle at one point must have 1 value only. Thus $\psi(x,t)$ cannot be multi‑valued at any point.</p>
+    <p><b>(iv)</b> Now let us try to explain the 3 properties of the wavefunction $\psi(x,t)$ given in point 2 of Basic Properties of $\psi(x,t)$.</p>
 
-    <h3 id="s-deon">Deontological Ethics (Non-Consequentialism)</h3>
-    <p>Refuting the theory of consequentialism proposed by John Stuart Mill and Jeremy Bentham, <mark>Immanuel Kant</mark>, another great philosopher of 18th century, proposed the concept of <mark>non-consequentialism</mark> which is also known as <mark>deontological ethics</mark>. The word deontology is derived from the root word ‘<mark>deon</mark>’. The word ‘deon’ means <mark>duty</mark> and the theory states that it is the <mark>action which is most important</mark> and the action is either morally or immorally guided. The consequence, in the deontological context, is guided by the action. Deontological ethics is the kind that is followed by all and sundry in general. The <mark>workplace ethics</mark> that we talk about or are concerned here with is what rests on deontological ethics. It is the <mark>duty ethics</mark> that has led to the brewing of <mark>canons of ethics</mark> and <mark>codes of ethics</mark>.</p>
-    <aside class="ed"><b>Edit note.</b> Original: this paragraph has no heading of its own (it follows “Consequentialism”), and the first line is cut off at the top edge of the scan: <i>“Refuting the theory of consequentialism p…”</i>. The word “proposed” is read from the context.</aside>
+    <p><b>(a) Finite</b> (at all points in space)</p>
+    <p>Eg 1:</p>
+    <div class="bx">$$f(x)=\begin{cases}ax&amp;0\lt x\le1\\0&amp;\text{elsewhere}\end{cases}$$</div>
+    <p>This function is finite at all points.</p>
+    <p>Eg 2: $f(x)=ax$ for $-\infty\lt x\lt\infty$</p>
+    <p>This function is infinite at $x=\infty$. Thus this function cannot be considered continuous at all points. Thus such a function cannot represent the wavefunction of a particle.</p>
+    <aside class="ed"><b>Edit note.</b> Original: <i>“Thus this function cannot be considered continious at all points.”</i> Kept as written. Under the heading “Finite”, the actual reason it fails is that f(x) = ax is not finite at x = ∞.</aside>
 
-    <h3 id="s-canons">Canons of Ethics</h3>
-    <p><mark>Canons</mark> are the rules that are generally set by an organization, expected to be followed by the employees working under a particular umbrella. The broad heads of the canons are:</p>
-    <div class="vb"><h4>1) <mark>Confidentiality</mark></h4><p>Any organization we talk about adopt certain business strategies in order to move ahead and carry on with the business keeping the good will intact. In such cases the organization should maintain keeping the strategy <mark>sacrosanct</mark>. Not only higher business strategies but also smaller decisions which are supposed to be kept confined within a few should not be divulged.</p></div>
-    <div class="vb"><h4>2) <mark>Diligence</mark></h4><p>All the stake holders in any organization should put in utmost effort to keep the business going in the right direction. Putting in either intelligence smart work or hard work. The business is the primary concern and working diligently to achieve good business should be the objective of the employees.</p></div>
-    <div class="vb"><h4>3) <mark>Integrity</mark></h4><p>Integrity is the attribute of integrating <mark>honesty</mark>, <mark>hard work</mark> and several other traits which are pre-requisites for conducting a business in a right way, spearheading the business to become a profit driven, value based organization.</p></div>
-    <div class="vb"><h4>4) <mark>Fairness</mark></h4><p>Fairness is another pre-requisite for motivating the employees in an organization to work for it in the most infallible fashion. Unless there is fairness with regard to <mark>salary and promotion</mark> in particular. The employees will not be motivated to work in a diligent manner.</p></div>
-    <div class="vb"><h4>5) <mark>Legality</mark></h4><p>Any organization that we think about is bound by rules and laws and so are the employees. If the organization at its own level and even if the employees fail to adhere to the laws and the precepts, both the organization and the employees are supposed to be taken to task with <mark>punitive actions</mark>.</p></div>
-    <div class="vb"><h4>6) <mark>Loyalty</mark></h4><p>Any organization and its employees are supposed to comply with the <mark>value-based</mark> and <mark>compliance-based</mark> code of ethics, thereby, remaining loyal to the system and to the clients as well.</p></div>
-    <div class="vb"><h4>7) <mark>Non-discrimination</mark></h4><p>Organizations are supposed to be non-discriminatory with regard to hiring, motivating and retaining employees. Many employees complain about discriminatory approaches of employers, particularly, with regard to <mark>gender discrimination</mark> and discrimination arising out of <mark>nepotism</mark>. Any organization should do away with these kind of vices because these serve as impediments in the growth of the business.</p></div>
-    <p>Apart from the canons an organization should also be relying on following the <mark>compliance-based code of ethics</mark> and <mark>value-based code of ethics</mark>.</p>
+    <p><b>(b) Single valued function at all points:</b></p>
+    <p>Eg 1: $f(x)=x^2$ for $-\infty\lt x\lt\infty$</p>
+    <p>This function is <u>single</u> valued at all points as for every $x$ we have only 1 value of $f(x)$. Although $f(2)=4$ &amp; $f(-2)=4$; These 2 values of $f(x)$ for $x=2$ &amp; $-2$ are same but that does not break the condition of single valuedness. As for 1 $x$ we have only 1 $f(x)$.</p>
+    <p>Eg 2: $f(x)=\sqrt x$ for $-\infty\lt x\lt\infty$</p>
+    <p>This is a multi‑valued function. For $x=4$; $f(x)=\{+2,-2\}$. For 1 value of $x$ we may have more than one value of $f(x)$.</p>
 
-    <h3 id="s-codes">Code of Ethics</h3>
-    <p class="mu">Dated 22.9.26 in the notes.</p>
-    <p><mark>Codes of Ethics</mark> are certain principles that govern the right way of conducting a business. Code of Ethics is principally of two types. One is <mark>compliance-based code of ethics</mark>, other is <mark>value based code of ethics</mark>.</p>
-    <div class="bx"><h4>Compliance-based code of ethics</h4><p>Compliance based code of ethics are <mark>laws and policies</mark> to ensure hiring, safety and security of employees and policies for dismissing or firing people from job. Compliance based code of ethics are designed or set keeping in mind the <mark>labour laws</mark>, particularly when it is concerned about the hiring and safety security of the employees. With regard to maintaining a strong <mark>good will</mark> in the market and a strong clientele as well, a robust business system with experienced employees is a basic necessity.</p></div>
-    <div class="bx"><h4>Value based code of ethics</h4><p>For any business to be run smoothly it is important to comply with the value-based code of ethics, because <mark>value forms the backbone of a strong good will</mark>. Sometimes the organizations consider a particular product a <mark>cash cow</mark> of minting money and they off and on adopt a wrong means of escalating the scale of product so that the business turnover remains impressive no matter what harm it hurls upon the buyers or clients. This unfair way of conducting a business soon takes a toll on the trajectory of the organization.</p></div>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“Code of Ethics is principally of two times”</i> shown as “two types”. <i>“the business buyer over remains impressive”</i> shown as “business turnover” (probably “turn over”). <i>“are laws ^policies to ensure”</i> (word inserted above the line) shown as “laws and policies”. <i>“takes a toll on the trajectory on the organization”</i> shown with “of”. <i>“a basic essecity”</i> shown as “necessity”. The last line of the page may continue elsewhere; nothing follows it in the scan.</aside>
-
-    <h3 id="s-tech">Technology Ethics</h3>
-    <p>Ethics governing <mark>technology</mark> is something that all techno facts should adhere to at a personal level or as employees of an organization so that the ultimate objective of <mark>serving the humanity</mark> in the best possible way doesn’t get jeopardised. Some of the basic tenets of technology ethics are:</p>
-    <div class="tri">
-      <div><i>Tenet (i)</i><b>Accountability</b></div>
-      <div><i>Tenet (ii)</i><b>Integrity</b></div>
-      <div><i>Tenet (iii)</i><b>Data-privacy</b></div>
-      <div><i>Tenet (iv)</i><b>Honesty and fairness</b></div>
+    <p><b>(c) Continuity of a function</b> (Boundaries):</p>
+    <p>Eg 1: $f(x)=ax^2$ for $0\lt x\le\infty$; $f(x)=0$ for $-\infty\lt x\le0$</p>
+    <p>This function is continuous at $x=0$ and also at all other points. $x=0$ is the Boundary.</p>
+    <div class="svg-wrap">
+      <svg class="d" style="max-width:260px" viewBox="0 0 220 120" role="img" aria-label="Zero for x less than 0, then rising curve"><path d="M10 100H210M204 96l6 4-6 4"/><path class="c" d="M10 100H70C95 100 112 78 132 30"/><text x="56" y="116">x=0</text></svg>
     </div>
-    <aside class="ed"><b>Edit note.</b> Original: <i>“all techno facts”</i>, kept as written. It may be “technocrats”. <i>“tenans”</i> is shown as “tenets”. Faint writing bleeding through from the back of this page was ignored.</aside>
 
-    <h2 id="oneshot">One-Shot Summary</h2>
-    <p>Everything above in bullet points, for a quick revision.</p>
-    <h3>Module 1: Interaction with Human Values</h3>
-    <ul class="s">
-      <li>Human existence = <mark>self + body</mark>. Body is the shell that houses the self (soul, spirit, consciousness). Distinct but overlapping.</li>
-      <li>Needs of the self are <mark>qualitative</mark> (happiness, prosperity). Needs of the body are <mark>quantitative</mark> (physical facilities). Together they create a sync between body and self.</li>
-      <li>Values taught from home frame the self, so we can be in harmony with the self first, then the society.</li>
-      <li><b>Six values:</b> <mark>Human</mark> (inculcated from home, basic) · <mark>Social</mark> (vary with context, depend on others’ judgement) · <mark>Spiritual</mark> (internalized, not religious, can include nature) · <mark>Religious</mark> (from home or family, dogmatic) · <mark>Ethical</mark> (person to person, a catalyst) · <mark>Environmental</mark> (we get sensitized as we grow older).</li>
-      <li>The self also houses three modes: <mark>desire, thought, expectations</mark>.</li>
-      <li><b>Maslow</b> (“Theory of Human Motivation”), bottom to top: Physiological, Safety, Love &amp; Belongingness, Esteem, Aesthetic, Cognitive, Self Actualization, Transcendence.</li>
-      <li><b>Case study heads:</b> Background, Analysis, Conclusion, Recommendation of solution.</li>
-      <li><b>Cooley</b> (Looking glass self, “Human Nature &amp; Social Order”): Imagination appearance → Imagination judgement → Self feeling acting upon the judgements.</li>
-      <li><b>Mead:</b> <mark>I</mark> (instinctive), <mark>Me</mark> (conscious, socialized), <mark>Self</mark> (balances I and Me). Stages: Preparatory (0–2), Play (2–6), Imitation (6 and beyond).</li>
-    </ul>
+    <p>Eg 2:</p>
+    <div class="bx">$$f(x)=\begin{cases}ax&amp;0\lt x\le1\\0&amp;\text{elsewhere}\end{cases}\qquad\text{Boundaries: }x=0\ \&amp;\ x=1$$</div>
+    <p>This function is continuous at $x=0$; BUT discontinuous at $x=1$.</p>
+    <div class="svg-wrap">
+      <svg class="d" style="max-width:260px" viewBox="0 0 220 120" role="img" aria-label="Line rising from x=0 to x=1 then dropping to zero"><path d="M10 100H210M204 96l6 4-6 4"/><path class="c" d="M60 100L140 35"/><path class="t" d="M140 35V100"/><text x="46" y="116">x=0</text><text x="128" y="116">x=1</text></svg>
+    </div>
 
-    <h3>Module 3: Workplace and Ethics</h3>
-    <ul class="s">
-      <li><b>Ethics</b> = system of moral principle, professional set up, set by institutions, differs between professions. <b>Ethical values</b> = personal, instilled from families or homes, differ from person to person.</li>
-      <li>Ethics is studied as meta, normative and applied. Ethical values as human, social, spiritual and environmental.</li>
-      <li><b>Lacuna of ethics:</b> a grave mistake cannot be punished beyond the rule of law or ethics. <b>Ethical values</b> act as a catalyst that speeds up work.</li>
-      <li><b>Consequentialism</b> (teleological, with eudaimonism): the consequence decides right or wrong. Mill and Bentham. Studied as <mark>utilitarianism</mark> (greater good for a greater number) and <mark>hedonism</mark> (pleasure or pain).</li>
-      <li><b>Deontological ethics</b> (non-consequentialism): Kant. ‘Deon’ = duty. The action matters most. Workplace ethics rests on it and led to canons and codes.</li>
-      <li><b>Seven canons:</b> <mark>Confidentiality</mark> (keep strategies sacrosanct) · <mark>Diligence</mark> (utmost effort) · <mark>Integrity</mark> (honesty, hard work) · <mark>Fairness</mark> (salary, promotion) · <mark>Legality</mark> (punitive action for breaking laws) · <mark>Loyalty</mark> (to system and clients) · <mark>Non-discrimination</mark> (gender, nepotism).</li>
-      <li><b>Code of ethics:</b> <mark>compliance-based</mark> (laws and policies on hiring, safety, security, dismissal, labour laws) vs <mark>value-based</mark> (value is the backbone of good will; unfair means hurt the organization).</li>
-      <li><b>Technology ethics tenets:</b> Accountability, Integrity, Data-privacy, Honesty and fairness.</li>
-    </ul>
+    <div class="ky">Thus the wavefunction representing a particle physically should have the following properties:
+      <p><b>①</b> $\psi(x,t)$ should be finite at all points in space including $x=\infty$.</p>
+      <p><b>②</b> $\psi(x,t)$ should be single valued at all points in space.</p>
+      <p><b>③</b> $\psi(x,t)$ should be continuous at the boundaries.</p>
+      <p><b>④</b> $\psi(x,t)$ should be <u>square integrable</u>.</p>
+    </div>
+    <div class="nt">Thus if a wavefunction is given and you are asked to check whether it can represent the wavefunction of a particle or not; then you have to check for these 4 properties.</div>
+
+    <div class="pb">
+      <h3>Problem 1</h3>
+      <p>Let the wavefunction of a particle is given by $\psi(x,0)=Ae^{\kappa x}+Be^{-\kappa x}$ over all space. What conditions should $A$ &amp; $B$ satisfy such that it can represent the wavefunction of a particle physically.</p>
+    </div>
+    <p><b>ANS:</b></p>
+    <div class="svg-wrap">
+      <svg class="d" style="max-width:280px" viewBox="0 0 260 110" role="img" aria-label="Axes with ψL on the left and ψR on the right of x=0"><path d="M20 90H250M244 86l6 4-6 4M130 100V10M126 16l4-6 4 6"/><text x="138" y="18">ψ(x,0)</text><text x="70" y="48">ψL</text><text x="172" y="48">ψR</text><text x="114" y="106">x=0</text></svg>
+    </div>
+    <p><b>(i)</b> The wavefunction has to be finite at all points.</p>
+    <p>As $x\to\infty$; $\psi(x,0)$ must be finite. ∴ For $x\gt0$: $A=0\Rightarrow\psi_R(x,0)=Be^{-\kappa x}$</p>
+    <p>As $x\to-\infty$; $\psi(x,0)\to$ Finite ∴ For $x\lt0$: $B=0\Rightarrow\psi_L(x,0)=Ae^{\kappa x}$</p>
+    <p><b>(ii)</b> The wavefunction must be continuous at boundaries → $x=0$.</p>
+    <p>∴ $\psi_L(x=0)=\psi_R(x=0)\Rightarrow$</p>
+    <div class="bx">$$B=A$$</div>
+    <p>∴ The wavefunction becomes:</p>
+    <div class="bx">$$\begin{aligned}\psi_L(x,0)&amp;=Ae^{\kappa x}&amp;&amp;\text{for }x\lt0\\\psi_R(x,0)&amp;=Ae^{-\kappa x}&amp;&amp;\text{for }x\gt0\end{aligned}$$</div>
+
+    <h2 id="s19">1.9 Two Important Properties of Schrödinger Equation</h2>
+    <p><b>① </b>It can be proved from the Schrödinger Equation that</p>
+    <div class="bx">$$\frac{d}{dt}\int_{-\infty}^{+\infty}\psi^*\psi\,dx=0\ \Rightarrow\ \int_{-\infty}^{+\infty}\psi^*\psi\,dx=\text{constant with time.}$$</div>
+    <p>Thus from here we can say that if $\psi(x,0)$ at $t=0$ is Normalized then it will remain normalized at any later time $t$ as it evolves according to Schrödinger equation.</p>
+    <p>If $\displaystyle\int_{-\infty}^{+\infty}\psi^*(x,0)\,\psi(x,0)\,dx=1$ then at a later time $t$ we will also have:</p>
+    <div class="bx">$$\int_{-\infty}^{+\infty}\psi^*(x,t)\,\psi(x,t)\,dx=1$$</div>
+    <p>Thus we have to normalize the wavefunction only once.</p>
+
+    <p><b>② Principle of Superposition:</b> If $\{\psi_1,\psi_2,\dots\psi_n\}$ are solutions of Schrödinger equation then their linear combination $\psi=C_1\psi_1+C_2\psi_2+\dots+C_n\psi_n=\displaystyle\sum_{i=1}^{n}C_i\psi_i$ will also be a solution of the Schrödinger Equation.</p>
+    <p><b>Proof for 2 functions $\{\psi_1\ \&amp;\ \psi_2\}$</b></p>
+    <p><b>Given:</b> $\psi_1$ &amp; $\psi_2$ are solutions of Schrödinger Equation.</p>
+    <p><b>To prove:</b> $(C_1\psi_1+C_2\psi_2)$ is also a solution of Schrödinger Equation.</p>
+    <div class="bx">$$\begin{aligned}\text{Given: }\ i\hbar\frac{\partial\psi_1}{\partial t}&amp;=-\frac{\hbar^2}{2m}\frac{\partial^2\psi_1}{\partial x^2}+V(x)\psi_1\\i\hbar\frac{\partial\psi_2}{\partial t}&amp;=-\frac{\hbar^2}{2m}\frac{\partial^2\psi_2}{\partial x^2}+V(x)\psi_2\end{aligned}$$</div>
+    <p><b>To Prove:</b></p>
+    <div class="bx">$$i\hbar\frac{\partial}{\partial t}\{C_1\psi_1+C_2\psi_2\}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\{C_1\psi_1+C_2\psi_2\}+V(x)\{C_1\psi_1+C_2\psi_2\}$$</div>
+    <div class="bx">$$\begin{aligned}\text{L.H.S}&amp;=i\hbar C_1\frac{\partial\psi_1}{\partial t}+i\hbar C_2\frac{\partial\psi_2}{\partial t}\\&amp;=C_1\,i\hbar\frac{\partial\psi_1}{\partial t}+C_2\,i\hbar\frac{\partial\psi_2}{\partial t}\end{aligned}$$</div>
+    <p>From the Given eqn’s for $\psi_1$ &amp; $\psi_2$:</p>
+    <div class="bx">$$\begin{aligned}&amp;=C_1\Big\{-\frac{\hbar^2}{2m}\frac{\partial^2\psi_1}{\partial x^2}+V(x)\psi_1\Big\}+C_2\Big\{-\frac{\hbar^2}{2m}\frac{\partial^2\psi_2}{\partial x^2}+V(x)\psi_2\Big\}\\&amp;=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}(C_1\psi_1)-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}(C_2\psi_2)+V(x)C_1\psi_1+V(x)C_2\psi_2\\&amp;=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\{C_1\psi_1+C_2\psi_2\}+V(x)\{C_1\psi_1+C_2\psi_2\}\\&amp;=\text{R.H.S}\qquad\text{(Proved)}\end{aligned}$$</div>
+
+    <h2 id="pr">Problems 2 to 4</h2>
+
+    <div class="pb">
+      <h3>Problem 2</h3>
+      <p>Consider a wave function $\psi(x,t)=Ae^{\alpha x+i\beta t}$ where $A$, $\alpha$ &amp; $\beta$ are real positive quantities. Can it represent the wave nature of a particle?</p>
+    </div>
+    <p><b>ANS:</b> This wavefunction must satisfy the 4 conditions stated in section 1.8. First let us check the square integrable condition.</p>
+    <div class="bx">$$\begin{aligned}\int_{-\infty}^{+\infty}\psi^*\psi\,dx&amp;=\int_{-\infty}^{+\infty}Ae^{\alpha x-i\beta t}\cdot Ae^{\alpha x+i\beta t}\,dx\\&amp;=\int_{-\infty}^{+\infty}A^2e^{2\alpha x}\,dx=A^2\Big[\frac{e^{2\alpha x}}{2\alpha}\Big]_{-\infty}^{+\infty}\\&amp;=\frac{A^2}{2\alpha}\{e^{\infty}-e^{-\infty}\}=\frac{A^2}{2\alpha}\times\{\infty-0\}=\infty\end{aligned}$$</div>
+    <p>Thus we see that the wavefunction is not square integrable &amp; hence not normalizable. Hence this function cannot represent the wavefunction of a particle.</p>
+
+    <div class="pb">
+      <h3>Problem 3</h3>
+      <p>A particle moving in 1‑Dimension has a wavefunction $\psi(x)=ax$ for $0\le x\le1$. Beyond this region we do not know how the wavefunction looks like. Calculate the Probability of finding the particle between 0.3 &amp; 0.7.</p>
+    </div>
+    <aside class="ed"><b>Edit note.</b> Original problem text: <i>“Beyond this region the wavefun… we do not know how the wavefunction look like.”</i> (a few words struck out). Shown here as “looks like”.</aside>
+    <p><b>ANS:</b> In this problem an important point to be noted is that beyond 0 &amp; 1 the wavefunction is not given. Thus we do not know the wavefunction completely. Thus we cannot normalize it and calculate the value of constant $a$; as integration over $-\infty$ to $\infty$ is not possible without knowing the wavefunction over all region. So we can only calculate the probability in terms of $a$.</p>
+    <p>Probability of finding the particle between 0.3 &amp; 0.7 will be</p>
+    <div class="bx">$$=\int_{0.3}^{0.7}\psi^*\psi\,dx=\int_{0.3}^{0.7}a^2x^2\,dx=a^2\times\frac{x^3}{3}\Big|_{0.3}^{0.7}=\frac{a^2}{3}\{(0.7)^3-(0.3)^3\}$$</div>
+
+    <div class="pb">
+      <h3>Problem 4</h3>
+      <p>Consider the wavefunction given below:</p>
+      $$\psi(x)=\begin{cases}Ax&amp;\text{for }0\le x\le1\\A(2-x)&amp;\text{for }1\le x\le2\\0&amp;\text{elsewhere}\end{cases}$$
+      <p><b>(i)</b> Can this represent the wavefunction of a particle?</p>
+      <p><b>(ii)</b> Try to Plot this function.</p>
+      <p><b>(iii)</b> If it can represent the wavefunction of a particle then normalize the wavefunction.</p>
+      <p><b>(iv)</b> Calculate the Probability of finding the particle between $x=0.8$ to $1.1$.</p>
+    </div>
+    <p><b>ANS:</b></p>
+    <p><b>(i)</b> This wavefunction $\psi(x)$ is <u>finite</u> and <u>single valued</u> at all points in space. Moreover just by looking at it we can say that it is <u>square integrable</u>. Also the function is continuous at the boundaries $x=0$; $x=1$ &amp; $x=2$. Thus this can represent the wavefunction of a particle.</p>
+    <p><b>(ii)</b></p>
+    <div class="svg-wrap">
+      <svg class="d" style="max-width:340px" viewBox="0 0 320 170" role="img" aria-label="Triangular wavefunction rising from 0 to a peak at x=1 and falling to 0 at x=2"><path d="M20 140H310M304 136l6 4-6 4M70 152V15M66 21l4-6 4 6"/><path class="c" d="M70 140L145 50L220 140"/><path class="t" d="M145 50V140M70 50H145"/><text x="78" y="20">ψ(x)</text><text x="52" y="54">A</text><text x="141" y="158">1</text><text x="216" y="158">2</text><text x="291" y="158">3</text><text x="312" y="130">x</text></svg>
+    </div>
+    <aside class="ed"><b>Edit note.</b> Original: the label at the height of the peak is handwritten and looks like <i>“S”</i>. Shown here as <i>A</i>, because ψ(1) = A·1 = A.</aside>
+
+    <p><b>(iii)</b> Normalizing the wavefunction means we have to calculate the constant $A$ such that the Normalization condition is satisfied.</p>
+    <div class="bx">$$\begin{aligned}&amp;\int_{-\infty}^{+\infty}\psi^*\psi\,dx=1\\\Rightarrow\ &amp;\int_0^1A^2x^2\,dx+\int_1^2A^2(2-x)^2\,dx=1\\\Rightarrow\ &amp;A^2\frac{x^3}{3}\Big|_0^1+A^2\int_1^2(4+x^2-4x)\,dx=1\\\Rightarrow\ &amp;\frac{A^2}{3}+A^2\Big\{4x+\frac{x^3}{3}-\frac{4x^2}{2}\Big\}\Big|_1^2=1\\\Rightarrow\ &amp;\frac{A^2}{3}+A^2\Big\{8+\frac83-8-4-\frac13+2\Big\}=1\\\Rightarrow\ &amp;\frac{A^2}{3}+A^2\Big\{\frac{14}{3}-\frac{13}{3}\Big\}=1\\\Rightarrow\ &amp;\frac{A^2}{3}+\frac{A^2}{3}=1\ \Rightarrow\ \frac{2A^2}{3}=1\end{aligned}$$</div>
+    <aside class="ed"><b>Edit note.</b> Original, as read from the handwriting: <i>{ 11/3 − 13/3 }</i> in the line before “A²/3 + A²/3 = 1”. Shown here as <i>14/3 − 13/3</i>, because the next line only works if the bracket equals 1/3.</aside>
+    <div class="bx">$$A=\sqrt{\frac32}$$</div>
+    <p>Thus the wavefunction becomes:</p>
+    <div class="bx">$$\psi(x)=\begin{cases}\sqrt{\tfrac32}\,x&amp;\text{for }0\le x\le1\\\sqrt{\tfrac32}\,(2-x)&amp;\text{for }1\le x\le2\\0&amp;\text{for elsewhere}\end{cases}$$</div>
+
+    <p><b>(iv)</b> Probability of finding the particle between $x=0.8$ &amp; $1.1$</p>
+    <div class="bx">$$\begin{aligned}&amp;=\int_{0.8}^{1.1}\psi^*\psi\,dx=\int_{0.8}^{1}\Big(\sqrt{\tfrac32}\,x\Big)^2dx+\int_1^{1.1}\Big\{\sqrt{\tfrac32}\,(2-x)\Big\}^2dx\\&amp;=\frac32\int_{0.8}^{1}x^2\,dx+\frac32\int_1^{1.1}(4+x^2-4x)\,dx\\&amp;=\frac32\times\frac{x^3}{3}\Big|_{0.8}^{1}+\frac32\Big[4x+\frac{x^3}{3}-2x^2\Big]_1^{1.1}\\&amp;=\frac12\{1-(0.8)^3\}+\frac32\Big[4\times(1.1)+\frac{(1.1)^3}{3}-2(1.1)^2-4-\frac13+2\Big]\\&amp;=\frac{1-(0.8)^3}{2}+\frac32\Big\{\Big(4.4+\frac{(1.1)^3}{3}+2\Big)-\Big(4+\frac13+2\times(1.1)^2\Big)\Big\}\end{aligned}$$</div>
 
     <h2 id="quiz-sec">Test Yourself</h2>
-    <p>28 multiple-choice questions built from these notes. Tap an option to check the answer and explanation.</p>
+    <p>16 multiple-choice questions built from these notes. Tap an option to check the answer and explanation.</p>
     <div class="sc"><span id="score"></span><button class="rs" id="rs">Restart</button></div>
     <div id="quiz"></div>
 
@@ -857,40 +972,16 @@ tr:last-child td {
           <tr><th>Where</th><th>Original</th><th>Shown here</th></tr>
         </thead>
         <tbody>
-          <tr><td>Page order</td><td>Pages are mixed: Module 3 (ethics), Module 1, Module 3, Module 1</td><td>Arranged by module: Module 1, then Module 3</td></tr>
-          <tr><td>Headings</td><td>No heading above the Kant paragraph; “Harmony b/w self and the body”</td><td>“Deontological Ethics (Non-Consequentialism)” and “Values that Frame the Self” added for navigation; “b/w” written out as “between” in headings</td></tr>
-          <tr><td>Self and body</td><td>“we think of comprised of two separate constructs”</td><td>“we think of as comprised of …”</td></tr>
-          <tr><td>Self and body</td><td>“spirit within / the soul and it is…”, hard to read</td><td>Read as written</td></tr>
-          <tr><td>End of values</td><td>“three very imp. todes of desire”</td><td>“three very important modes of desire”</td></tr>
-          <tr><td>Maslow</td><td>Year smudged, reads 1945; bracket beside two bottom tiers</td><td>Kept as written</td></tr>
-          <tr><td>Case study</td><td>“• hearing: Background of the problem:”</td><td>“Heading: Background of the problem”</td></tr>
-          <tr><td>Cooley</td><td>Year reads 1930; sentence broken by struck-out words; ditto mark for stage (ii)</td><td>Year kept; one sentence; “Imagination judgement”</td></tr>
-          <tr><td>Mead</td><td>“Preparatory Stage ( mo child (0-2) years)”</td><td>“[unclear] child, (0–2) years”</td></tr>
-          <tr><td>Ethics vs values</td><td>Six numbered points, each with “on the other hand”</td><td>Two-column table, “on the other hand” dropped</td></tr>
-          <tr><td>Consequentialism</td><td>“decidedes”, “the consequence is no the determiner”, “conseq.”</td><td>“decides”, “is not the determiner”, “consequence”</td></tr>
-          <tr><td>Kant paragraph</td><td>First line cut off at the top: “Refuting the theory of consequentialism p…”</td><td>“proposed” read from context</td></tr>
-          <tr><td>Code of ethics</td><td>“two times”, “buyer over”, “laws ^policies”, “trajectory on the organization”, “essecity”</td><td>“two types”, “turnover”, “laws and policies”, “trajectory of the organization”, “necessity”</td></tr>
-          <tr><td>Technology ethics</td><td>“all techno facts”, “tenans”</td><td>“techno facts” kept; “tenets”</td></tr>
-          <tr><td>Spelling</td><td>existance, conciousness, qualitively, quantitive, buisness, Loyality, impedements, hardwork</td><td>existence, consciousness, qualitative, quantitative, business, Loyalty, impediments, hard work</td></tr>
-          <tr><td>Struck-out words</td><td>For example “links” replaced by “leads”, “through” by “threw”</td><td>Only the corrected word is shown</td></tr>
-          <tr><td>Highlights, summary, quiz</td><td>Not in the notes</td><td>Added for study</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Worth double-checking against your textbook</h3>
-    <p>These are shown as written in your notes, but they differ from what textbooks usually say.</p>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr><th>In your notes</th><th>Usually given as</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Maslow’s paper: year 1945</td><td>1943</td></tr>
-          <tr><td>Cooley’s “Human Nature &amp; Social Order”: year 1930</td><td>1902</td></tr>
-          <tr><td>Mill and Bentham: “18th century”</td><td>Bentham spans the 18th and 19th centuries; Mill is 19th century</td></tr>
-          <tr><td>Mead: third stage called “Imitation Stage”, 6 years and beyond</td><td>Usually the preparatory stage is the imitation stage and the third stage is called the game stage</td></tr>
-          <tr><td>Maslow: “Deficiency Need” covers the bottom two tiers</td><td>Usually also includes love and belonging and esteem needs</td></tr>
+          <tr><td>Normalization in Problem 4 (iii)</td><td>{ 11/3 − 13/3 } (as read)</td><td>{ 14/3 − 13/3 }</td></tr>
+          <tr><td>Plot in Problem 4 (ii)</td><td>Label at the peak looks like “S”</td><td>A</td></tr>
+          <tr><td>1.7, Very Important Note</td><td>Split across two pages at “Thus once we estimate” P.T.O</td><td>Joined into one sentence</td></tr>
+          <tr><td>1.8 (a) Finite, Eg 2</td><td>“cannot be considered continious at all points”</td><td>Kept; the real reason is that it is not finite at x = ∞</td></tr>
+          <tr><td>Problem 3</td><td>“look like”</td><td>“looks like”</td></tr>
+          <tr><td>Everywhere</td><td>“S̈ Equation” (S with two dots)</td><td>Schrödinger equation</td></tr>
+          <tr><td>Spelling</td><td>continious, defination, Brobability, nucleous, Kg</td><td>continuous, definition, Probability, nucleus, kg</td></tr>
+          <tr><td>Struck-out words</td><td>For example “smaller 10²⁰ times smaller”, “Forces First thing”</td><td>Left out; only the corrected text is shown</td></tr>
+          <tr><td>1.5, two items numbered 6</td><td>Both numbered “6.”</td><td>Kept as written</td></tr>
+          <tr><td>Problem 4 (iv)</td><td>Ends at the expression, marked “Ans”, with no number</td><td>Kept as written</td></tr>
         </tbody>
       </table>
     </div>
@@ -905,21 +996,13 @@ tr:last-child td {
 <nav class="mobile-drawer" id="drawer" aria-label="Mobile contents">
   <div class="drawer-handle"></div>
   <span class="nh">Jump to section</span>
-  <span class="ng">Module 1</span>
-  <a href="#s-body">Self and the body</a>
-  <a href="#s-values">Values that frame the self</a>
-  <a href="#s-maslow">Maslow’s hierarchy</a>
-  <a href="#s-cooley">Cooley’s theory</a>
-  <a href="#s-mead">Mead’s theory</a>
-  <span class="ng">Module 3</span>
-  <a href="#s-ethics">Ethics and ethical values</a>
-  <a href="#s-conseq">Consequentialism</a>
-  <a href="#s-deon">Deontological ethics</a>
-  <a href="#s-canons">Canons of ethics</a>
-  <a href="#s-codes">Code of ethics</a>
-  <a href="#s-tech">Technology ethics</a>
-  <span class="ng">Study</span>
-  <a href="#oneshot">One-shot summary</a>
+  <a href="#s14">1.4 Schrödinger equation</a>
+  <a href="#s15">1.5 Classical mechanics</a>
+  <a href="#s16">1.6 Quantum mechanics</a>
+  <a href="#s17">1.7 Significance of ψ</a>
+  <a href="#s18">1.8 Properties of ψ</a>
+  <a href="#s19">1.9 Two properties</a>
+  <a href="#pr">Problems 2–4</a>
   <a href="#quiz-sec">Test yourself</a>
   <a href="#edits">Changes from original</a>
 </nav>
@@ -928,7 +1011,7 @@ tr:last-child td {
 // 1. Theme Switcher (System + Manual Override)
 const root = document.documentElement;
 const themeBtn = document.getElementById('themeToggle');
-const savedTheme = localStorage.getItem('hum-theme');
+const savedTheme = localStorage.getItem('qm-theme');
 if (savedTheme) root.setAttribute('data-theme', savedTheme);
 
 function updateThemeLabel() {
@@ -943,7 +1026,7 @@ themeBtn.addEventListener('click', () => {
     (!root.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
   const next = isDark ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
-  localStorage.setItem('hum-theme', next);
+  localStorage.setItem('qm-theme', next);
   updateThemeLabel();
 });
 
@@ -960,7 +1043,7 @@ tocBtn.addEventListener('click', () => toggleDrawer(true));
 backdrop.addEventListener('click', () => toggleDrawer(false));
 drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleDrawer(false)));
 
-// 3. Reading Progress Bar
+// 3. Reading Progress Bar (Passive Scroll Listener)
 const progress = document.getElementById('progress');
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
@@ -970,34 +1053,22 @@ window.addEventListener('scroll', () => {
 
 // 4. Quiz Engine
 const Q = [
-  ["According to the notes, the needs of the self are ___ in nature, while the needs of the body are ___.", ["quantitative; qualitative", "qualitative; quantitative", "qualitative; qualitative", "quantitative; quantitative"], 1, "The self embodies basic human aspirations such as continuous happiness and prosperity (qualitative). The body needs physical facilities (quantitative)."],
-  ["The body is described as…", ["the shell or receptacle that houses the self", "another name for the self", "a value instilled at home", "a mode of desire"], 0, "The body is the shell that houses the self. The body and the soul are two distinct constructs but they also overlap."],
-  ["Values inculcated from home as we start developing our conscience are…", ["Religious values", "Environmental values", "Human values", "Spiritual values"], 2, "These are the basic human values, carried forward through life to comply with the laws and precepts set by institutions."],
-  ["Which values are dogmatic in nature?", ["Spiritual values", "Religious values", "Social values", "Ethical values"], 1, "Religious values are mostly initiated from home or family and are dogmatic, so they differ from spiritual values."],
-  ["Spiritual values must not be mixed with religious values because…", ["spirit is internalized by an individual and can include forces beyond god, even nature", "spirit is taught only by institutions", "they depend on others’ judgement", "they are set by laws"], 0, "Spirit is something internalized by an individual. It can be within, or external forces beyond god, even something like nature."],
-  ["Social values vary according to context and situations depending on…", ["the feedback and judgement of others", "a person’s family alone", "a company’s code", "laws only"], 0, "Social values are the values we integrate as part of society, and they depend on the feedback and judgement of others."],
-  ["Environmental values are developed mainly…", ["right from home in childhood", "as we grow older, by seeing the hazards the planet is facing", "through religious teaching", "through institutional rules"], 1, "They are not initiated from home. We get sensitized as we grow older, seeing the harm done to the environment."],
-  ["Besides the values, the self also houses three modes of…", ["desire, thought and expectations", "body, soul and spirit", "I, Me and Self", "need, want and demand"], 0, "The notes say the self houses three very important modes: desire, thought and expectations."],
-  ["The lowest tier of Maslow’s pyramid is…", ["Safety needs", "Esteem needs", "Physiological needs", "Love & Belongingness needs"], 2, "Physiological needs occupy the lowest rung of the ladder."],
-  ["The top tier of the pyramid in the notes is…", ["Self Actualization", "Cognitive needs", "Aesthetic needs", "Transcendence"], 3, "Transcendence is at the top, above Self Actualization."],
-  ["Maslow proposed the hierarchy of needs in a paper called…", ["Human Nature & Social Order", "Hierarchy of Values", "Theory of Human Motivation", "Looking Glass Self"], 2, "The paper is “Theory of Human Motivation”."],
-  ["Which is NOT one of the four heads for a case study in the notes?", ["Background of the problem", "Analysis of the problem", "Conclusion of the problem", "Biography of the author"], 3, "The heads are Background, Analysis, Conclusion and Recommendation of solution."],
-  ["Cooley’s third stage of social development is…", ["Imagination appearance", "Imagination judgement", "Self feeling acting upon the judgements", "Play stage"], 2, "Cooley’s stages: imagination appearance, imagination judgement, then self feeling acting upon the judgements."],
-  ["Mead identifies which three entities within an individual?", ["I, Me and Self", "Desire, thought and expectations", "Body, soul and spirit", "Preparatory, play and imitation"], 0, "Mead’s entities are I (instinctive), Me (conscious, socialized) and Self (balances I and Me)."],
-  ["In Mead’s theory, ‘Me’ is…", ["instinctive", "balancing between I and Me", "conscious and socialized", "dogmatic"], 2, "I is instinctive, Me is conscious and socialized, and Self balances the two."],
-  ["In the notes, Mead’s play stage covers the ages…", ["0–2 years", "2–6 years", "6 years and beyond", "12–18 years"], 1, "Preparatory is 0–2, play is 2–6, imitation is 6 years and beyond."],
-  ["Ethics is generally determined or set by…", ["families or homes", "an institution or organization", "each individual", "nature"], 1, "Ethics is set by an institution or organization. Ethical values come from families or homes."],
-  ["Ethical values are generally instilled from…", ["institutions", "organizations", "families or homes", "law courts"], 2, "Ethical values are instilled from families or homes and differ from person to person."],
-  ["Ethical values serve as a ___ in any system, expediting work.", ["barrier", "catalyst", "penalty", "contract"], 1, "With strong ethical values, work of any sort moves faster, so values act as a catalyst."],
-  ["Consequentialism comes under the umbrella of…", ["deontological ethics", "teleological ethics", "meta ethics", "technology ethics"], 1, "Consequentialism, along with eudaimonism, comes under teleological ethics."],
-  ["Consequentialism (the consequence decides right or wrong) was proposed by…", ["Immanuel Kant", "John Stuart Mill and Jeremy Bentham", "Abraham Maslow", "Charles Horton Cooley"], 1, "Mill and Bentham proposed it. Kant countered it with non-consequentialism."],
-  ["In ‘deontology’, the root word ‘deon’ means…", ["pleasure", "consequence", "duty", "value"], 2, "Deon means duty, which is why deontological ethics is also called duty ethics."],
-  ["According to Kant’s deontological ethics…", ["the consequence decides whether an action is right", "the action is what is morally or immorally guided", "the greater good for a greater number matters most", "pleasure is the aim"], 1, "The action is most important. The consequence is guided by the action."],
-  ["Hedonism is about understanding whether a consequence fetched…", ["greater good to a greater number", "pleasure or pain to a particular class or people of society", "duty to the organization", "confidentiality"], 1, "Utilitarianism is about the greater good for a greater number. Hedonism is about pleasure or pain."],
-  ["Keeping strategies, and even smaller decisions, confined within a few is the canon of…", ["Diligence", "Confidentiality", "Legality", "Loyalty"], 1, "Confidentiality means keeping strategies sacrosanct and not divulging smaller decisions meant for a few."],
-  ["Taking the organization and employees to task with punitive actions for breaking laws relates to…", ["Fairness", "Integrity", "Legality", "Loyalty"], 2, "Under Legality, both the organization and its employees are bound by rules and laws."],
-  ["Compliance-based codes of ethics are mainly concerned with…", ["hiring, safety and security of employees, keeping labour laws in mind", "escalating the sales of a cash cow product", "technology tenets", "personal religious values"], 0, "Compliance-based codes are laws and policies on hiring, safety, security and dismissal, designed with labour laws in mind."],
-  ["Which is NOT a basic tenet of technology ethics in the notes?", ["Accountability", "Integrity", "Data-privacy", "Profit maximisation"], 3, "The tenets are accountability, integrity, data-privacy, and honesty and fairness."]
+  ["In these notes, |ψ(x,t)|² represents…", ["The amplitude of the matter wave", "The probability density of finding the particle", "The momentum of the particle", "The total energy of the particle"], 1, "ψ(x,t) itself has no physical significance. |ψ(x,t)|² is the probability density."],
+  ["The normalization condition for a wavefunction is…", ["∫ψ dx = 1", "∫ψ*ψ dx = 0", "∫ψ*ψ dx = 1, from −∞ to +∞", "∫ψ*ψ dx = ∞"], 2, "If |ψ|² is a probability density, the total probability must be 1."],
+  ["The de-Broglie wavelength of a 0.15 kg cricket ball moving at 100 m/s is about…", ["4.42 × 10⁻³⁵ m", "7.281 µm", "4.42 × 10⁻¹⁵ m", "6.626 × 10⁻³⁴ m"], 0, "λ = h/p = 6.626 × 10⁻³⁴ / 15. This is about 10²⁰ times smaller than a nucleus, so it cannot be detected."],
+  ["An electron moving at 100 m/s has λ ≈ 7.281 µm. Which region of the spectrum is that?", ["Ultraviolet", "Gamma ray", "Infra-red", "X-ray"], 2, "The notes say it lies in the infra-red spectrum, well inside the detectable range."],
+  ["Quantum mechanical effects are significant when…", ["λ is much smaller than the particle size d", "λ is comparable to the particle size d (λ ≈ d)", "λ = 0", "d is infinite"], 1, "Effects become significant when the size of the particle is comparable to its de-Broglie wavelength."],
+  ["The energy operator is…", ["−iħ ∂/∂x", "P²/2m", "V(x)", "iħ ∂/∂t"], 3, "Acting iħ ∂/∂t on ψ = Ae^{(i/ħ)(Px−Et)} gives Eψ."],
+  ["The momentum operator is…", ["iħ ∂/∂t", "−iħ ∂/∂x", "−ħ²/2m ∂²/∂x²", "P²/2m"], 1, "−iħ ∂ψ/∂x = Pψ, so −iħ ∂/∂x ≡ Pₓ."],
+  ["Which of these is NOT required of a physical wavefunction in these notes?", ["Finite at all points", "Single valued", "Real valued everywhere", "Square integrable"], 2, "ψ may be complex. The required properties are finite, single valued, continuous at boundaries and square integrable. ψ*ψ is always real."],
+  ["If ψ = a + ib, then ψ*ψ =", ["a² − b²", "a + b", "2ab", "a² + b²"], 3, "ψ* = a − ib, so ψ*ψ = a² + b²."],
+  ["If ψ(x,0) is normalized, then at a later time t the integral ∫ψ*ψ dx is…", ["Zero", "Still 1", "Greater than 1", "Dependent on t"], 1, "d/dt ∫ψ*ψ dx = 0 for the Schrödinger equation, so you only have to normalize once."],
+  ["If ψ₁ and ψ₂ both solve the Schrödinger equation, then…", ["Only ψ₁ψ₂ is a solution", "C₁ψ₁ + C₂ψ₂ is also a solution", "Only ψ₁ − ψ₂ is a solution", "None of these is a solution"], 1, "This is the principle of superposition."],
+  ["A function f(x) is square integrable if…", ["∫f(x) dx is finite", "f(x) is continuous", "∫|f(x)|² dx is finite", "f(x) is real"], 2, "Integrable means ∫f dx is finite. Square integrable means ∫|f|² dx is finite. ψ need not be integrable but must be square integrable."],
+  ["Why is f(x) = √x rejected as a wavefunction?", ["Finite but not continuous", "Not square integrable", "Multi-valued: f(4) = {+2, −2}", "Zero everywhere"], 2, "For one value of x it has more than one value of f(x), so it is not single valued."],
+  ["Problem 2: is ψ(x,t) = Ae^{αx+iβt} a valid wavefunction?", ["Yes, it is normalizable", "No, ∫ψ*ψ dx = ∞", "Yes, if β = 0", "No, because it is complex"], 1, "ψ*ψ = A²e^{2αx}, whose integral from −∞ to +∞ diverges, so it is not square integrable."],
+  ["Problem 4: for ψ = Ax (0 ≤ x ≤ 1) and A(2 − x) (1 ≤ x ≤ 2), the constant A is…", ["√(3/2)", "√(2/3)", "3/2", "1/√2"], 0, "A²/3 + A²/3 = 1, so 2A²/3 = 1 and A = √(3/2)."],
+  ["Problem 1: ψ(x,0) = Ae^{κx} + Be^{−κx} over all space. For a valid wavefunction…", ["A = B = 0 only", "A = −B", "A = 0 for x > 0 and B = 0 for x < 0, then continuity at x = 0 gives B = A", "B = 0 for x > 0 and A = 0 for x < 0"], 2, "Finiteness removes the growing exponential on each side. Continuity at x = 0 then gives B = A."]
 ];
 
 const R = document.getElementById("quiz"), S = document.getElementById("score");
